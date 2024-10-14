@@ -1,0 +1,63 @@
+generator client {
+  provider = "dart run orm"
+  output = "lib/orm"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model License {
+    license_key String @id
+    customer Customer @relation(fields: [customer_id], references:[id])
+    customer_id Int
+    user_id String
+    product Product @relation(fields: [product_id], references:[id])
+    product_id Int
+    payments Payment[]
+}
+
+model Product{
+    id Int @id @default(autoincrement())
+    name String
+    description String?
+    License License[]
+    features Feature[]
+}
+
+model Customer {
+    id Int @id @default(autoincrement())
+    name String
+    email String
+    licenses License[]
+}
+
+model Feature {
+    id Int @id @default(autoincrement())
+    name String
+    description String?
+    type FeatureType 
+    product Product @relation(fields: [product_id], references:[id])
+    product_id Int
+    trial_period Int?
+    payments Payment[]
+}
+
+enum FeatureType {
+    FREE
+    PAID
+    TRIAL
+}
+
+model Payment {
+    id Int @id @default(autoincrement())
+    license License @relation(fields: [license_key], references: [license_key])
+    license_key String
+    activation_date DateTime @default(now())
+    expiration_date DateTime
+    payment_reference String?
+    features Feature[]
+    revoked Boolean @default(false)
+    revocation_reasoning String?
+}

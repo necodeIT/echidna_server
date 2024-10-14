@@ -1,0 +1,37 @@
+bricks:
+  datasource:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: datasource
+  datasource-impl:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: datasource-impl
+  guard:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: guard
+  model:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: model
+  module:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: module
+  handler:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: handler
+  service:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: service
+  service-impl:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: service-impl
+  util:
+    git:
+      url: https://github.com/necodeIT/shelf_modular_bricks
+      path: util

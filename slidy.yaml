@@ -1,0 +1,15 @@
+slidy: "1"
+variables:
+  customMessage: "Complete" # Gets  ${Local.var.customMessage}
+
+scripts:
+  generate:
+    name: "Generate"
+    steps:
+      - run: dart pub run build_runner build --delete-conflicting-outputs
+      - run: npx prisma generate
+  watch:
+    name: "Watch"
+    description: "Run build_runner watch"
+    steps:
+      - run: dart pub run build_runner watch --delete-conflicting-outputs
