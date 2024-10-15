@@ -22,7 +22,8 @@ class AdminModule extends Module {
   @override
   void routes(RouteManager r) {
     r
-      ..module('/licenses', module: AdminLicensesModule())
-      ..module('/products', module: AdminProductsModule());
+      ..resource(CustomerResource(), name: '/customers')
+      ..resource(LicensesResource(), name: '/licenses')
+      ..resource(ProductsResource(), name: '/products');
   }
 }
