@@ -13,3 +13,18 @@ scripts:
     description: "Run build_runner watch"
     steps:
       - run: dart pub run build_runner watch --delete-conflicting-outputs
+  up:
+    name: "Start Database"
+    description: "Starts the database container"
+    steps:
+      - run: docker compose -f dev.docker-compose.yaml up -d
+  down:
+    name: "Shutdown Database"
+    description: "Stops the database container"
+    steps:
+      - run: docker compose -f dev.docker-compose.yaml down
+  clean:
+    name: "Purge Database"
+    description: "Clears the database container"
+    steps:
+      - run: ./reset.sh
