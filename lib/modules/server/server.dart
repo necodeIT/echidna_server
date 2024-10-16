@@ -18,6 +18,7 @@ class ServerModule extends Module {
   @override
   List<Module> get imports => [
         CoreModule(),
+        AuthModule(),
       ];
 
   @override
@@ -29,6 +30,12 @@ class ServerModule extends Module {
   void routes(RouteManager r) {
     r
       ..get('/', () => Response.notFound("This is not the API you're looking for."))
-      ..module('/admin', module: AdminModule());
+      ..module(
+        '/admin',
+        module: AdminModule(),
+        middlewares: [
+          AuthGuard(),
+        ],
+      );
   }
 }

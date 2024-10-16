@@ -19,6 +19,30 @@ void main(List<String> args) async {
       middlewares: [],
     );
 
+    setPrintResolver((msg) {
+      final logger = Logger('Modular');
+      final parts = msg.split(' ');
+
+      final log = logger.info;
+
+      if (parts.length == 3 && parts[0] == '--') {
+        final module = parts[1].replaceAll('Module', ' Module').toLowerCase();
+        final action = parts[2];
+
+        if (action == 'DISPOSED') {
+          log('Disposed $module');
+          return;
+        }
+
+        if (action == 'INITIALIZED') {
+          log('Initilaized $module');
+          return;
+        }
+      }
+
+      log(msg);
+    });
+
     await io.serve(modularHandler, kHost, kPort);
 
     Logger.root.log(Level.INFO, 'Server started at $kHost:$kPort');
