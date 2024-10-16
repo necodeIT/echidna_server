@@ -7,8 +7,8 @@ class CustomerResource extends Resource {
   void routes(RouteManager r) {
     r
       ..get('/:id', getCustomersHandler)
-      ..post('/:id', addCustomerHandler)
+      ..put('/', addCustomerHandler)
       ..delete('/:id', deleteCustomerHandler)
-      ..put('/:id', updateCustomerHandler);
+      ..patch('/:id', updateCustomerHandler);
   }
 }

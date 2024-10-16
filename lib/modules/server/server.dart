@@ -22,7 +22,7 @@ class ServerModule extends Module {
       ];
 
   @override
-  void exportedBinds(Injector i) {
+  void binds(Injector i) {
     i.addSingleton<PrismaClient>(() => prisma);
   }
 

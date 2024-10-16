@@ -6,10 +6,13 @@ import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_modular/shelf_modular.dart';
 
+final prisma = PrismaClient();
 void main(List<String> args) async {
-  final prisma = PrismaClient();
-
   Logger.root.onRecord.listen(debugLogHandler);
+
+  if (kDebugMode) {
+    Logger.root.warning('Running in debug mode');
+  }
 
   try {
     await prisma.$connect();

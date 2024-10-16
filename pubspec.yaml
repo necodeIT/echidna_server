@@ -20,6 +20,7 @@ dependencies:
   orm: ^5.2.0
   shelf: ^1.4.2
   shelf_modular: ^2.1.0
+
 dependency_overrides:
   modular_core:
     git:

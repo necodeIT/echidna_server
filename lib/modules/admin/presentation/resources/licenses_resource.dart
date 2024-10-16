@@ -6,9 +6,9 @@ class LicensesResource extends Resource {
   @override
   void routes(RouteManager r) {
     r
-      ..get('/:id', getCustomersHandler)
-      ..post('/:id', addCustomerHandler)
-      ..delete('/:id', deleteCustomerHandler)
-      ..put('/:id', updateCustomerHandler);
+      ..get('/:id', getLicensesHandler)
+      ..put('/', addLicenseHandler)
+      ..delete('/:id', revokeLicenseHandler)
+      ..patch('/:id', updateLicenseHandler);
   }
 }

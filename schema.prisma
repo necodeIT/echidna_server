@@ -52,7 +52,7 @@ enum FeatureType {
 
 model Payment {
     id Int @id @default(autoincrement())
-    license License @relation(fields: [license_key], references: [license_key])
+    license License @relation(fields: [license_key], references: [license_key], onDelete: Cascade, onUpdate: Cascade)
     license_key String
     activation_date DateTime @default(now())
     expiration_date DateTime

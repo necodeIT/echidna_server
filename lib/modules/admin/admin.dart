@@ -21,6 +21,8 @@ class AdminModule extends Module {
 
   @override
   void routes(RouteManager r) {
+    // prisma.license.findMany().catchError((e) async => print("AdminModule.routes: $e"));
+
     r
       ..resource(CustomerResource(), name: '/customers')
       ..resource(LicensesResource(), name: '/licenses')

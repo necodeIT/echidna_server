@@ -7,8 +7,8 @@ class ProductsResource extends Resource {
   void routes(RouteManager r) {
     r
       ..get('/:id', getProductsHandler)
-      ..post('/:id', createProductHandler)
+      ..put('/', createProductHandler)
       ..delete('/:id', deleteProductHandler)
-      ..put('/:id', updateProductHandler);
+      ..patch('/:id', updateProductHandler);
   }
 }

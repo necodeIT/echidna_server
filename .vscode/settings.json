@@ -9,4 +9,7 @@
   "dart.lineLength": 150,
   "dart.debugExternalPackageLibraries": true,
   "dart.debugSdkLibraries": true,
+  "dart.vmAdditionalArgs": [
+    "--define=DEBUG_MODE=true"
+  ]
 }
