@@ -4,6 +4,7 @@ import 'package:license_server/modules/server/server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_docker_shutdown/shelf_docker_shutdown.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 final prisma = PrismaClient();
@@ -46,12 +47,21 @@ void main(List<String> args) async {
       log(msg);
     });
 
-    await io.serve(modularHandler, kHost, kPort);
+    final server = await io.serve(modularHandler, kHost, kPort);
 
     Logger.root.log(Level.INFO, 'Server started at $kHost:$kPort');
+
+    await server.closeOnTermSignal();
+
+    await _shutdown();
   } catch (e, s) {
     Logger.root.log(Level.SEVERE, 'Failed to start server', e, s);
-  } finally {
-    await prisma.$disconnect();
+
+    await _shutdown();
   }
+}
+
+Future<void> _shutdown() async {
+  Logger.root.info('Shutting down server');
+  await prisma.$disconnect();
 }

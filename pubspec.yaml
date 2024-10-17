@@ -19,6 +19,7 @@ dependencies:
       url: https://github.com/mcquenji/mcquenji_core.git
   orm: ^5.2.0
   shelf: ^1.4.2
+  shelf_docker_shutdown: ^1.1.0
   shelf_modular: ^2.1.0
 
 dependency_overrides:
