@@ -1,14 +1,14 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 /// Upadted the product with the given ID based on the request body.
 Future<Response> updateProductHandler(Request request, Injector i, ModularArguments args) async {
-  final id = args.params['id'] as int?;
+  final id = int.tryParse(args.params['id'] as String? ?? '');
 
   if (id == null) {
+    request.log('Bad Request: No ID given');
     return Response.badRequest(body: 'ID is required.');
   }
 
@@ -17,7 +17,8 @@ Future<Response> updateProductHandler(Request request, Injector i, ModularArgume
   final oldProduct = await prisma.product.findUnique(where: ProductWhereUniqueInput(id: id));
 
   if (oldProduct == null) {
-    return Response.notFound('Product not found.');
+    request.log('Not Found: Product with ID $id not found');
+    return Response.notFound(null);
   }
 
   var name = args.data['name'] as String?;
@@ -27,7 +28,7 @@ Future<Response> updateProductHandler(Request request, Injector i, ModularArgume
   description ??= oldProduct.description;
 
   try {
-    await prisma.$transaction(
+    final product = await prisma.$transaction(
       (prisma) => prisma.product.update(
         where: ProductWhereUniqueInput(id: id),
         data: PrismaUnion.$1(
@@ -39,15 +40,11 @@ Future<Response> updateProductHandler(Request request, Injector i, ModularArgume
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
-    return Response.ok(
-      Product(
-        id: id,
-        name: name,
-        description: description,
-      ).toJson(),
-    );
+
+    request.log('updated product with ID $id successfully');
+    return product!.toResponse();
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to update product', e, s);
+    request.log('Failed to update product with ID $id', e, s);
     return Response.internalServerError();
   }
 }

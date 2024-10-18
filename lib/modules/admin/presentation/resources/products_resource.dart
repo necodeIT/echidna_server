@@ -8,7 +8,6 @@ class ProductsResource extends Resource {
     r
       ..get('/:id', getProductsHandler)
       ..put('/', createProductHandler)
-      ..delete('/:id', deleteProductHandler)
       ..patch('/:id', updateProductHandler);
   }
 }

@@ -1,14 +1,14 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 /// Updates the customer with the given ID based on the request body.
 Future<Response> updateCustomerHandler(Request request, Injector i, ModularArguments args) async {
-  final id = args.params['id'] as int?;
+  final id = int.tryParse(args.params['id'] as String? ?? '');
 
   if (id == null) {
+    request.log('Bad Request: no ID given');
     return Response.badRequest(body: 'ID is required.');
   }
 
@@ -17,7 +17,8 @@ Future<Response> updateCustomerHandler(Request request, Injector i, ModularArgum
   final oldCustomer = await prisma.customer.findUnique(where: CustomerWhereUniqueInput(id: id));
 
   if (oldCustomer == null) {
-    return Response.notFound('Customer not found.');
+    request.log('Not Found: Customer not found');
+    return Response.notFound(null);
   }
 
   var name = args.data['name'] as String?;
@@ -27,7 +28,7 @@ Future<Response> updateCustomerHandler(Request request, Injector i, ModularArgum
   email ??= oldCustomer.email!;
 
   try {
-    await prisma.$transaction(
+    final customer = await prisma.$transaction(
       (prisma) => prisma.customer.update(
         where: CustomerWhereUniqueInput(id: id),
         data: PrismaUnion.$1(
@@ -39,15 +40,11 @@ Future<Response> updateCustomerHandler(Request request, Injector i, ModularArgum
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
-    return Response.ok(
-      Customer(
-        id: id,
-        name: name,
-        email: email,
-      ).toJson(),
-    );
+
+    request.log('Succssfully updated customer with ID $id.');
+    return customer!.toResponse();
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to update customer', e, s);
+    request.log('Failed to update customer with ID $id.', e, s);
     return Response.internalServerError();
   }
 }

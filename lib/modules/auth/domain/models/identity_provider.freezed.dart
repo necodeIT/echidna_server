@@ -29,7 +29,6 @@ IdentityProvider _$IdentityProviderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IdentityProvider {
-  /// The name of the identity provider.
   String get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -205,7 +204,6 @@ class _$SamlIdentityProviderImpl extends SamlIdentityProvider {
   factory _$SamlIdentityProviderImpl.fromJson(Map<String, dynamic> json) =>
       _$$SamlIdentityProviderImplFromJson(json);
 
-  /// The name of the identity provider.
   @override
   final String name;
   @override
@@ -359,7 +357,6 @@ abstract class SamlIdentityProvider extends IdentityProvider {
   factory SamlIdentityProvider.fromJson(Map<String, dynamic> json) =
       _$SamlIdentityProviderImpl.fromJson;
 
-  /// The name of the identity provider.
   @override
   String get name;
   String get metadataUrl;

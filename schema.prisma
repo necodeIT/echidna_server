@@ -12,7 +12,7 @@ model License {
     license_key String @id
     customer Customer @relation(fields: [customer_id], references:[id])
     customer_id Int
-    user_id String
+    user_id String?
     product Product @relation(fields: [product_id], references:[id])
     product_id Int
     payments Payment[]
@@ -36,7 +36,7 @@ model Customer {
 model Feature {
     id Int @id @default(autoincrement())
     name String
-    description String?
+    description String
     type FeatureType 
     product Product @relation(fields: [product_id], references:[id])
     product_id Int
@@ -47,7 +47,6 @@ model Feature {
 enum FeatureType {
     FREE
     PAID
-    TRIAL
 }
 
 model Payment {

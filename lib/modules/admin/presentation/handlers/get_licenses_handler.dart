@@ -7,17 +7,21 @@ Future<Response> getLicensesHandler(Request request, Injector i, ModularArgument
   final id = args.params['id'] as String?;
   final prisma = i.get<PrismaClient>();
 
-  if (id == null) {
+  if (id == null || id.isEmpty) {
+    request.log('No id provided, returning all licenses');
+
     final licenses = await prisma.license.findMany();
 
-    return Response.ok(licenses.map((e) => e.toJson()).toList());
+    return licenses.toResponse();
   }
 
   final license = await prisma.license.findUnique(where: LicenseWhereUniqueInput(licenseKey: id));
 
   if (license == null) {
-    return Response.notFound("License with ID '$id' does not exist.");
+    request.log('Not Found: License with ID $id does not exist');
+    return Response.notFound(null);
   }
 
-  return Response.ok(license.toJson());
+  request.log('Returned license with ID $id.');
+  return license.toResponse();
 }

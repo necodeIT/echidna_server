@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:license_server/config/server.dart';
 import 'package:license_server/license_server.dart';
-import 'package:license_server/modules/server/server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf/shelf_io.dart' as io;
@@ -9,6 +10,7 @@ import 'package:shelf_modular/shelf_modular.dart';
 
 final prisma = PrismaClient();
 void main(List<String> args) async {
+  Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen(debugLogHandler);
 
   if (kDebugMode) {
@@ -48,6 +50,12 @@ void main(List<String> args) async {
     });
 
     final server = await io.serve(modularHandler, kHost, kPort);
+
+    server.serverHeader = 'necodeIT License Server';
+    server.defaultResponseHeaders.contentType = ContentType.json;
+    server.handleError((e, s) {
+      Logger.root.severe('Failed to handle request', e, s);
+    });
 
     Logger.root.log(Level.INFO, 'Server started at $kHost:$kPort');
 

@@ -1,5 +1,4 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
@@ -9,6 +8,7 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
   final id = args.params['id'] as String?;
 
   if (id == null) {
+    request.log('Bad Request: No ID given');
     return Response.badRequest();
   }
 
@@ -17,7 +17,8 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
   final oldLicense = await prisma.license.findUnique(where: LicenseWhereUniqueInput(licenseKey: id));
 
   if (oldLicense == null) {
-    return Response.notFound('License not found');
+    request.log('Not Found: License not found');
+    return Response.notFound(null);
   }
 
   var productId = args.data['productId'] as int?;
@@ -33,11 +34,12 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
   final licenseKey = await licenseKeyGenerator.generateLicenseKey(productId, customerId, userId);
 
   if (licenseKey == oldLicense.licenseKey) {
+    request.log('No changes detected. License key with ID $id not updated.');
     return Response.ok(oldLicense.toJson());
   }
 
   try {
-    await prisma.$transaction(
+    final license = await prisma.$transaction(
       // this should also cascade to the payment table and update the license key there
       (prisma) async => await prisma.license.update(
         data: PrismaUnion.$1(
@@ -56,16 +58,10 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
       ),
     );
 
-    return Response.ok(
-      License(
-        licenseKey: licenseKey,
-        customerId: customerId,
-        productId: productId,
-        userId: userId,
-      ).toJson(),
-    );
+    request.log('License key with ID $id updated successfully.');
+    return license!.toResponse();
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to update license', e, s);
+    request.log('Failed to update license with ID $id.', e, s);
     return Response.internalServerError();
   }
 }

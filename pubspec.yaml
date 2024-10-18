@@ -10,13 +10,18 @@ environment:
 dependencies:
   bloc: ^8.1.4
   collection: ^1.18.0
+  crypto: ^3.0.6
   either_dart: ^1.0.0
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  license_server_rest:
+    git:
+      url: https://github.com/necodeIT/license_server_rest.git
   logging: ^1.2.0
   mcquenji_core:
     git:
       url: https://github.com/mcquenji/mcquenji_core.git
+  modular_test: ^2.0.0
   orm: ^5.2.0
   shelf: ^1.4.2
   shelf_docker_shutdown: ^1.1.0

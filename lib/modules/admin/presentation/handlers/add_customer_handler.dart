@@ -1,5 +1,4 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
@@ -12,11 +11,12 @@ Future<Response> addCustomerHandler(Request request, Injector i, ModularArgument
   final email = args.data['email'] as String?;
 
   if (name == null || email == null) {
+    request.log('Bad Request: Customer name and email required');
     return Response.badRequest(body: 'Customer name and email are required.');
   }
 
   try {
-    await prisma.$transaction(
+    final customer = await prisma.$transaction(
       (prisma) => prisma.customer.create(
         data: PrismaUnion.$1(
           CustomerCreateInput(
@@ -27,10 +27,11 @@ Future<Response> addCustomerHandler(Request request, Injector i, ModularArgument
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
+    request.log('Added customer $name to database');
+
+    return customer.toResponse();
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to add customer', e, s);
+    request.log('Failed to add customer', e, s);
     return Response.internalServerError();
   }
-
-  return Response.ok('Hello, World!');
 }

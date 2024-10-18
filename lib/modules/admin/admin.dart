@@ -1,4 +1,5 @@
 import 'package:license_server/license_server.dart';
+import 'package:license_server/modules/admin/infra/services/hash_license_key_generator_service.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
@@ -14,15 +15,15 @@ class AdminModule extends Module {
       ];
 
   @override
-  void binds(Injector i) {}
+  void binds(Injector i) {
+    i.add<LicenseKeyGeneratorService>(HashLicenseKeyGeneratorService.new);
+  }
 
   @override
   void exportedBinds(Injector i) {}
 
   @override
   void routes(RouteManager r) {
-    // prisma.license.findMany().catchError((e) async => print("AdminModule.routes: $e"));
-
     r
       ..resource(CustomerResource(), name: '/customers')
       ..resource(LicensesResource(), name: '/licenses')

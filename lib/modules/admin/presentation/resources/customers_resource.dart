@@ -8,7 +8,6 @@ class CustomerResource extends Resource {
     r
       ..get('/:id', getCustomersHandler)
       ..put('/', addCustomerHandler)
-      ..delete('/:id', deleteCustomerHandler)
       ..patch('/:id', updateCustomerHandler);
   }
 }

@@ -6,7 +6,6 @@ analyzer:
   exclude:
     - "**.g.dart"
     - "lib/orm/**"
-    - "test/**" # Temporary until we're writing unit tests
 
 architecture_linter:
   lint_severity: error

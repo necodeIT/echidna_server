@@ -1,5 +1,4 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
@@ -12,11 +11,12 @@ Future<Response> createProductHandler(Request request, Injector i, ModularArgume
   final description = args.data['description'] as String?;
 
   if (name == null || description == null) {
+    request.log('Bad Request: Product name or description is missing');
     return Response.badRequest(body: 'Product name and description are required.');
   }
 
   try {
-    await prisma.$transaction(
+    final product = await prisma.$transaction(
       (prisma) => prisma.product.create(
         data: PrismaUnion.$1(
           ProductCreateInput(
@@ -27,10 +27,11 @@ Future<Response> createProductHandler(Request request, Injector i, ModularArgume
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
+    request.log('Product $name added successfully');
+
+    return product.toResponse();
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to add product', e, s);
+    request.log('Failed to add product $name', e, s);
     return Response.internalServerError();
   }
-
-  return Response.ok('Hello, World!');
 }

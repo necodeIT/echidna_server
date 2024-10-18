@@ -4,20 +4,25 @@ import 'package:shelf_modular/shelf_modular.dart';
 
 /// Returns a list of all customers or a single product with the given ID.
 Future<Response> getCustomersHandler(Request request, Injector i, ModularArguments args) async {
-  final id = args.params['id'] as int?;
+  final id = int.tryParse(args.params['id'] as String? ?? '');
+
   final prisma = i.get<PrismaClient>();
 
   if (id == null) {
+    request.log('No id provided, returning all customers.');
+
     final customers = await prisma.customer.findMany();
 
-    return Response.ok(customers.map((e) => e.toJson()).toList());
+    return customers.toResponse();
   }
 
   final customer = await prisma.customer.findUnique(where: CustomerWhereUniqueInput(id: id));
 
   if (customer == null) {
-    return Response.notFound("Customer with ID '$id' does not exist.");
+    request.log('Not Found: Customer with ID $id does not exist');
+    return Response.notFound(null);
   }
 
-  return Response.ok(customer.toJson());
+  request.log('Returned customer with ID $id.');
+  return customer.toResponse();
 }

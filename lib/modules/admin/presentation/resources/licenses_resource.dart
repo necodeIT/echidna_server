@@ -8,7 +8,7 @@ class LicensesResource extends Resource {
     r
       ..get('/:id', getLicensesHandler)
       ..put('/', addLicenseHandler)
-      ..delete('/:id', revokeLicenseHandler)
+      ..post('/revoke/:id', revokeLicenseHandler)
       ..patch('/:id', updateLicenseHandler);
   }
 }

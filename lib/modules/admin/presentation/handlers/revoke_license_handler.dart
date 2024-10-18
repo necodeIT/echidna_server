@@ -7,15 +7,17 @@ import 'package:shelf_modular/shelf_modular.dart';
 /// Revokes a license with the given ID.
 Future<Response> revokeLicenseHandler(Request request, Injector i, ModularArguments args) async {
   final id = args.params['id'] as String?;
-  final revocationReason = args.data['revocation_reason'] as String?;
+  final revocationReason = args.data['reason'] as String?;
   final prisma = i.get<PrismaClient>();
 
   if (id == null) {
+    request.log('Bad Request: No ID given');
     return Response.badRequest(body: 'id is required.');
   }
 
   if (revocationReason == null) {
-    return Response.badRequest(body: 'revocation_reason is required');
+    request.log('Bad Request: No revocation reason is given');
+    return Response.badRequest(body: 'reason is required');
   }
 
   final payment = await prisma.payment.findFirst(
@@ -28,7 +30,8 @@ Future<Response> revokeLicenseHandler(Request request, Injector i, ModularArgume
   );
 
   if (payment == null) {
-    return Response.notFound('License has no valid payment.');
+    request.log('Not Found: License has no valid payment');
+    return Response.notFound(null);
   }
 
   try {
@@ -45,9 +48,11 @@ Future<Response> revokeLicenseHandler(Request request, Injector i, ModularArgume
       isolationLevel: TransactionIsolationLevel.serializable,
     );
 
+    request.log('Successfully revoked license with ID $id');
+
     return Response.ok('');
   } on Exception catch (e, s) {
-    Logger('${request.method} ${request.url}').severe('Failed to add license', e, s);
+    Logger('${request.method} ${request.url}').severe('Failed to revoke license', e, s);
     return Response.internalServerError();
   }
 }

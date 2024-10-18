@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:license_server/license_server.dart';
 import 'package:logging/logging.dart';
 import 'package:orm/orm.dart';
@@ -17,6 +15,7 @@ Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments
   final userId = args.data['userId'] as String?;
 
   if (customerId == null || productId == null || userId == null) {
+    request.log('Bad Request: Customer ID, Product ID and User ID ar not given');
     return Response.badRequest(body: 'Customer ID, Product ID and User ID are required.');
   }
 
@@ -27,6 +26,7 @@ Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments
   );
 
   if (await prisma.license.findUnique(where: LicenseWhereUniqueInput(licenseKey: key)) != null) {
+    request.log('Bad Request: License already exists');
     return Response.badRequest(body: 'License already exists.');
   }
 
@@ -42,7 +42,7 @@ Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments
         data: PrismaUnion.$1(
           LicenseCreateInput(
             licenseKey: key,
-            userId: userId,
+            userId: PrismaUnion.$1(userId),
             customer: CustomerCreateNestedOneWithoutLicensesInput(
               connect: CustomerWhereUniqueInput(id: customerId),
             ),
@@ -54,8 +54,9 @@ Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
+    request.log('License Created for user with id $userId');
 
-    return Response.ok(jsonEncode(license.toJson()));
+    return license.toResponse();
   } on Exception catch (e) {
     Logger('${request.method} ${request.url}').severe('Failed to add license', e);
     return Response.internalServerError();

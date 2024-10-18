@@ -275,87 +275,6 @@ class IntFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class LicenseListRelationFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseListRelationFilter({
-    this.every,
-    this.some,
-    this.none,
-  });
-
-  final _i2.LicenseWhereInput? every;
-
-  final _i2.LicenseWhereInput? some;
-
-  final _i2.LicenseWhereInput? none;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'every': every,
-        'some': some,
-        'none': none,
-      };
-}
-
-class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerWhereInput({
-    this.AND,
-    this.OR,
-    this.NOT,
-    this.id,
-    this.name,
-    this.email,
-    this.licenses,
-  });
-
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      AND;
-
-  final Iterable<_i2.CustomerWhereInput>? OR;
-
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      NOT;
-
-  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
-
-  final _i2.LicenseListRelationFilter? licenses;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'AND': AND,
-        'OR': OR,
-        'NOT': NOT,
-        'id': id,
-        'name': name,
-        'email': email,
-        'licenses': licenses,
-      };
-}
-
-class CustomerRelationFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerRelationFilter({
-    this.$is,
-    this.isNot,
-  });
-
-  final _i2.CustomerWhereInput? $is;
-
-  final _i2.CustomerWhereInput? isNot;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'is': $is,
-        'isNot': isNot,
-      };
-}
-
 class NestedStringNullableFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const NestedStringNullableFilter({
@@ -473,6 +392,87 @@ class StringNullableFilter
         'endsWith': endsWith,
         'mode': mode,
         'not': not,
+      };
+}
+
+class LicenseListRelationFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseListRelationFilter({
+    this.every,
+    this.some,
+    this.none,
+  });
+
+  final _i2.LicenseWhereInput? every;
+
+  final _i2.LicenseWhereInput? some;
+
+  final _i2.LicenseWhereInput? none;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'every': every,
+        'some': some,
+        'none': none,
+      };
+}
+
+class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.name,
+    this.email,
+    this.licenses,
+  });
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      AND;
+
+  final Iterable<_i2.CustomerWhereInput>? OR;
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      NOT;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
+
+  final _i2.LicenseListRelationFilter? licenses;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'id': id,
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+      };
+}
+
+class CustomerRelationFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerRelationFilter({
+    this.$is,
+    this.isNot,
+  });
+
+  final _i2.CustomerWhereInput? $is;
+
+  final _i2.CustomerWhereInput? isNot;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'is': $is,
+        'isNot': isNot,
       };
 }
 
@@ -1019,7 +1019,8 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
 
-  final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
+  final _i1.PrismaUnion<_i2.StringNullableFilter,
+      _i1.PrismaUnion<String, _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
@@ -1073,7 +1074,8 @@ class LicenseWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
 
-  final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
+  final _i1.PrismaUnion<_i2.StringNullableFilter,
+      _i1.PrismaUnion<String, _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
@@ -1110,6 +1112,33 @@ enum SortOrder implements _i1.PrismaEnum {
   final String name;
 }
 
+enum NullsOrder implements _i1.PrismaEnum {
+  first._('first'),
+  last._('last');
+
+  const NullsOrder._(this.name);
+
+  @override
+  final String name;
+}
+
+class SortOrderInput implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const SortOrderInput({
+    required this.sort,
+    this.nulls,
+  });
+
+  final _i2.SortOrder sort;
+
+  final _i2.NullsOrder? nulls;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'sort': sort,
+        'nulls': nulls,
+      };
+}
+
 class LicenseOrderByRelationAggregateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseOrderByRelationAggregateInput({this.$count});
@@ -1143,33 +1172,6 @@ class CustomerOrderByWithRelationInput
         'name': name,
         'email': email,
         'licenses': licenses,
-      };
-}
-
-enum NullsOrder implements _i1.PrismaEnum {
-  first._('first'),
-  last._('last');
-
-  const NullsOrder._(this.name);
-
-  @override
-  final String name;
-}
-
-class SortOrderInput implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const SortOrderInput({
-    required this.sort,
-    this.nulls,
-  });
-
-  final _i2.SortOrder sort;
-
-  final _i2.NullsOrder? nulls;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'sort': sort,
-        'nulls': nulls,
       };
 }
 
@@ -1239,7 +1241,7 @@ class LicenseOrderByWithRelationInput
 
   final _i2.SortOrder? customerId;
 
-  final _i2.SortOrder? userId;
+  final _i1.PrismaUnion<_i2.SortOrder, _i2.SortOrderInput>? userId;
 
   final _i2.SortOrder? productId;
 
@@ -2391,14 +2393,14 @@ class LicenseCreateWithoutPaymentsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateWithoutPaymentsInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.customer,
     required this.product,
   });
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
 
@@ -2418,7 +2420,7 @@ class LicenseUncheckedCreateWithoutPaymentsInput
   const LicenseUncheckedCreateWithoutPaymentsInput({
     required this.licenseKey,
     required this.customerId,
-    required this.userId,
+    this.userId,
     required this.productId,
   });
 
@@ -2426,7 +2428,7 @@ class LicenseUncheckedCreateWithoutPaymentsInput
 
   final int customerId;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final int productId;
 
@@ -2973,14 +2975,14 @@ class LicenseCreateWithoutProductInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateWithoutProductInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.customer,
     this.payments,
   });
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
 
@@ -3228,7 +3230,7 @@ class LicenseUncheckedCreateWithoutProductInput
   const LicenseUncheckedCreateWithoutProductInput({
     required this.licenseKey,
     required this.customerId,
-    required this.userId,
+    this.userId,
     this.payments,
   });
 
@@ -3236,7 +3238,7 @@ class LicenseUncheckedCreateWithoutProductInput
 
   final int customerId;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final _i2.PaymentUncheckedCreateNestedManyWithoutLicenseInput? payments;
 
@@ -3273,14 +3275,14 @@ class LicenseCreateManyProductInput
   const LicenseCreateManyProductInput({
     required this.licenseKey,
     required this.customerId,
-    required this.userId,
+    this.userId,
   });
 
   final String licenseKey;
 
   final int customerId;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -3599,7 +3601,7 @@ class PaymentCreateNestedManyWithoutLicenseInput
 class LicenseCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.customer,
     required this.product,
     this.payments,
@@ -3607,7 +3609,7 @@ class LicenseCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
 
@@ -3630,7 +3632,7 @@ class LicenseUncheckedCreateInput
   const LicenseUncheckedCreateInput({
     required this.licenseKey,
     required this.customerId,
-    required this.userId,
+    this.userId,
     required this.productId,
     this.payments,
   });
@@ -3639,7 +3641,7 @@ class LicenseUncheckedCreateInput
 
   final int customerId;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final int productId;
 
@@ -3671,7 +3673,7 @@ class LicenseCreateManyInput
   const LicenseCreateManyInput({
     required this.licenseKey,
     required this.customerId,
-    required this.userId,
+    this.userId,
     required this.productId,
   });
 
@@ -3679,7 +3681,7 @@ class LicenseCreateManyInput
 
   final int customerId;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final int productId;
 
@@ -3793,6 +3795,16 @@ class StringFieldUpdateOperationsInput
   const StringFieldUpdateOperationsInput({this.set});
 
   final String? set;
+
+  @override
+  Map<String, dynamic> toJson() => {'set': set};
+}
+
+class NullableStringFieldUpdateOperationsInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NullableStringFieldUpdateOperationsInput({this.set});
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? set;
 
   @override
   Map<String, dynamic> toJson() => {'set': set};
@@ -3945,16 +3957,6 @@ class CustomerUpdateOneRequiredWithoutLicensesNestedInput
       };
 }
 
-class NullableStringFieldUpdateOperationsInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const NullableStringFieldUpdateOperationsInput({this.set});
-
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? set;
-
-  @override
-  Map<String, dynamic> toJson() => {'set': set};
-}
-
 class EnumFeatureTypeFieldUpdateOperationsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const EnumFeatureTypeFieldUpdateOperationsInput({this.set});
@@ -4027,7 +4029,10 @@ class LicenseUpdateWithoutPaymentsInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
 
@@ -4056,7 +4061,10 @@ class LicenseUncheckedUpdateWithoutPaymentsInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
@@ -5110,7 +5118,10 @@ class LicenseUpdateWithoutProductInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
 
@@ -5520,7 +5531,10 @@ class LicenseUncheckedUpdateWithoutProductInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i2.PaymentUncheckedUpdateManyWithoutLicenseNestedInput? payments;
 
@@ -5600,7 +5614,8 @@ class LicenseScalarWhereInput
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
 
-  final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
+  final _i1.PrismaUnion<_i2.StringNullableFilter,
+      _i1.PrismaUnion<String, _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
@@ -5626,7 +5641,10 @@ class LicenseUpdateManyMutationInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -5648,7 +5666,10 @@ class LicenseUncheckedUpdateManyWithoutProductInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -6220,7 +6241,10 @@ class LicenseUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
 
@@ -6253,7 +6277,10 @@ class LicenseUncheckedUpdateInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
@@ -6283,7 +6310,10 @@ class LicenseUncheckedUpdateManyInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
@@ -6640,7 +6670,7 @@ class LicenseOrderByWithAggregationInput
 
   final _i2.SortOrder? customerId;
 
-  final _i2.SortOrder? userId;
+  final _i1.PrismaUnion<_i2.SortOrder, _i2.SortOrderInput>? userId;
 
   final _i2.SortOrder? productId;
 
@@ -6972,6 +7002,154 @@ class IntWithAggregatesFilter
       };
 }
 
+class NestedStringNullableWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedStringNullableWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<String,
+      _i1.PrismaUnion<_i1.Reference<String>, _i1.PrismaNull>>? equals;
+
+  final _i1.PrismaUnion<Iterable<String>,
+      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? $in;
+
+  final _i1.PrismaUnion<Iterable<String>,
+      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? notIn;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? lt;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? lte;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? gt;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? gte;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? contains;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? startsWith;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? endsWith;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NestedStringNullableWithAggregatesFilter,
+          _i1.PrismaNull>>? not;
+
+  final _i2.NestedIntNullableFilter? $count;
+
+  final _i2.NestedStringNullableFilter? $min;
+
+  final _i2.NestedStringNullableFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'contains': contains,
+        'startsWith': startsWith,
+        'endsWith': endsWith,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
+class StringNullableWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const StringNullableWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.mode,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<String,
+      _i1.PrismaUnion<_i1.Reference<String>, _i1.PrismaNull>>? equals;
+
+  final _i1.PrismaUnion<Iterable<String>,
+      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? $in;
+
+  final _i1.PrismaUnion<Iterable<String>,
+      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? notIn;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? lt;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? lte;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? gt;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? gte;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? contains;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? startsWith;
+
+  final _i1.PrismaUnion<String, _i1.Reference<String>>? endsWith;
+
+  final _i2.QueryMode? mode;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NestedStringNullableWithAggregatesFilter,
+          _i1.PrismaNull>>? not;
+
+  final _i2.NestedIntNullableFilter? $count;
+
+  final _i2.NestedStringNullableFilter? $min;
+
+  final _i2.NestedStringNullableFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'contains': contains,
+        'startsWith': startsWith,
+        'endsWith': endsWith,
+        'mode': mode,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
 class LicenseScalarWhereWithAggregatesInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseScalarWhereWithAggregatesInput({
@@ -6996,7 +7174,8 @@ class LicenseScalarWhereWithAggregatesInput
 
   final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? customerId;
 
-  final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? userId;
+  final _i1.PrismaUnion<_i2.StringNullableWithAggregatesFilter,
+      _i1.PrismaUnion<String, _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? productId;
 
@@ -7873,154 +8052,6 @@ class ProductOrderByWithAggregationInput
       };
 }
 
-class NestedStringNullableWithAggregatesFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const NestedStringNullableWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  final _i1.PrismaUnion<String,
-      _i1.PrismaUnion<_i1.Reference<String>, _i1.PrismaNull>>? equals;
-
-  final _i1.PrismaUnion<Iterable<String>,
-      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? $in;
-
-  final _i1.PrismaUnion<Iterable<String>,
-      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? notIn;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? lt;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? lte;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? gt;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? gte;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? contains;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? startsWith;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? endsWith;
-
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NestedStringNullableWithAggregatesFilter,
-          _i1.PrismaNull>>? not;
-
-  final _i2.NestedIntNullableFilter? $count;
-
-  final _i2.NestedStringNullableFilter? $min;
-
-  final _i2.NestedStringNullableFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'contains': contains,
-        'startsWith': startsWith,
-        'endsWith': endsWith,
-        'not': not,
-        '_count': $count,
-        '_min': $min,
-        '_max': $max,
-      };
-}
-
-class StringNullableWithAggregatesFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const StringNullableWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.mode,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  final _i1.PrismaUnion<String,
-      _i1.PrismaUnion<_i1.Reference<String>, _i1.PrismaNull>>? equals;
-
-  final _i1.PrismaUnion<Iterable<String>,
-      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? $in;
-
-  final _i1.PrismaUnion<Iterable<String>,
-      _i1.PrismaUnion<_i1.Reference<Iterable<String>>, _i1.PrismaNull>>? notIn;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? lt;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? lte;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? gt;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? gte;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? contains;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? startsWith;
-
-  final _i1.PrismaUnion<String, _i1.Reference<String>>? endsWith;
-
-  final _i2.QueryMode? mode;
-
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NestedStringNullableWithAggregatesFilter,
-          _i1.PrismaNull>>? not;
-
-  final _i2.NestedIntNullableFilter? $count;
-
-  final _i2.NestedStringNullableFilter? $min;
-
-  final _i2.NestedStringNullableFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'contains': contains,
-        'startsWith': startsWith,
-        'endsWith': endsWith,
-        'mode': mode,
-        'not': not,
-        '_count': $count,
-        '_min': $min,
-        '_max': $max,
-      };
-}
-
 class ProductScalarWhereWithAggregatesInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const ProductScalarWhereWithAggregatesInput({
@@ -8387,14 +8418,14 @@ class LicenseCreateWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateWithoutCustomerInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.product,
     this.payments,
   });
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final _i2.ProductCreateNestedOneWithoutLicenseInput product;
 
@@ -8413,14 +8444,14 @@ class LicenseUncheckedCreateWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseUncheckedCreateWithoutCustomerInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.productId,
     this.payments,
   });
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final int productId;
 
@@ -8458,13 +8489,13 @@ class LicenseCreateManyCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateManyCustomerInput({
     required this.licenseKey,
-    required this.userId,
+    this.userId,
     required this.productId,
   });
 
   final String licenseKey;
 
-  final String userId;
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
   final int productId;
 
@@ -8668,7 +8699,10 @@ class LicenseUpdateWithoutCustomerInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i2.ProductUpdateOneRequiredWithoutLicenseNestedInput? product;
 
@@ -8695,7 +8729,10 @@ class LicenseUncheckedUpdateWithoutCustomerInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
@@ -8764,7 +8801,10 @@ class LicenseUncheckedUpdateManyWithoutCustomerInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 

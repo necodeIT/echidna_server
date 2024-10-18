@@ -34,7 +34,7 @@ class IdentityProvider with _$IdentityProvider {
 
   /// Loads the identity provider from the environment.
   factory IdentityProvider.fromEnvironment() {
-    const backend = String.fromEnvironment('AUTH_BACKEND');
+    const backend = String.fromEnvironment('AUTH_BACKEND', defaultValue: 'oidc');
 
     return switch (backend) {
       'oidc' => const IdentityProvider.oidc(

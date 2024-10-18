@@ -1,8 +1,6 @@
 export 'add_customer_handler.dart';
 export 'add_license_handler.dart';
 export 'create_product_handler.dart';
-export 'delete_customer_handler.dart';
-export 'delete_product_handler.dart';
 export 'get_customers_handler.dart';
 export 'get_licenses_handler.dart';
 export 'get_products_handler.dart';
