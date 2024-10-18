@@ -1,6 +1,5 @@
 import 'package:license_server/license_server.dart';
 import 'package:logging/logging.dart';
-import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
@@ -50,7 +49,7 @@ Future<Response> revokeLicenseHandler(Request request, Injector i, ModularArgume
 
     request.log('Successfully revoked license with ID $id');
 
-    return Response.ok('');
+    return Response.ok(null);
   } on Exception catch (e, s) {
     Logger('${request.method} ${request.url}').severe('Failed to revoke license', e, s);
     return Response.internalServerError();

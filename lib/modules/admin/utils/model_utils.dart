@@ -83,19 +83,31 @@ extension PaymentX on Payment {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded `rest.Payment` object.
   Response toResponse() {
-    final restPayment = rest.Payment.fromJson(toJson());
-    return Response.ok(jsonEncode(restPayment));
+    final json = toJson();
+    final features = this.features?.map((feature) => rest.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
+
+    json['features'] = features;
+
+    return Response.ok(jsonEncode(rest.Payment.fromJson(json)));
   }
 }
 
 /// Extension on `List<Payment>` to provide a method for converting to a `Response`.
-extension PaymentListX on List<Payment> {
+extension PaymentListX on Iterable<Payment> {
   /// Converts the list of `Payment` instances to a `Response` object.
   ///
   /// Returns:
   /// - `Response.ok` with the JSON-encoded list of `rest.Payment` objects.
   Response toResponse() {
-    final restPayments = map((payment) => rest.Payment.fromJson(payment.toJson())).toList();
+    final restPayments = map((payment) {
+      final json = payment.toJson();
+      final features = payment.features?.map((feature) => rest.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
+
+      json['features'] = features;
+
+      return rest.Payment.fromJson(json);
+    }).toList();
+
     return Response.ok(jsonEncode(restPayments));
   }
 }
@@ -113,7 +125,7 @@ extension FeatureX on Feature {
 }
 
 /// Extension on `List<Feature>` to provide a method for converting to a `Response`.
-extension FeatureListX on List<Feature> {
+extension FeatureListX on Iterable<Feature> {
   /// Converts the list of `Feature` instances to a `Response` object.
   ///
   /// Returns:

@@ -10,10 +10,10 @@ datasource db {
 
 model License {
     license_key String @id
-    customer Customer @relation(fields: [customer_id], references:[id])
+    customer Customer @relation(fields: [customer_id], references:[id], onUpdate: Cascade, onDelete: Cascade)
     customer_id Int
     user_id String?
-    product Product @relation(fields: [product_id], references:[id])
+    product Product @relation(fields: [product_id], references:[id], onUpdate: Cascade, onDelete: Cascade)
     product_id Int
     payments Payment[]
 }
@@ -38,7 +38,7 @@ model Feature {
     name String
     description String
     type FeatureType 
-    product Product @relation(fields: [product_id], references:[id])
+    product Product @relation(fields: [product_id], references:[id], onUpdate: Cascade, onDelete: Cascade)
     product_id Int
     trial_period Int?
     payments Payment[]
@@ -51,7 +51,7 @@ enum FeatureType {
 
 model Payment {
     id Int @id @default(autoincrement())
-    license License @relation(fields: [license_key], references: [license_key], onDelete: Cascade, onUpdate: Cascade)
+    license License @relation(fields: [license_key], references: [license_key], onUpdate: Cascade, onDelete: Cascade)
     license_key String
     activation_date DateTime @default(now())
     expiration_date DateTime

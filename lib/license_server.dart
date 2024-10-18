@@ -1,5 +1,7 @@
 library license_server;
 
+export 'package:orm/orm.dart';
+
 export 'modules/admin/admin.dart';
 export 'modules/auth/auth.dart';
 export 'modules/server/server.dart';

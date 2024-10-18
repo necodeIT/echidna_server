@@ -27,6 +27,8 @@ class AdminModule extends Module {
     r
       ..resource(CustomerResource(), name: '/customers')
       ..resource(LicensesResource(), name: '/licenses')
-      ..resource(ProductsResource(), name: '/products');
+      ..resource(ProductsResource(), name: '/products')
+      ..resource(FeaturesResource(), name: '/features')
+      ..resource(PaymentsResource(), name: '/payments');
   }
 }

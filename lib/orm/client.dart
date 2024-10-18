@@ -2501,10 +2501,6 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'PAID',
             'dbName': null,
           },
-          {
-            'name': 'TRIAL',
-            'dbName': null,
-          },
         ],
         'dbName': null,
       }
@@ -2540,6 +2536,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'relationName': 'CustomerToLicense',
             'relationFromFields': ['customer_id'],
             'relationToFields': ['id'],
+            'relationOnDelete': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2582,6 +2579,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'relationName': 'LicenseToProduct',
             'relationFromFields': ['product_id'],
             'relationToFields': ['id'],
+            'relationOnDelete': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2812,7 +2810,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'description',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': false,
+            'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
@@ -2847,6 +2845,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'relationName': 'FeatureToProduct',
             'relationFromFields': ['product_id'],
             'relationToFields': ['id'],
+            'relationOnDelete': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3114,7 +3113,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            'generator client {\n  provider = "dart run orm"\n  output   = "lib/orm"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel License {\n  license_key String    @id\n  customer    Customer  @relation(fields: [customer_id], references: [id])\n  customer_id Int\n  user_id     String?\n  product     Product   @relation(fields: [product_id], references: [id])\n  product_id  Int\n  payments    Payment[]\n}\n\nmodel Product {\n  id          Int       @id @default(autoincrement())\n  name        String\n  description String?\n  License     License[]\n  features    Feature[]\n}\n\nmodel Customer {\n  id       Int       @id @default(autoincrement())\n  name     String\n  email    String\n  licenses License[]\n}\n\nmodel Feature {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String?\n  type         FeatureType\n  product      Product     @relation(fields: [product_id], references: [id])\n  product_id   Int\n  trial_period Int?\n  payments     Payment[]\n}\n\nenum FeatureType {\n  FREE\n  PAID\n  TRIAL\n}\n\nmodel Payment {\n  id                   Int       @id @default(autoincrement())\n  license              License   @relation(fields: [license_key], references: [license_key], onDelete: Cascade, onUpdate: Cascade)\n  license_key          String\n  activation_date      DateTime  @default(now())\n  expiration_date      DateTime\n  payment_reference    String?\n  features             Feature[]\n  revoked              Boolean   @default(false)\n  revocation_reasoning String?\n}\n',
+            'generator client {\n  provider = "dart run orm"\n  output   = "lib/orm"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel License {\n  license_key String    @id\n  customer    Customer  @relation(fields: [customer_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  customer_id Int\n  user_id     String?\n  product     Product   @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id  Int\n  payments    Payment[]\n}\n\nmodel Product {\n  id          Int       @id @default(autoincrement())\n  name        String\n  description String?\n  License     License[]\n  features    Feature[]\n}\n\nmodel Customer {\n  id       Int       @id @default(autoincrement())\n  name     String\n  email    String\n  licenses License[]\n}\n\nmodel Feature {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String\n  type         FeatureType\n  product      Product     @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id   Int\n  trial_period Int?\n  payments     Payment[]\n}\n\nenum FeatureType {\n  FREE\n  PAID\n}\n\nmodel Payment {\n  id                   Int       @id @default(autoincrement())\n  license              License   @relation(fields: [license_key], references: [license_key], onUpdate: Cascade, onDelete: Cascade)\n  license_key          String\n  activation_date      DateTime  @default(now())\n  expiration_date      DateTime\n  payment_reference    String?\n  features             Feature[]\n  revoked              Boolean   @default(false)\n  revocation_reasoning String?\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,

@@ -1,11 +1,9 @@
 import 'package:license_server/license_server.dart';
-import 'package:logging/logging.dart';
-import 'package:orm/orm.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 /// Adds a new License to the DB with the given ID.
-Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments args) async {
+Future<Response> createLicenseHandler(Request request, Injector i, ModularArguments args) async {
   final prisma = i.get<PrismaClient>();
 
   final licenseGenerator = i.get<LicenseKeyGeneratorService>();
@@ -57,8 +55,8 @@ Future<Response> addLicenseHandler(Request request, Injector i, ModularArguments
     request.log('License Created for user with id $userId');
 
     return license.toResponse();
-  } on Exception catch (e) {
-    Logger('${request.method} ${request.url}').severe('Failed to add license', e);
+  } on Exception catch (e, s) {
+    request.log('Failed to add license', e, s);
     return Response.internalServerError();
   }
 }

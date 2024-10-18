@@ -877,8 +877,7 @@ class FeatureWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? name;
 
-  final _i1.PrismaUnion<_i2.StringNullableFilter,
-      _i1.PrismaUnion<String, _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<_i2.StringFilter, String>? description;
 
   final _i1.PrismaUnion<_i2.EnumFeatureTypeFilter, _i3.FeatureType>? type;
 
@@ -1472,7 +1471,7 @@ class FeatureOrderByWithRelationInput
 
   final _i2.SortOrder? name;
 
-  final _i1.PrismaUnion<_i2.SortOrder, _i2.SortOrderInput>? description;
+  final _i2.SortOrder? description;
 
   final _i2.SortOrder? type;
 
@@ -1525,8 +1524,7 @@ class FeatureWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? name;
 
-  final _i1.PrismaUnion<_i2.StringNullableFilter,
-      _i1.PrismaUnion<String, _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<_i2.StringFilter, String>? description;
 
   final _i1.PrismaUnion<_i2.EnumFeatureTypeFilter, _i3.FeatureType>? type;
 
@@ -2609,7 +2607,7 @@ class FeatureCreateWithoutProductInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const FeatureCreateWithoutProductInput({
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     this.trialPeriod,
     this.payments,
@@ -2617,7 +2615,7 @@ class FeatureCreateWithoutProductInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -2671,7 +2669,7 @@ class FeatureUncheckedCreateWithoutProductInput
   const FeatureUncheckedCreateWithoutProductInput({
     this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     this.trialPeriod,
     this.payments,
@@ -2681,7 +2679,7 @@ class FeatureUncheckedCreateWithoutProductInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -2724,7 +2722,7 @@ class FeatureCreateManyProductInput
   const FeatureCreateManyProductInput({
     this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     this.trialPeriod,
   });
@@ -2733,7 +2731,7 @@ class FeatureCreateManyProductInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -3002,7 +3000,7 @@ class FeatureUncheckedCreateWithoutPaymentsInput
   const FeatureUncheckedCreateWithoutPaymentsInput({
     this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     required this.productId,
     this.trialPeriod,
@@ -3012,7 +3010,7 @@ class FeatureUncheckedCreateWithoutPaymentsInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -3473,7 +3471,7 @@ class FeatureCreateWithoutPaymentsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const FeatureCreateWithoutPaymentsInput({
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     this.trialPeriod,
     required this.product,
@@ -3481,7 +3479,7 @@ class FeatureCreateWithoutPaymentsInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -4522,10 +4520,8 @@ class FeatureUpdateWithoutProductInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -4628,10 +4624,8 @@ class FeatureUncheckedUpdateWithoutProductInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -4723,8 +4717,7 @@ class FeatureScalarWhereInput
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? name;
 
-  final _i1.PrismaUnion<_i2.StringNullableFilter,
-      _i1.PrismaUnion<String, _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<_i2.StringFilter, String>? description;
 
   final _i1.PrismaUnion<_i2.EnumFeatureTypeFilter, _i3.FeatureType>? type;
 
@@ -4759,10 +4752,8 @@ class FeatureUpdateManyMutationInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -4795,10 +4786,8 @@ class FeatureUncheckedUpdateManyWithoutProductInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -5151,10 +5140,8 @@ class FeatureUncheckedUpdateWithoutPaymentsInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -5211,10 +5198,8 @@ class FeatureUncheckedUpdateManyWithoutPaymentsInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -5979,10 +5964,8 @@ class FeatureUpdateWithoutPaymentsInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -9707,7 +9690,7 @@ class AggregateCustomerSelect
 class FeatureCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const FeatureCreateInput({
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     this.trialPeriod,
     required this.product,
@@ -9716,7 +9699,7 @@ class FeatureCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -9742,7 +9725,7 @@ class FeatureUncheckedCreateInput
   const FeatureUncheckedCreateInput({
     this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     required this.productId,
     this.trialPeriod,
@@ -9753,7 +9736,7 @@ class FeatureUncheckedCreateInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -9780,7 +9763,7 @@ class FeatureCreateManyInput
   const FeatureCreateManyInput({
     this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.type,
     required this.productId,
     this.trialPeriod,
@@ -9790,7 +9773,7 @@ class FeatureCreateManyInput
 
   final String name;
 
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+  final String description;
 
   final _i3.FeatureType type;
 
@@ -9891,10 +9874,8 @@ class FeatureUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -9935,10 +9916,8 @@ class FeatureUncheckedUpdateInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -9979,10 +9958,8 @@ class FeatureUncheckedUpdateManyInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      description;
 
   final _i1.PrismaUnion<_i3.FeatureType,
       _i2.EnumFeatureTypeFieldUpdateOperationsInput>? type;
@@ -10439,7 +10416,7 @@ class FeatureOrderByWithAggregationInput
 
   final _i2.SortOrder? name;
 
-  final _i1.PrismaUnion<_i2.SortOrder, _i2.SortOrderInput>? description;
+  final _i2.SortOrder? description;
 
   final _i2.SortOrder? type;
 
@@ -10767,8 +10744,7 @@ class FeatureScalarWhereWithAggregatesInput
 
   final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? name;
 
-  final _i1.PrismaUnion<_i2.StringNullableWithAggregatesFilter,
-      _i1.PrismaUnion<String, _i1.PrismaNull>>? description;
+  final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? description;
 
   final _i1
       .PrismaUnion<_i2.EnumFeatureTypeWithAggregatesFilter, _i3.FeatureType>?

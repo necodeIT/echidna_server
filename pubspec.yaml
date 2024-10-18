@@ -36,6 +36,8 @@ dependency_overrides:
     git:
       url: git@github.com:necodeIT/modular.git
       path: shelf_modular
+  license_server_rest:
+    path: ../license_server_rest
 
 dev_dependencies:
   architecture_linter: ^0.2.2

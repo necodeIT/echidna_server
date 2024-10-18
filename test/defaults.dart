@@ -15,11 +15,11 @@ final _server = Modular(
 );
 
 Future<void> purgeDatabase() async {
-  await prisma.license.deleteMany();
-  await prisma.payment.deleteMany();
-  await prisma.customer.deleteMany();
-  await prisma.feature.deleteMany();
   await prisma.product.deleteMany();
+  await prisma.feature.deleteMany();
+  await prisma.payment.deleteMany();
+  await prisma.license.deleteMany();
+  await prisma.customer.deleteMany();
 
   await prisma.$raw.execute('ALTER SEQUENCE "Payment_id_seq" RESTART WITH 1;');
   await prisma.$raw.execute('ALTER SEQUENCE "Customer_id_seq" RESTART WITH 1;');

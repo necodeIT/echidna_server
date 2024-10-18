@@ -2,17 +2,16 @@ import 'package:license_server/license_server.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
-/// Returns a list of all licenses or a single license by ID.
-Future<Response> getLicensesHandler(Request request, Injector i, ModularArguments args) async {
+/// Returns all payments associated with a license key.
+Future<Response> getLicensePaymentsHandler(Request request, Injector i, ModularArguments args) async {
   final id = args.params['id'] as String?;
+
   final prisma = i.get<PrismaClient>();
 
   if (id == null || id.isEmpty) {
-    request.log('No id provided, returning all licenses.');
+    request.log('No id provided, aborting.');
 
-    final licenses = await prisma.license.findMany();
-
-    return licenses.toResponse();
+    return Response.badRequest();
   }
 
   final license = await prisma.license.findUnique(where: LicenseWhereUniqueInput(licenseKey: id));
@@ -22,6 +21,14 @@ Future<Response> getLicensesHandler(Request request, Injector i, ModularArgument
     return Response.notFound(null);
   }
 
-  request.log('Returned license with ID $id.');
-  return license.toResponse();
+  final payments = await prisma.payment.findMany(
+    where: PaymentWhereInput(
+      licenseKey: PrismaUnion.$2(id),
+    ),
+    include: const PaymentInclude(
+      features: PrismaUnion.$1(true),
+    ),
+  );
+
+  return payments.toResponse();
 }

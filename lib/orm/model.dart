@@ -45,8 +45,7 @@ class Customer {
 
 enum FeatureType implements _i3.PrismaEnum {
   free._('FREE'),
-  paid._('PAID'),
-  trial._('TRIAL');
+  paid._('PAID');
 
   const FeatureType._(this.name);
 
