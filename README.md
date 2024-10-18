@@ -14,3 +14,9 @@ docker compose -f dev.docker-compose.yaml up -d
 ```
 
 Then you can debug the server using your favorite IDE.
+
+## Updating the database schema
+
+1. Edit `schema.prisma` to your heart's content.
+2. Run `npx prisma db push` to update the dart orm.
+3. Done!
