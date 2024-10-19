@@ -24,6 +24,9 @@ jobs:
         uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+
+      - name: 📦 Install dependencies
+        run: dart pub get
       
       - name: 📝 Copy .env.example to .env
         run: cp .env.example .env
@@ -37,6 +40,9 @@ jobs:
       - name: 🐘 Push database
         run: prisma db push --skip-generate
 
+      - name: 🧪 Run tests
+        run: dart run coverage:test_with_coverage  
+
       - name: 📊 Generate Coverage
         id: coverage-report
         uses: whynotmake-it/dart-coverage-assistant@v1.1
@@ -44,3 +50,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           lower_threshold: 50
           upper_threshold: 90
+          compare_against_base: false
