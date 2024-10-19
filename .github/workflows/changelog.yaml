@@ -1,11 +1,6 @@
 on:
-    push: 
-        branches:
-            - main
-        paths-ignore: 
-            - 'CHANGELOG.md'
-            - 'pubspec.yaml'
-            - 'README.md'
+    release: 
+      types: published
   
 jobs:
     comment:
