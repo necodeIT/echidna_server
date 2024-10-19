@@ -44,6 +44,8 @@ jobs:
         run: |
           dart run coverage:test_with_coverage
           
+          sudo apt-get install lcov -y
+
           # Keep only entries for handlers/*.dart and services/*.dart files (these are the files actually doing the business logic)
           lcov --extract coverage/lcov.info "*/handlers/*" "*/services/*" -o coverage/lcov.info
         continue-on-error: true
