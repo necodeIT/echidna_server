@@ -1,0 +1,49 @@
+name: CI/Coverage
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dart-check:
+    name: Coverage Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🐦 Set up Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      
+      - name: 📝 Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: 🐘 Install PostgreSQL
+        run: sudo apt-get install postgresql postgresql-contrib
+
+      - name: 🐘 Start PostgreSQ
+        run: sudo service postgresql start
+
+      - name: 📦 Install Prisma
+        run: npm install prisma -g
+      
+      - name: 🐘 Push database
+        run: prisma db push
+
+      - name: 📊 Generate Coverage
+        id: coverage-report
+        uses: whynotmake-it/dart-coverage-assistant@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          lower_threshold: 50
+          upper_threshold: 90
