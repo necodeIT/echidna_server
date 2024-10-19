@@ -43,9 +43,8 @@ jobs:
       - name: 🧪 Run tests
         run: |
           dart run coverage:test_with_coverage
-          dart run remove_from_coverage -f coverage/lcov.info -r 'orm/\.dart$'
-          dart run remove_from_coverage -f coverage/lcov.info -r '\.g\.dart$'
-          dart run remove_from_coverage -f coverage/lcov.info -r '^handlers/.*\.dart$'
+          grep -Pv '(orm/.*\.dart$|\.g\.dart$|^handlers/.*\.dart$)' coverage/lcov.info > filtered_lcov.info
+          mv filtered_lcov.info coverage/lcov.info
         continue-on-error: true
 
       - name: 📊 Generate Coverage
