@@ -55,6 +55,6 @@ jobs:
         uses: whynotmake-it/dart-coverage-assistant@v1.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          lower_threshold: 20
+          lower_threshold: 60
           upper_threshold: 90
           compare_against_base: false
