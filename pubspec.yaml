@@ -30,18 +30,18 @@ dependencies:
 dependency_overrides:
   modular_core:
     git:
-      url: git@github.com:necodeIT/modular.git
+      url: https://github.com/necodeIT/modular.git
       path: modular_core
   shelf_modular:
     git:
-      url: git@github.com:necodeIT/modular.git
+      url: https://github.com/necodeIT/modular.git
       path: shelf_modular
   # license_server_rest:
   #   path: ../license_server_rest
-
 dev_dependencies:
   architecture_linter: ^0.2.2
   build_runner: ^2.4.11
+  coverage: ^1.10.0
   flutter_lints: ^3.0.0
   flutterando_analysis: ^0.0.2
   freezed: ^2.5.2
