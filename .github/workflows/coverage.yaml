@@ -41,7 +41,10 @@ jobs:
         run: prisma db push
 
       - name: 🧪 Run tests
-        run: dart run coverage:test_with_coverage
+        run: |
+          dart run coverage:test_with_coverage
+          dart run remove_from_coverage -f coverage/lcov.info -r 'orm/\.dart$'
+          dart run remove_from_coverage -f coverage/lcov.info -r '\.g\.dart$'
         continue-on-error: true
 
       - name: 📊 Generate Coverage
