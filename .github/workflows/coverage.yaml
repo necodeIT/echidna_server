@@ -38,7 +38,7 @@ jobs:
         run: npm install prisma -g
       
       - name: 🐘 Push database
-        run: prisma db push --skip-generate
+        run: prisma db push
 
       - name: 🧪 Run tests
         run: dart run coverage:test_with_coverage  
