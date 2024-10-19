@@ -28,11 +28,8 @@ jobs:
       - name: 📝 Copy .env.example to .env
         run: cp .env.example .env
 
-      - name: 🐘 Install PostgreSQL
-        run: sudo apt-get install postgresql postgresql-contrib
-
-      - name: 🐘 Start PostgreSQ
-        run: sudo service postgresql start
+      - name: 🐘 Setup PostgreSQL
+        uses: ikalnytskyi/action-setup-postgres@v6
 
       - name: 📦 Install Prisma
         run: npm install prisma -g
