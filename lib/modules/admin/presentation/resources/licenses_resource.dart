@@ -1,5 +1,4 @@
 import 'package:license_server/license_server.dart';
-import 'package:license_server/modules/admin/presentation/handlers/create_license_handler.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 /// A resource for managing licenses.
