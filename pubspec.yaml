@@ -30,11 +30,11 @@ dependencies:
 dependency_overrides:
   modular_core:
     git:
-      url: git@github.com:necodeIT/modular.git
+      url: https://github.com/necodeIT/modular.git
       path: modular_core
   shelf_modular:
     git:
-      url: git@github.com:necodeIT/modular.git
+      url: https://github.com/necodeIT/modular.git
       path: shelf_modular
   # license_server_rest:
   #   path: ../license_server_rest
