@@ -35,11 +35,11 @@ jobs:
         run: npm install prisma -g
       
       - name: 🐘 Push database
-        run: prisma db push
+        run: prisma db push --skip-generate
 
       - name: 📊 Generate Coverage
         id: coverage-report
-        uses: whynotmake-it/dart-coverage-assistant@v1
+        uses: whynotmake-it/dart-coverage-assistant@v1.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           lower_threshold: 50
