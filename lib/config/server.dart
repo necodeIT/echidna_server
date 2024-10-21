@@ -11,7 +11,7 @@ final kHost = env['HOST'] ?? '0.0.0.0';
 /// The port the server will listen on.
 final int kPort = int.tryParse(_port) ?? 3000;
 
-final _debug = env['DEBUG'] ?? 'false';
+final _debug = env['DEBUG'] ?? 'true';
 
 /// Whether the server is running in debug mode.
 final bool kDebugMode = _debug.toLowerCase() == 'true';
