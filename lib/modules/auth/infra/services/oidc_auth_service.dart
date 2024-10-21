@@ -1,4 +1,5 @@
 import 'package:license_server/modules/auth/auth.dart';
+import 'package:license_server_rest/license_server_rest.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 
 /// Implements [AuthService] using an [OidcIdentityProvider].

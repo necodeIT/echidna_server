@@ -1,8 +1,10 @@
 library license_server.modules.auth;
 
-import 'package:license_server/config/server.dart';
+import 'package:dotenv/dotenv.dart';
+import 'package:license_server/config/config.dart';
 import 'package:license_server/modules/auth/domain/domain.dart';
 import 'package:license_server/modules/auth/infra/infra.dart';
+import 'package:license_server_rest/license_server_rest.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
@@ -20,6 +22,7 @@ class AuthModule extends Module {
   @override
   void exportedBinds(Injector i) {
     i
+      ..add<DotEnv>(() => env)
       ..add<IdentityProvider>(IdentityProvider.fromEnvironment)
       ..add<AuthService>(
         kDebugMode

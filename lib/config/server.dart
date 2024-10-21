@@ -1,13 +1,17 @@
 /// Contains configuration for the server.
 library config.server;
 
-const _port = String.fromEnvironment('PORT');
+import 'package:license_server/config/config.dart';
+
+final _port = env['PORT'] ?? '3000';
 
 /// The host the server will be bound to.
-const kHost = String.fromEnvironment('HOST', defaultValue: '0.0.0.0');
+final kHost = env['HOST'] ?? '0.0.0.0';
 
 /// The port the server will listen on.
 final int kPort = int.tryParse(_port) ?? 3000;
 
+final _debug = env['DEBUG'] ?? 'false';
+
 /// Whether the server is running in debug mode.
-const kDebugMode = bool.fromEnvironment('DEBUG_MODE', defaultValue: true);
+final bool kDebugMode = _debug.toLowerCase() == 'true';
