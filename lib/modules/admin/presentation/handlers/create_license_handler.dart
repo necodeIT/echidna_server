@@ -17,6 +17,16 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
     return Response.badRequest(body: 'Customer ID, Product ID and User ID are required.');
   }
 
+  if (await prisma.customer.findUnique(where: CustomerWhereUniqueInput(id: customerId)) == null) {
+    request.log('Bad Request: Customer with ID $customerId does not exist');
+    return Response.badRequest(body: 'Customer with ID $customerId does not exist.');
+  }
+
+  if (await prisma.product.findUnique(where: ProductWhereUniqueInput(id: productId)) == null) {
+    request.log('Bad Request: Product with ID $productId does not exist');
+    return Response.badRequest(body: 'Product with ID $productId does not exist.');
+  }
+
   final key = await licenseGenerator.generateLicenseKey(
     productId,
     customerId,
