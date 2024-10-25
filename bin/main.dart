@@ -1,10 +1,13 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:license_server/config/server.dart';
 import 'package:license_server/license_server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
+import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_cors_headers/shelf_cors_headers.dart';
 import 'package:shelf_docker_shutdown/shelf_docker_shutdown.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
@@ -22,7 +25,10 @@ void main(List<String> args) async {
 
     final modularHandler = Modular(
       module: ServerModule(prisma),
-      middlewares: [],
+      middlewares: [
+        corsHeaders(),
+        contentTypeJson,
+      ],
     );
 
     setPrintResolver((msg) {
@@ -53,6 +59,7 @@ void main(List<String> args) async {
 
     server.serverHeader = 'necodeIT License Server';
     server.defaultResponseHeaders.contentType = ContentType.json;
+
     server.handleError((e, s) {
       Logger.root.severe('Failed to handle request', e, s);
     });
@@ -72,4 +79,11 @@ void main(List<String> args) async {
 Future<void> _shutdown() async {
   Logger.root.info('Shutting down server');
   await prisma.$disconnect();
+}
+
+Handler contentTypeJson(Handler innerHandler) {
+  return (Request request) async {
+    final response = await innerHandler(request);
+    return response.change(headers: {'Content-Type': ContentType.json.toString()});
+  };
 }

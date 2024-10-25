@@ -25,6 +25,7 @@ dependencies:
   modular_test: ^2.0.0
   orm: ^5.2.0
   shelf: ^1.4.2
+  shelf_cors_headers: ^0.1.5
   shelf_docker_shutdown: ^1.1.0
   shelf_modular: ^2.1.0
 
