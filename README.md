@@ -32,3 +32,10 @@ A fully functional software licensing server written in Dart.
 1. Edit `schema.prisma` to your heart's content.
 2. Run `npx prisma db push` to update the dart orm.
 3. Done!
+
+# Deployment
+
+> [!NOTE]
+> Docker deployment is coming soon.
+
+This project is supposed to be deployed together with the [echidna_webui](https://github.com/necodeIT/echidna_webui). The webui is the frontend for the server.
