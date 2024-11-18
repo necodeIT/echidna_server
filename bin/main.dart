@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:license_server/config/server.dart';
 import 'package:license_server/license_server.dart';
@@ -84,6 +85,32 @@ Future<void> _shutdown() async {
 Handler contentTypeJson(Handler innerHandler) {
   return (Request request) async {
     final response = await innerHandler(request);
-    return response.change(headers: {'Content-Type': ContentType.json.toString()});
+
+    final body = await response.readAsString();
+
+    dynamic parsedBody;
+    try {
+      parsedBody = jsonDecode(body);
+    } catch (e) {
+      parsedBody = null;
+    }
+
+    String responseBody;
+    if (parsedBody == null) {
+      final key = response.statusCode >= 200 && response.statusCode < 300 ? 'ok' : 'error';
+
+      // Not valid JSON, wrap the response body
+      responseBody = jsonEncode(
+        {key: body},
+      );
+    } else {
+      // Valid JSON, use it as is
+      responseBody = body;
+    }
+
+    return response.change(
+      headers: {'Content-Type': ContentType.json.toString()},
+      body: responseBody,
+    );
   };
 }
