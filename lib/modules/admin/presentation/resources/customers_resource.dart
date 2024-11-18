@@ -1,4 +1,4 @@
-import 'package:license_server/modules/admin/admin.dart';
+import 'package:echidna_server/modules/admin/admin.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
 /// A resource for managing customers.

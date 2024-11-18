@@ -6,11 +6,11 @@
     "admin-api",
     "verification-api",
     "auth",
-    "core",
+    "core"
   ],
   "dart.sdkPath": ".fvm/flutter_sdk/bin/cache/dart-sdk/",
   "dart.flutterSdkPath": ".fvm/versions/3.24.3",
   "dart.lineLength": 150,
   "dart.debugExternalPackageLibraries": true,
-  "dart.debugSdkLibraries": true,
+  "dart.debugSdkLibraries": true
 }

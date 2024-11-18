@@ -1,7 +1,7 @@
 /// Contains configuration for the server.
 library config.server;
 
-import 'package:license_server/config/config.dart';
+import 'package:echidna_server/config/config.dart';
 
 final _port = env['PORT'] ?? '3000';
 

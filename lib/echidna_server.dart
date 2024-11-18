@@ -1,4 +1,4 @@
-library license_server;
+library echidna_server;
 
 export 'package:orm/orm.dart';
 

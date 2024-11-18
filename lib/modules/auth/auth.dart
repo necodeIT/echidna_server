@@ -1,10 +1,10 @@
-library license_server.modules.auth;
+library echidna_server.modules.auth;
 
 import 'package:dotenv/dotenv.dart';
-import 'package:license_server/config/config.dart';
-import 'package:license_server/modules/auth/domain/domain.dart';
-import 'package:license_server/modules/auth/infra/infra.dart';
-import 'package:license_server_rest/license_server_rest.dart';
+import 'package:echidna_dto/echidna_dto.dart';
+import 'package:echidna_server/config/config.dart';
+import 'package:echidna_server/modules/auth/domain/domain.dart';
+import 'package:echidna_server/modules/auth/infra/infra.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 

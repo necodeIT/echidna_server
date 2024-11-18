@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:license_server/modules/auth/auth.dart';
+import 'package:echidna_server/modules/auth/auth.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 

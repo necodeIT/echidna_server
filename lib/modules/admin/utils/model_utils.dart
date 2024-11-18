@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:license_server/license_server.dart';
-import 'package:license_server_rest/license_server_rest.dart' as rest;
+import 'package:echidna_dto/echidna_dto.dart' as rest;
+import 'package:echidna_server/echidna_server.dart';
 import 'package:shelf/shelf.dart';
 
 /// Extension on `License` to provide a method for converting to a `Response`.

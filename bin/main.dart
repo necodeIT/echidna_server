@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:license_server/config/server.dart';
-import 'package:license_server/license_server.dart';
+import 'package:echidna_server/config/server.dart';
+import 'package:echidna_server/echidna_server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf/shelf.dart';
@@ -58,7 +58,7 @@ void main(List<String> args) async {
 
     final server = await io.serve(modularHandler, kHost, kPort);
 
-    server.serverHeader = 'necodeIT License Server';
+    server.serverHeader = 'Echidna License Server';
     server.defaultResponseHeaders.contentType = ContentType.json;
 
     server.handleError((e, s) {
@@ -97,9 +97,7 @@ Handler contentTypeJson(Handler innerHandler) {
 
     String responseBody;
     if (parsedBody == null) {
-      final key = response.statusCode >= 200 && response.statusCode < 300
-          ? 'ok'
-          : 'error';
+      final key = response.statusCode >= 200 && response.statusCode < 300 ? 'ok' : 'error';
 
       // Not valid JSON, wrap the response body
       responseBody = jsonEncode(

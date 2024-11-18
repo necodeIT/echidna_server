@@ -1,4 +1,4 @@
-import 'package:license_server/license_server.dart';
+import 'package:echidna_server/echidna_server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:test/test.dart';

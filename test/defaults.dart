@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:license_server/config/server.dart';
-import 'package:license_server/license_server.dart';
+import 'package:echidna_server/config/server.dart';
+import 'package:echidna_server/echidna_server.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 import 'package:test/test.dart';
