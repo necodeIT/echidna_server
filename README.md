@@ -1,4 +1,4 @@
-# License Server
+# Echidna Server
 
 A fully functional software licensing server written in Dart.
 
@@ -6,14 +6,26 @@ A fully functional software licensing server written in Dart.
 
 ## Debugging the server
 
-First you need to start a postgres server. You can do this by running the following command:
+1. First you need to start a postgres server. You can do this by running the following command:
 
-```bash
-cp .env.example .env
-docker compose -f dev.docker-compose.yaml up -d 
-```
+    ```bash
+    cp .env.example .env
+    docker compose -f dev.docker-compose.yaml up -d 
+    ```
 
-Then you can debug the server using your favorite IDE.
+    or if you have slidy installed you can run:
+
+    ```bash
+    slidy run up
+    ```
+
+2. Run the server using the following command:
+
+    ```bash
+    dart run bin/main.dart
+    ```
+
+3. Debug the server using your favorite IDE.
 
 ## Updating the database schema
 
