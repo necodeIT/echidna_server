@@ -97,7 +97,9 @@ Handler contentTypeJson(Handler innerHandler) {
 
     String responseBody;
     if (parsedBody == null) {
-      final key = response.statusCode >= 200 && response.statusCode < 300 ? 'ok' : 'error';
+      final key = response.statusCode >= 200 && response.statusCode < 300
+          ? 'ok'
+          : 'error';
 
       // Not valid JSON, wrap the response body
       responseBody = jsonEncode(
