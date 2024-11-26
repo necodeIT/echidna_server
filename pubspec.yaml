@@ -38,6 +38,8 @@ dependency_overrides:
     git:
       url: https://github.com/necodeIT/modular.git
       path: shelf_modular
+  # echidna_dto:
+  #   path: ../echidna_dto
 
 dev_dependencies:
   architecture_linter: ^0.2.2

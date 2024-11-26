@@ -26,31 +26,30 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
 
   productId ??= oldLicense.productId!;
   customerId ??= oldLicense.customerId!;
-  userId ??= oldLicense.userId!;
-
-  final licenseKeyGenerator = i.get<LicenseKeyGeneratorService>();
-
-  final licenseKey = await licenseKeyGenerator.generateLicenseKey(productId, customerId, userId);
-
-  if (licenseKey == oldLicense.licenseKey) {
-    request.log('No changes detected. License key with ID $id not updated.');
-    return Response.ok(oldLicense.toJson());
-  }
+  userId ??= oldLicense.userId;
 
   try {
     final license = await prisma.$transaction(
-      // this should also cascade to the payment table and update the license key there
       (prisma) async => await prisma.license.update(
         data: PrismaUnion.$1(
           LicenseUpdateInput(
-            licenseKey: PrismaUnion.$1(licenseKey),
             customer: CustomerUpdateOneRequiredWithoutLicensesNestedInput(
               connect: CustomerWhereUniqueInput(id: customerId),
             ),
             product: ProductUpdateOneRequiredWithoutLicenseNestedInput(
               connect: ProductWhereUniqueInput(id: productId),
             ),
-            userId: PrismaUnion.$1(userId!),
+            userId: PrismaUnion.$2(
+              PrismaUnion.$1(
+                NullableStringFieldUpdateOperationsInput(
+                  set: userId != null
+                      ? PrismaUnion.$1(userId)
+                      : const PrismaUnion.$2(
+                          PrismaNull(),
+                        ),
+                ),
+              ),
+            ),
           ),
         ),
         where: LicenseWhereUniqueInput(licenseKey: id),

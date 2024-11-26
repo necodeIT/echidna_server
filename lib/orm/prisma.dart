@@ -6,17 +6,6 @@ import 'package:orm/orm.dart' as _i1;
 import 'model.dart' as _i3;
 import 'prisma.dart' as _i2;
 
-class CustomerCountOutputType {
-  const CustomerCountOutputType({this.licenses});
-
-  factory CustomerCountOutputType.fromJson(Map json) =>
-      CustomerCountOutputType(licenses: json['licenses']);
-
-  final int? licenses;
-
-  Map<String, dynamic> toJson() => {'licenses': licenses};
-}
-
 class PaymentCountOutputType {
   const PaymentCountOutputType({this.features});
 
@@ -43,20 +32,46 @@ class ProductCountOutputType {
   const ProductCountOutputType({
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   factory ProductCountOutputType.fromJson(Map json) => ProductCountOutputType(
         license: json['License'],
         features: json['features'],
+        clientKeys: json['client_keys'],
       );
 
   final int? license;
 
   final int? features;
 
+  final int? clientKeys;
+
   Map<String, dynamic> toJson() => {
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerCountOutputType {
+  const CustomerCountOutputType({
+    this.licenses,
+    this.clientKeys,
+  });
+
+  factory CustomerCountOutputType.fromJson(Map json) => CustomerCountOutputType(
+        licenses: json['licenses'],
+        clientKeys: json['client_keys'],
+      );
+
+  final int? licenses;
+
+  final int? clientKeys;
+
+  Map<String, dynamic> toJson() => {
+        'licenses': licenses,
+        'client_keys': clientKeys,
       };
 }
 
@@ -395,6 +410,93 @@ class StringNullableFilter
       };
 }
 
+class NestedDateTimeFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedDateTimeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      $in;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      notIn;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
+
+  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeFilter>? not;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'not': not,
+      };
+}
+
+class DateTimeFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const DateTimeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      $in;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      notIn;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
+
+  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeFilter>? not;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'not': not,
+      };
+}
+
 class LicenseListRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseListRelationFilter({
@@ -417,62 +519,37 @@ class LicenseListRelationFilter
       };
 }
 
-class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerWhereInput({
-    this.AND,
-    this.OR,
-    this.NOT,
-    this.id,
-    this.name,
-    this.email,
-    this.licenses,
+class NestedBoolFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedBoolFilter({
+    this.equals,
+    this.not,
   });
 
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      AND;
+  final _i1.PrismaUnion<bool, _i1.Reference<bool>>? equals;
 
-  final Iterable<_i2.CustomerWhereInput>? OR;
-
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      NOT;
-
-  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
-
-  final _i2.LicenseListRelationFilter? licenses;
+  final _i1.PrismaUnion<bool, _i2.NestedBoolFilter>? not;
 
   @override
   Map<String, dynamic> toJson() => {
-        'AND': AND,
-        'OR': OR,
-        'NOT': NOT,
-        'id': id,
-        'name': name,
-        'email': email,
-        'licenses': licenses,
+        'equals': equals,
+        'not': not,
       };
 }
 
-class CustomerRelationFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerRelationFilter({
-    this.$is,
-    this.isNot,
+class BoolFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const BoolFilter({
+    this.equals,
+    this.not,
   });
 
-  final _i2.CustomerWhereInput? $is;
+  final _i1.PrismaUnion<bool, _i1.Reference<bool>>? equals;
 
-  final _i2.CustomerWhereInput? isNot;
+  final _i1.PrismaUnion<bool, _i2.NestedBoolFilter>? not;
 
   @override
   Map<String, dynamic> toJson() => {
-        'is': $is,
-        'isNot': isNot,
+        'equals': equals,
+        'not': not,
       };
 }
 
@@ -623,127 +700,6 @@ class IntNullableFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
         'lte': lte,
         'gt': gt,
         'gte': gte,
-        'not': not,
-      };
-}
-
-class NestedDateTimeFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const NestedDateTimeFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-  });
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      $in;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      notIn;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
-
-  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeFilter>? not;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'not': not,
-      };
-}
-
-class DateTimeFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const DateTimeFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-  });
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      $in;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      notIn;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
-
-  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeFilter>? not;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'not': not,
-      };
-}
-
-class NestedBoolFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const NestedBoolFilter({
-    this.equals,
-    this.not,
-  });
-
-  final _i1.PrismaUnion<bool, _i1.Reference<bool>>? equals;
-
-  final _i1.PrismaUnion<bool, _i2.NestedBoolFilter>? not;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'not': not,
-      };
-}
-
-class BoolFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const BoolFilter({
-    this.equals,
-    this.not,
-  });
-
-  final _i1.PrismaUnion<bool, _i1.Reference<bool>>? equals;
-
-  final _i1.PrismaUnion<bool, _i2.NestedBoolFilter>? not;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
         'not': not,
       };
 }
@@ -940,6 +896,7 @@ class ProductWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<_i2.ProductWhereInput, Iterable<_i2.ProductWhereInput>>?
@@ -961,6 +918,8 @@ class ProductWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i2.FeatureListRelationFilter? features;
 
+  final _i2.ClientKeyListRelationFilter? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'AND': AND,
@@ -971,6 +930,7 @@ class ProductWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -992,6 +952,146 @@ class ProductRelationFilter
       };
 }
 
+class ClientKeyWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final _i1
+      .PrismaUnion<_i2.ClientKeyWhereInput, Iterable<_i2.ClientKeyWhereInput>>?
+      AND;
+
+  final Iterable<_i2.ClientKeyWhereInput>? OR;
+
+  final _i1
+      .PrismaUnion<_i2.ClientKeyWhereInput, Iterable<_i2.ClientKeyWhereInput>>?
+      NOT;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? key;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
+
+  final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
+
+  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+      product;
+
+  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+      customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyListRelationFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyListRelationFilter({
+    this.every,
+    this.some,
+    this.none,
+  });
+
+  final _i2.ClientKeyWhereInput? every;
+
+  final _i2.ClientKeyWhereInput? some;
+
+  final _i2.ClientKeyWhereInput? none;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'every': every,
+        'some': some,
+        'none': none,
+      };
+}
+
+class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.name,
+    this.email,
+    this.licenses,
+    this.clientKeys,
+  });
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      AND;
+
+  final Iterable<_i2.CustomerWhereInput>? OR;
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      NOT;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
+
+  final _i2.LicenseListRelationFilter? licenses;
+
+  final _i2.ClientKeyListRelationFilter? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'id': id,
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerRelationFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerRelationFilter({
+    this.$is,
+    this.isNot,
+  });
+
+  final _i2.CustomerWhereInput? $is;
+
+  final _i2.CustomerWhereInput? isNot;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'is': $is,
+        'isNot': isNot,
+      };
+}
+
 class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseWhereInput({
     this.AND,
@@ -1001,6 +1101,7 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -1023,6 +1124,8 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
+  final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
+
   final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
@@ -1040,6 +1143,7 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
@@ -1056,6 +1160,7 @@ class LicenseWhereUniqueInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -1078,6 +1183,8 @@ class LicenseWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
+  final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
+
   final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
@@ -1095,6 +1202,7 @@ class LicenseWhereUniqueInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
@@ -1148,6 +1256,16 @@ class LicenseOrderByRelationAggregateInput
   Map<String, dynamic> toJson() => {'_count': $count};
 }
 
+class ClientKeyOrderByRelationAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyOrderByRelationAggregateInput({this.$count});
+
+  final _i2.SortOrder? $count;
+
+  @override
+  Map<String, dynamic> toJson() => {'_count': $count};
+}
+
 class CustomerOrderByWithRelationInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const CustomerOrderByWithRelationInput({
@@ -1155,6 +1273,7 @@ class CustomerOrderByWithRelationInput
     this.name,
     this.email,
     this.licenses,
+    this.clientKeys,
   });
 
   final _i2.SortOrder? id;
@@ -1165,12 +1284,15 @@ class CustomerOrderByWithRelationInput
 
   final _i2.LicenseOrderByRelationAggregateInput? licenses;
 
+  final _i2.ClientKeyOrderByRelationAggregateInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'email': email,
         'licenses': licenses,
+        'client_keys': clientKeys,
       };
 }
 
@@ -1192,6 +1314,7 @@ class ProductOrderByWithRelationInput
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final _i2.SortOrder? id;
@@ -1204,6 +1327,8 @@ class ProductOrderByWithRelationInput
 
   final _i2.FeatureOrderByRelationAggregateInput? features;
 
+  final _i2.ClientKeyOrderByRelationAggregateInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -1211,6 +1336,7 @@ class ProductOrderByWithRelationInput
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -1231,6 +1357,7 @@ class LicenseOrderByWithRelationInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -1244,6 +1371,8 @@ class LicenseOrderByWithRelationInput
 
   final _i2.SortOrder? productId;
 
+  final _i2.SortOrder? createdAt;
+
   final _i2.CustomerOrderByWithRelationInput? customer;
 
   final _i2.ProductOrderByWithRelationInput? product;
@@ -1256,6 +1385,7 @@ class LicenseOrderByWithRelationInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
@@ -1266,7 +1396,8 @@ enum LicenseScalar<T> implements _i1.PrismaEnum, _i1.Reference<T> {
   licenseKey<String>('license_key', 'License'),
   customerId<int>('customer_id', 'License'),
   userId<String>('user_id', 'License'),
-  productId<int>('product_id', 'License');
+  productId<int>('product_id', 'License'),
+  createdAt<DateTime>('created_at', 'License');
 
   const LicenseScalar(
     this.name,
@@ -1319,59 +1450,6 @@ class CustomerLicensesArgs
         'take': take,
         'skip': skip,
         'distinct': distinct,
-        'select': select,
-        'include': include,
-      };
-}
-
-class CustomerCountOutputTypeSelect
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerCountOutputTypeSelect({this.licenses});
-
-  final bool? licenses;
-
-  @override
-  Map<String, dynamic> toJson() => {'licenses': licenses};
-}
-
-class CustomerCountArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerCountArgs({this.select});
-
-  final _i2.CustomerCountOutputTypeSelect? select;
-
-  @override
-  Map<String, dynamic> toJson() => {'select': select};
-}
-
-class CustomerInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerInclude({
-    this.licenses,
-    this.$count,
-  });
-
-  final _i1.PrismaUnion<bool, _i2.CustomerLicensesArgs>? licenses;
-
-  final _i1.PrismaUnion<bool, _i2.CustomerCountArgs>? $count;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'licenses': licenses,
-        '_count': $count,
-      };
-}
-
-class LicenseCustomerArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCustomerArgs({
-    this.select,
-    this.include,
-  });
-
-  final _i2.CustomerSelect? select;
-
-  final _i2.CustomerInclude? include;
-
-  @override
-  Map<String, dynamic> toJson() => {
         'select': select,
         'include': include,
       };
@@ -1963,21 +2041,235 @@ class ProductFeaturesArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
+class ClientKeyProductArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyProductArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.ProductSelect? select;
+
+  final _i2.ProductInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class ClientKeyCustomerArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCustomerArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.CustomerSelect? select;
+
+  final _i2.CustomerInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class ClientKeyInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyInclude({
+    this.product,
+    this.customer,
+  });
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyProductArgs>? product;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyOrderByWithRelationInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyOrderByWithRelationInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? key;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  final _i2.SortOrder? revoked;
+
+  final _i2.ProductOrderByWithRelationInput? product;
+
+  final _i2.CustomerOrderByWithRelationInput? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyWhereUniqueInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyWhereUniqueInput({
+    this.id,
+    this.key,
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final int? id;
+
+  final String? key;
+
+  final _i1
+      .PrismaUnion<_i2.ClientKeyWhereInput, Iterable<_i2.ClientKeyWhereInput>>?
+      AND;
+
+  final Iterable<_i2.ClientKeyWhereInput>? OR;
+
+  final _i1
+      .PrismaUnion<_i2.ClientKeyWhereInput, Iterable<_i2.ClientKeyWhereInput>>?
+      NOT;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
+
+  final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
+
+  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+      product;
+
+  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+      customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+enum ClientKeyScalar<T> implements _i1.PrismaEnum, _i1.Reference<T> {
+  id<int>('id', 'ClientKey'),
+  key<String>('key', 'ClientKey'),
+  productId<int>('product_id', 'ClientKey'),
+  customerId<int>('customer_id', 'ClientKey'),
+  revoked<bool>('revoked', 'ClientKey');
+
+  const ClientKeyScalar(
+    this.name,
+    this.model,
+  );
+
+  @override
+  final String name;
+
+  @override
+  final String model;
+}
+
+class ProductClientKeysArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductClientKeysArgs({
+    this.where,
+    this.orderBy,
+    this.cursor,
+    this.take,
+    this.skip,
+    this.distinct,
+    this.select,
+    this.include,
+  });
+
+  final _i2.ClientKeyWhereInput? where;
+
+  final _i1.PrismaUnion<Iterable<_i2.ClientKeyOrderByWithRelationInput>,
+      _i2.ClientKeyOrderByWithRelationInput>? orderBy;
+
+  final _i2.ClientKeyWhereUniqueInput? cursor;
+
+  final int? take;
+
+  final int? skip;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalar, Iterable<_i2.ClientKeyScalar>>?
+      distinct;
+
+  final _i2.ClientKeySelect? select;
+
+  final _i2.ClientKeyInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'orderBy': orderBy,
+        'cursor': cursor,
+        'take': take,
+        'skip': skip,
+        'distinct': distinct,
+        'select': select,
+        'include': include,
+      };
+}
+
 class ProductCountOutputTypeSelect
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const ProductCountOutputTypeSelect({
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final bool? license;
 
   final bool? features;
 
+  final bool? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -1994,6 +2286,7 @@ class ProductInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
   const ProductInclude({
     this.license,
     this.features,
+    this.clientKeys,
     this.$count,
   });
 
@@ -2001,12 +2294,15 @@ class ProductInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<bool, _i2.ProductFeaturesArgs>? features;
 
+  final _i1.PrismaUnion<bool, _i2.ProductClientKeysArgs>? clientKeys;
+
   final _i1.PrismaUnion<bool, _i2.ProductCountArgs>? $count;
 
   @override
   Map<String, dynamic> toJson() => {
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
         '_count': $count,
       };
 }
@@ -2063,6 +2359,7 @@ class ProductSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
     this.$count,
   });
 
@@ -2076,6 +2373,8 @@ class ProductSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<bool, _i2.ProductFeaturesArgs>? features;
 
+  final _i1.PrismaUnion<bool, _i2.ProductClientKeysArgs>? clientKeys;
+
   final _i1.PrismaUnion<bool, _i2.ProductCountArgs>? $count;
 
   @override
@@ -2085,7 +2384,154 @@ class ProductSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
         '_count': $count,
+      };
+}
+
+class ClientKeySelect implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeySelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyProductArgs>? product;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class CustomerClientKeysArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerClientKeysArgs({
+    this.where,
+    this.orderBy,
+    this.cursor,
+    this.take,
+    this.skip,
+    this.distinct,
+    this.select,
+    this.include,
+  });
+
+  final _i2.ClientKeyWhereInput? where;
+
+  final _i1.PrismaUnion<Iterable<_i2.ClientKeyOrderByWithRelationInput>,
+      _i2.ClientKeyOrderByWithRelationInput>? orderBy;
+
+  final _i2.ClientKeyWhereUniqueInput? cursor;
+
+  final int? take;
+
+  final int? skip;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalar, Iterable<_i2.ClientKeyScalar>>?
+      distinct;
+
+  final _i2.ClientKeySelect? select;
+
+  final _i2.ClientKeyInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'orderBy': orderBy,
+        'cursor': cursor,
+        'take': take,
+        'skip': skip,
+        'distinct': distinct,
+        'select': select,
+        'include': include,
+      };
+}
+
+class CustomerCountOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCountOutputTypeSelect({
+    this.licenses,
+    this.clientKeys,
+  });
+
+  final bool? licenses;
+
+  final bool? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'licenses': licenses,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerCountArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCountArgs({this.select});
+
+  final _i2.CustomerCountOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class CustomerInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerInclude({
+    this.licenses,
+    this.clientKeys,
+    this.$count,
+  });
+
+  final _i1.PrismaUnion<bool, _i2.CustomerLicensesArgs>? licenses;
+
+  final _i1.PrismaUnion<bool, _i2.CustomerClientKeysArgs>? clientKeys;
+
+  final _i1.PrismaUnion<bool, _i2.CustomerCountArgs>? $count;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'licenses': licenses,
+        'client_keys': clientKeys,
+        '_count': $count,
+      };
+}
+
+class LicenseCustomerArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCustomerArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.CustomerSelect? select;
+
+  final _i2.CustomerInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
       };
 }
 
@@ -2199,6 +2645,7 @@ class CustomerSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.name,
     this.email,
     this.licenses,
+    this.clientKeys,
     this.$count,
   });
 
@@ -2210,6 +2657,8 @@ class CustomerSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<bool, _i2.CustomerLicensesArgs>? licenses;
 
+  final _i1.PrismaUnion<bool, _i2.CustomerClientKeysArgs>? clientKeys;
+
   final _i1.PrismaUnion<bool, _i2.CustomerCountArgs>? $count;
 
   @override
@@ -2218,6 +2667,7 @@ class CustomerSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
         'name': name,
         'email': email,
         'licenses': licenses,
+        'client_keys': clientKeys,
         '_count': $count,
       };
 }
@@ -2228,6 +2678,7 @@ class LicenseSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -2241,6 +2692,8 @@ class LicenseSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
   final bool? userId;
 
   final bool? productId;
+
+  final bool? createdAt;
 
   final _i1.PrismaUnion<bool, _i2.LicenseCustomerArgs>? customer;
 
@@ -2256,134 +2709,11 @@ class LicenseSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
         '_count': $count,
-      };
-}
-
-class CustomerCreateWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerCreateWithoutLicensesInput({
-    required this.name,
-    required this.email,
-  });
-
-  final String name;
-
-  final String email;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'email': email,
-      };
-}
-
-class CustomerUncheckedCreateWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUncheckedCreateWithoutLicensesInput({
-    this.id,
-    required this.name,
-    required this.email,
-  });
-
-  final int? id;
-
-  final String name;
-
-  final String email;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'email': email,
-      };
-}
-
-class CustomerWhereUniqueInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerWhereUniqueInput({
-    this.id,
-    this.AND,
-    this.OR,
-    this.NOT,
-    this.name,
-    this.email,
-    this.licenses,
-  });
-
-  final int? id;
-
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      AND;
-
-  final Iterable<_i2.CustomerWhereInput>? OR;
-
-  final _i1
-      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
-      NOT;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
-
-  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
-
-  final _i2.LicenseListRelationFilter? licenses;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'AND': AND,
-        'OR': OR,
-        'NOT': NOT,
-        'name': name,
-        'email': email,
-        'licenses': licenses,
-      };
-}
-
-class CustomerCreateOrConnectWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerCreateOrConnectWithoutLicensesInput({
-    required this.where,
-    required this.create,
-  });
-
-  final _i2.CustomerWhereUniqueInput where;
-
-  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
-      _i2.CustomerUncheckedCreateWithoutLicensesInput> create;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'create': create,
-      };
-}
-
-class CustomerCreateNestedOneWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerCreateNestedOneWithoutLicensesInput({
-    this.create,
-    this.connectOrCreate,
-    this.connect,
-  });
-
-  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
-      _i2.CustomerUncheckedCreateWithoutLicensesInput>? create;
-
-  final _i2.CustomerCreateOrConnectWithoutLicensesInput? connectOrCreate;
-
-  final _i2.CustomerWhereUniqueInput? connect;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'connect': connect,
       };
 }
 
@@ -2392,6 +2722,7 @@ class LicenseCreateWithoutPaymentsInput
   const LicenseCreateWithoutPaymentsInput({
     required this.licenseKey,
     this.userId,
+    this.createdAt,
     required this.customer,
     required this.product,
   });
@@ -2399,6 +2730,8 @@ class LicenseCreateWithoutPaymentsInput
   final String licenseKey;
 
   final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
+
+  final DateTime? createdAt;
 
   final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
 
@@ -2408,6 +2741,7 @@ class LicenseCreateWithoutPaymentsInput
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
       };
@@ -2420,6 +2754,7 @@ class LicenseUncheckedCreateWithoutPaymentsInput
     required this.customerId,
     this.userId,
     required this.productId,
+    this.createdAt,
   });
 
   final String licenseKey;
@@ -2430,12 +2765,15 @@ class LicenseUncheckedCreateWithoutPaymentsInput
 
   final int productId;
 
+  final DateTime? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -2806,6 +3144,7 @@ class ProductCreateWithoutLicenseInput
     required this.name,
     this.description,
     this.features,
+    this.clientKeys,
   });
 
   final String name;
@@ -2814,11 +3153,14 @@ class ProductCreateWithoutLicenseInput
 
   final _i2.FeatureCreateNestedManyWithoutProductInput? features;
 
+  final _i2.ClientKeyCreateNestedManyWithoutProductInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -2856,6 +3198,131 @@ class FeatureUncheckedCreateNestedManyWithoutProductInput
       };
 }
 
+class ClientKeyUncheckedCreateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedCreateWithoutProductInput({
+    this.id,
+    required this.key,
+    required this.customerId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCreateOrConnectWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateOrConnectWithoutProductInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateWithoutProductInput,
+      _i2.ClientKeyUncheckedCreateWithoutProductInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class ClientKeyCreateManyProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateManyProductInput({
+    this.id,
+    required this.key,
+    required this.customerId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCreateManyProductInputEnvelope
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateManyProductInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateManyProductInput,
+      Iterable<_i2.ClientKeyCreateManyProductInput>> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'data': data,
+        'skipDuplicates': skipDuplicates,
+      };
+}
+
+class ClientKeyUncheckedCreateNestedManyWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedCreateNestedManyWithoutProductInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutProductInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutProductInput>>?
+      connectOrCreate;
+
+  final _i2.ClientKeyCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
 class ProductUncheckedCreateWithoutLicenseInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const ProductUncheckedCreateWithoutLicenseInput({
@@ -2863,6 +3330,7 @@ class ProductUncheckedCreateWithoutLicenseInput
     required this.name,
     this.description,
     this.features,
+    this.clientKeys,
   });
 
   final int? id;
@@ -2873,12 +3341,15 @@ class ProductUncheckedCreateWithoutLicenseInput
 
   final _i2.FeatureUncheckedCreateNestedManyWithoutProductInput? features;
 
+  final _i2.ClientKeyUncheckedCreateNestedManyWithoutProductInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'description': description,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -2893,6 +3364,7 @@ class ProductWhereUniqueInput
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final int? id;
@@ -2914,6 +3386,8 @@ class ProductWhereUniqueInput
 
   final _i2.FeatureListRelationFilter? features;
 
+  final _i2.ClientKeyListRelationFilter? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -2924,6 +3398,7 @@ class ProductWhereUniqueInput
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -2969,12 +3444,13 @@ class ProductCreateNestedOneWithoutLicenseInput
       };
 }
 
-class LicenseCreateWithoutProductInput
+class LicenseCreateWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateWithoutProductInput({
+  const LicenseCreateWithoutCustomerInput({
     required this.licenseKey,
     this.userId,
-    required this.customer,
+    this.createdAt,
+    required this.product,
     this.payments,
   });
 
@@ -2982,7 +3458,9 @@ class LicenseCreateWithoutProductInput
 
   final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
-  final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
+  final DateTime? createdAt;
+
+  final _i2.ProductCreateNestedOneWithoutLicenseInput product;
 
   final _i2.PaymentCreateNestedManyWithoutLicenseInput? payments;
 
@@ -2990,7 +3468,8 @@ class LicenseCreateWithoutProductInput
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
-        'customer': customer,
+        'created_at': createdAt,
+        'product': product,
         'payments': payments,
       };
 }
@@ -3223,12 +3702,396 @@ class PaymentUncheckedCreateNestedManyWithoutLicenseInput
       };
 }
 
+class LicenseUncheckedCreateWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUncheckedCreateWithoutCustomerInput({
+    required this.licenseKey,
+    this.userId,
+    required this.productId,
+    this.createdAt,
+    this.payments,
+  });
+
+  final String licenseKey;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
+
+  final int productId;
+
+  final DateTime? createdAt;
+
+  final _i2.PaymentUncheckedCreateNestedManyWithoutLicenseInput? payments;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt,
+        'payments': payments,
+      };
+}
+
+class LicenseCreateOrConnectWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateOrConnectWithoutCustomerInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.LicenseWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateWithoutCustomerInput,
+      _i2.LicenseUncheckedCreateWithoutCustomerInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class LicenseCreateManyCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateManyCustomerInput({
+    required this.licenseKey,
+    this.userId,
+    required this.productId,
+    this.createdAt,
+  });
+
+  final String licenseKey;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
+
+  final int productId;
+
+  final DateTime? createdAt;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt,
+      };
+}
+
+class LicenseCreateManyCustomerInputEnvelope
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateManyCustomerInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  final _i1.PrismaUnion<_i2.LicenseCreateManyCustomerInput,
+      Iterable<_i2.LicenseCreateManyCustomerInput>> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'data': data,
+        'skipDuplicates': skipDuplicates,
+      };
+}
+
+class LicenseCreateNestedManyWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateNestedManyWithoutCustomerInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.LicenseCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class CustomerCreateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateWithoutClientKeysInput({
+    required this.name,
+    required this.email,
+    this.licenses,
+  });
+
+  final String name;
+
+  final String email;
+
+  final _i2.LicenseCreateNestedManyWithoutCustomerInput? licenses;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+      };
+}
+
+class LicenseUncheckedCreateNestedManyWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUncheckedCreateNestedManyWithoutCustomerInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.LicenseCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class CustomerUncheckedCreateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUncheckedCreateWithoutClientKeysInput({
+    this.id,
+    required this.name,
+    required this.email,
+    this.licenses,
+  });
+
+  final int? id;
+
+  final String name;
+
+  final String email;
+
+  final _i2.LicenseUncheckedCreateNestedManyWithoutCustomerInput? licenses;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+      };
+}
+
+class CustomerWhereUniqueInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerWhereUniqueInput({
+    this.id,
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.name,
+    this.email,
+    this.licenses,
+    this.clientKeys,
+  });
+
+  final int? id;
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      AND;
+
+  final Iterable<_i2.CustomerWhereInput>? OR;
+
+  final _i1
+      .PrismaUnion<_i2.CustomerWhereInput, Iterable<_i2.CustomerWhereInput>>?
+      NOT;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? name;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? email;
+
+  final _i2.LicenseListRelationFilter? licenses;
+
+  final _i2.ClientKeyListRelationFilter? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerCreateOrConnectWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateOrConnectWithoutClientKeysInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.CustomerWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutClientKeysInput,
+      _i2.CustomerUncheckedCreateWithoutClientKeysInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class CustomerCreateNestedOneWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateNestedOneWithoutClientKeysInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutClientKeysInput,
+      _i2.CustomerUncheckedCreateWithoutClientKeysInput>? create;
+
+  final _i2.CustomerCreateOrConnectWithoutClientKeysInput? connectOrCreate;
+
+  final _i2.CustomerWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'connect': connect,
+      };
+}
+
+class ClientKeyCreateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateWithoutProductInput({
+    required this.key,
+    this.revoked,
+    required this.customer,
+  });
+
+  final String key;
+
+  final bool? revoked;
+
+  final _i2.CustomerCreateNestedOneWithoutClientKeysInput customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'customer': customer,
+      };
+}
+
+class ClientKeyCreateNestedManyWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateNestedManyWithoutProductInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutProductInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutProductInput>>?
+      connectOrCreate;
+
+  final _i2.ClientKeyCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class ProductCreateWithoutFeaturesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductCreateWithoutFeaturesInput({
+    required this.name,
+    this.description,
+    this.license,
+    this.clientKeys,
+  });
+
+  final String name;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+
+  final _i2.LicenseCreateNestedManyWithoutProductInput? license;
+
+  final _i2.ClientKeyCreateNestedManyWithoutProductInput? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'description': description,
+        'License': license,
+        'client_keys': clientKeys,
+      };
+}
+
 class LicenseUncheckedCreateWithoutProductInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseUncheckedCreateWithoutProductInput({
     required this.licenseKey,
     required this.customerId,
     this.userId,
+    this.createdAt,
     this.payments,
   });
 
@@ -3238,6 +4101,8 @@ class LicenseUncheckedCreateWithoutProductInput
 
   final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
+  final DateTime? createdAt;
+
   final _i2.PaymentUncheckedCreateNestedManyWithoutLicenseInput? payments;
 
   @override
@@ -3245,6 +4110,7 @@ class LicenseUncheckedCreateWithoutProductInput
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
+        'created_at': createdAt,
         'payments': payments,
       };
 }
@@ -3274,6 +4140,7 @@ class LicenseCreateManyProductInput
     required this.licenseKey,
     required this.customerId,
     this.userId,
+    this.createdAt,
   });
 
   final String licenseKey;
@@ -3282,11 +4149,14 @@ class LicenseCreateManyProductInput
 
   final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
 
+  final DateTime? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
+        'created_at': createdAt,
       };
 }
 
@@ -3306,62 +4176,6 @@ class LicenseCreateManyProductInputEnvelope
   Map<String, dynamic> toJson() => {
         'data': data,
         'skipDuplicates': skipDuplicates,
-      };
-}
-
-class LicenseCreateNestedManyWithoutProductInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateNestedManyWithoutProductInput({
-    this.create,
-    this.connectOrCreate,
-    this.createMany,
-    this.connect,
-  });
-
-  final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutProductInput,
-          _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutProductInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutProductInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutProductInput>>>>?
-      create;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutProductInput,
-      Iterable<_i2.LicenseCreateOrConnectWithoutProductInput>>? connectOrCreate;
-
-  final _i2.LicenseCreateManyProductInputEnvelope? createMany;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'createMany': createMany,
-        'connect': connect,
-      };
-}
-
-class ProductCreateWithoutFeaturesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const ProductCreateWithoutFeaturesInput({
-    required this.name,
-    this.description,
-    this.license,
-  });
-
-  final String name;
-
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
-
-  final _i2.LicenseCreateNestedManyWithoutProductInput? license;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'description': description,
-        'License': license,
       };
 }
 
@@ -3406,6 +4220,7 @@ class ProductUncheckedCreateWithoutFeaturesInput
     required this.name,
     this.description,
     this.license,
+    this.clientKeys,
   });
 
   final int? id;
@@ -3416,12 +4231,15 @@ class ProductUncheckedCreateWithoutFeaturesInput
 
   final _i2.LicenseUncheckedCreateNestedManyWithoutProductInput? license;
 
+  final _i2.ClientKeyUncheckedCreateNestedManyWithoutProductInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'description': description,
         'License': license,
+        'client_keys': clientKeys,
       };
 }
 
@@ -3596,10 +4414,445 @@ class PaymentCreateNestedManyWithoutLicenseInput
       };
 }
 
+class LicenseCreateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateWithoutProductInput({
+    required this.licenseKey,
+    this.userId,
+    this.createdAt,
+    required this.customer,
+    this.payments,
+  });
+
+  final String licenseKey;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
+
+  final DateTime? createdAt;
+
+  final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
+
+  final _i2.PaymentCreateNestedManyWithoutLicenseInput? payments;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'user_id': userId,
+        'created_at': createdAt,
+        'customer': customer,
+        'payments': payments,
+      };
+}
+
+class LicenseCreateNestedManyWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseCreateNestedManyWithoutProductInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.LicenseCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.LicenseCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutProductInput,
+      Iterable<_i2.LicenseCreateOrConnectWithoutProductInput>>? connectOrCreate;
+
+  final _i2.LicenseCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class ProductCreateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductCreateWithoutClientKeysInput({
+    required this.name,
+    this.description,
+    this.license,
+    this.features,
+  });
+
+  final String name;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+
+  final _i2.LicenseCreateNestedManyWithoutProductInput? license;
+
+  final _i2.FeatureCreateNestedManyWithoutProductInput? features;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'description': description,
+        'License': license,
+        'features': features,
+      };
+}
+
+class ProductUncheckedCreateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUncheckedCreateWithoutClientKeysInput({
+    this.id,
+    required this.name,
+    this.description,
+    this.license,
+    this.features,
+  });
+
+  final int? id;
+
+  final String name;
+
+  final _i1.PrismaUnion<String, _i1.PrismaNull>? description;
+
+  final _i2.LicenseUncheckedCreateNestedManyWithoutProductInput? license;
+
+  final _i2.FeatureUncheckedCreateNestedManyWithoutProductInput? features;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'License': license,
+        'features': features,
+      };
+}
+
+class ProductCreateOrConnectWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductCreateOrConnectWithoutClientKeysInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.ProductWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ProductCreateWithoutClientKeysInput,
+      _i2.ProductUncheckedCreateWithoutClientKeysInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class ProductCreateNestedOneWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductCreateNestedOneWithoutClientKeysInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<_i2.ProductCreateWithoutClientKeysInput,
+      _i2.ProductUncheckedCreateWithoutClientKeysInput>? create;
+
+  final _i2.ProductCreateOrConnectWithoutClientKeysInput? connectOrCreate;
+
+  final _i2.ProductWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'connect': connect,
+      };
+}
+
+class ClientKeyCreateWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateWithoutCustomerInput({
+    required this.key,
+    this.revoked,
+    required this.product,
+  });
+
+  final String key;
+
+  final bool? revoked;
+
+  final _i2.ProductCreateNestedOneWithoutClientKeysInput product;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'product': product,
+      };
+}
+
+class ClientKeyUncheckedCreateWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedCreateWithoutCustomerInput({
+    this.id,
+    required this.key,
+    required this.productId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int productId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCreateOrConnectWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateOrConnectWithoutCustomerInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateWithoutCustomerInput,
+      _i2.ClientKeyUncheckedCreateWithoutCustomerInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class ClientKeyCreateManyCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateManyCustomerInput({
+    this.id,
+    required this.key,
+    required this.productId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int productId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCreateManyCustomerInputEnvelope
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateManyCustomerInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateManyCustomerInput,
+      Iterable<_i2.ClientKeyCreateManyCustomerInput>> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'data': data,
+        'skipDuplicates': skipDuplicates,
+      };
+}
+
+class ClientKeyCreateNestedManyWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateNestedManyWithoutCustomerInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i2.ClientKeyCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class CustomerCreateWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateWithoutLicensesInput({
+    required this.name,
+    required this.email,
+    this.clientKeys,
+  });
+
+  final String name;
+
+  final String email;
+
+  final _i2.ClientKeyCreateNestedManyWithoutCustomerInput? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+        'client_keys': clientKeys,
+      };
+}
+
+class ClientKeyUncheckedCreateNestedManyWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedCreateNestedManyWithoutCustomerInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i2.ClientKeyCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'createMany': createMany,
+        'connect': connect,
+      };
+}
+
+class CustomerUncheckedCreateWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUncheckedCreateWithoutLicensesInput({
+    this.id,
+    required this.name,
+    required this.email,
+    this.clientKeys,
+  });
+
+  final int? id;
+
+  final String name;
+
+  final String email;
+
+  final _i2.ClientKeyUncheckedCreateNestedManyWithoutCustomerInput? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerCreateOrConnectWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateOrConnectWithoutLicensesInput({
+    required this.where,
+    required this.create,
+  });
+
+  final _i2.CustomerWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
+      _i2.CustomerUncheckedCreateWithoutLicensesInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'create': create,
+      };
+}
+
+class CustomerCreateNestedOneWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerCreateNestedOneWithoutLicensesInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
+      _i2.CustomerUncheckedCreateWithoutLicensesInput>? create;
+
+  final _i2.CustomerCreateOrConnectWithoutLicensesInput? connectOrCreate;
+
+  final _i2.CustomerWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'connect': connect,
+      };
+}
+
 class LicenseCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseCreateInput({
     required this.licenseKey,
     this.userId,
+    this.createdAt,
     required this.customer,
     required this.product,
     this.payments,
@@ -3608,6 +4861,8 @@ class LicenseCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   final String licenseKey;
 
   final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
+
+  final DateTime? createdAt;
 
   final _i2.CustomerCreateNestedOneWithoutLicensesInput customer;
 
@@ -3619,6 +4874,7 @@ class LicenseCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
@@ -3632,6 +4888,7 @@ class LicenseUncheckedCreateInput
     required this.customerId,
     this.userId,
     required this.productId,
+    this.createdAt,
     this.payments,
   });
 
@@ -3643,6 +4900,8 @@ class LicenseUncheckedCreateInput
 
   final int productId;
 
+  final DateTime? createdAt;
+
   final _i2.PaymentUncheckedCreateNestedManyWithoutLicenseInput? payments;
 
   @override
@@ -3651,6 +4910,7 @@ class LicenseUncheckedCreateInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'payments': payments,
       };
 }
@@ -3673,6 +4933,7 @@ class LicenseCreateManyInput
     required this.customerId,
     this.userId,
     required this.productId,
+    this.createdAt,
   });
 
   final String licenseKey;
@@ -3683,12 +4944,15 @@ class LicenseCreateManyInput
 
   final int productId;
 
+  final DateTime? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -3735,6 +4999,7 @@ class CreateManyLicenseAndReturnOutputTypeSelect
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
   });
@@ -3746,6 +5011,8 @@ class CreateManyLicenseAndReturnOutputTypeSelect
   final bool? userId;
 
   final bool? productId;
+
+  final bool? createdAt;
 
   final _i1
       .PrismaUnion<bool, _i2.CreateManyLicenseAndReturnOutputTypeCustomerArgs>?
@@ -3761,6 +5028,7 @@ class CreateManyLicenseAndReturnOutputTypeSelect
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
       };
@@ -3808,151 +5076,24 @@ class NullableStringFieldUpdateOperationsInput
   Map<String, dynamic> toJson() => {'set': set};
 }
 
-class CustomerUpdateWithoutLicensesInput
+class DateTimeFieldUpdateOperationsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUpdateWithoutLicensesInput({
-    this.name,
-    this.email,
-  });
+  const DateTimeFieldUpdateOperationsInput({this.set});
 
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+  final DateTime? set;
 
   @override
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'email': email,
-      };
+  Map<String, dynamic> toJson() => {'set': set};
 }
 
-class IntFieldUpdateOperationsInput
+class BoolFieldUpdateOperationsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const IntFieldUpdateOperationsInput({
-    this.set,
-    this.increment,
-    this.decrement,
-    this.multiply,
-    this.divide,
-  });
+  const BoolFieldUpdateOperationsInput({this.set});
 
-  final int? set;
-
-  final int? increment;
-
-  final int? decrement;
-
-  final int? multiply;
-
-  final int? divide;
+  final bool? set;
 
   @override
-  Map<String, dynamic> toJson() => {
-        'set': set,
-        'increment': increment,
-        'decrement': decrement,
-        'multiply': multiply,
-        'divide': divide,
-      };
-}
-
-class CustomerUncheckedUpdateWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUncheckedUpdateWithoutLicensesInput({
-    this.id,
-    this.name,
-    this.email,
-  });
-
-  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'email': email,
-      };
-}
-
-class CustomerUpsertWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUpsertWithoutLicensesInput({
-    required this.update,
-    required this.create,
-    this.where,
-  });
-
-  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
-      _i2.CustomerUncheckedUpdateWithoutLicensesInput> update;
-
-  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
-      _i2.CustomerUncheckedCreateWithoutLicensesInput> create;
-
-  final _i2.CustomerWhereInput? where;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'update': update,
-        'create': create,
-        'where': where,
-      };
-}
-
-class CustomerUpdateToOneWithWhereWithoutLicensesInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUpdateToOneWithWhereWithoutLicensesInput({
-    this.where,
-    required this.data,
-  });
-
-  final _i2.CustomerWhereInput? where;
-
-  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
-      _i2.CustomerUncheckedUpdateWithoutLicensesInput> data;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'data': data,
-      };
-}
-
-class CustomerUpdateOneRequiredWithoutLicensesNestedInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerUpdateOneRequiredWithoutLicensesNestedInput({
-    this.create,
-    this.connectOrCreate,
-    this.upsert,
-    this.connect,
-    this.update,
-  });
-
-  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
-      _i2.CustomerUncheckedCreateWithoutLicensesInput>? create;
-
-  final _i2.CustomerCreateOrConnectWithoutLicensesInput? connectOrCreate;
-
-  final _i2.CustomerUpsertWithoutLicensesInput? upsert;
-
-  final _i2.CustomerWhereUniqueInput? connect;
-
-  final _i1.PrismaUnion<
-      _i2.CustomerUpdateToOneWithWhereWithoutLicensesInput,
-      _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
-          _i2.CustomerUncheckedUpdateWithoutLicensesInput>>? update;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'upsert': upsert,
-        'connect': connect,
-        'update': update,
-      };
+  Map<String, dynamic> toJson() => {'set': set};
 }
 
 class EnumFeatureTypeFieldUpdateOperationsInput
@@ -3995,31 +5136,12 @@ class NullableIntFieldUpdateOperationsInput
       };
 }
 
-class DateTimeFieldUpdateOperationsInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const DateTimeFieldUpdateOperationsInput({this.set});
-
-  final DateTime? set;
-
-  @override
-  Map<String, dynamic> toJson() => {'set': set};
-}
-
-class BoolFieldUpdateOperationsInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const BoolFieldUpdateOperationsInput({this.set});
-
-  final bool? set;
-
-  @override
-  Map<String, dynamic> toJson() => {'set': set};
-}
-
 class LicenseUpdateWithoutPaymentsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseUpdateWithoutPaymentsInput({
     this.licenseKey,
     this.userId,
+    this.createdAt,
     this.customer,
     this.product,
   });
@@ -4032,6 +5154,9 @@ class LicenseUpdateWithoutPaymentsInput
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
 
   final _i2.ProductUpdateOneRequiredWithoutLicenseNestedInput? product;
@@ -4040,8 +5165,39 @@ class LicenseUpdateWithoutPaymentsInput
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
+      };
+}
+
+class IntFieldUpdateOperationsInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const IntFieldUpdateOperationsInput({
+    this.set,
+    this.increment,
+    this.decrement,
+    this.multiply,
+    this.divide,
+  });
+
+  final int? set;
+
+  final int? increment;
+
+  final int? decrement;
+
+  final int? multiply;
+
+  final int? divide;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'set': set,
+        'increment': increment,
+        'decrement': decrement,
+        'multiply': multiply,
+        'divide': divide,
       };
 }
 
@@ -4052,6 +5208,7 @@ class LicenseUncheckedUpdateWithoutPaymentsInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
@@ -4066,12 +5223,16 @@ class LicenseUncheckedUpdateWithoutPaymentsInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -4901,6 +6062,7 @@ class ProductUpdateWithoutLicenseInput
     this.name,
     this.description,
     this.features,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
@@ -4912,11 +6074,14 @@ class ProductUpdateWithoutLicenseInput
 
   final _i2.FeatureUpdateManyWithoutProductNestedInput? features;
 
+  final _i2.ClientKeyUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -4989,6 +6154,229 @@ class FeatureUncheckedUpdateManyWithoutProductNestedInput
       };
 }
 
+class ClientKeyUncheckedUpdateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateWithoutProductInput({
+    this.id,
+    this.key,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUpdateWithWhereUniqueWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateWithWhereUniqueWithoutProductInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithoutProductInput,
+      _i2.ClientKeyUncheckedUpdateWithoutProductInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class ClientKeyScalarWhereInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyScalarWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? AND;
+
+  final Iterable<_i2.ClientKeyScalarWhereInput>? OR;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? NOT;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? id;
+
+  final _i1.PrismaUnion<_i2.StringFilter, String>? key;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
+
+  final _i1.PrismaUnion<_i2.IntFilter, int>? customerId;
+
+  final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUpdateManyMutationInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateManyMutationInput({
+    this.key,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUncheckedUpdateManyWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateManyWithoutProductInput({
+    this.id,
+    this.key,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUpdateManyWithWhereWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateManyWithWhereWithoutProductInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.ClientKeyScalarWhereInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyMutationInput,
+      _i2.ClientKeyUncheckedUpdateManyWithoutProductInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class ClientKeyUncheckedUpdateManyWithoutProductNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateManyWithoutProductNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutProductInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutProductInput>>?
+      connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpsertWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.ClientKeyUpsertWithWhereUniqueWithoutProductInput>>? upsert;
+
+  final _i2.ClientKeyCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.ClientKeyUpdateWithWhereUniqueWithoutProductInput>>? update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyWithWhereWithoutProductInput,
+          Iterable<_i2.ClientKeyUpdateManyWithWhereWithoutProductInput>>?
+      updateMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
 class ProductUncheckedUpdateWithoutLicenseInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const ProductUncheckedUpdateWithoutLicenseInput({
@@ -4996,6 +6384,7 @@ class ProductUncheckedUpdateWithoutLicenseInput
     this.name,
     this.description,
     this.features,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
@@ -5009,12 +6398,15 @@ class ProductUncheckedUpdateWithoutLicenseInput
 
   final _i2.FeatureUncheckedUpdateManyWithoutProductNestedInput? features;
 
+  final _i2.ClientKeyUncheckedUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'description': description,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -5095,12 +6487,13 @@ class ProductUpdateOneRequiredWithoutLicenseNestedInput
       };
 }
 
-class LicenseUpdateWithoutProductInput
+class LicenseUpdateWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateWithoutProductInput({
+  const LicenseUpdateWithoutCustomerInput({
     this.licenseKey,
     this.userId,
-    this.customer,
+    this.createdAt,
+    this.product,
     this.payments,
   });
 
@@ -5112,7 +6505,10 @@ class LicenseUpdateWithoutProductInput
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
 
-  final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
+  final _i2.ProductUpdateOneRequiredWithoutLicenseNestedInput? product;
 
   final _i2.PaymentUpdateManyWithoutLicenseNestedInput? payments;
 
@@ -5120,7 +6516,8 @@ class LicenseUpdateWithoutProductInput
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
-        'customer': customer,
+        'created_at': createdAt,
+        'product': product,
         'payments': payments,
       };
 }
@@ -5502,39 +6899,44 @@ class PaymentUncheckedUpdateManyWithoutLicenseNestedInput
       };
 }
 
-class LicenseUncheckedUpdateWithoutProductInput
+class LicenseUncheckedUpdateWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedUpdateWithoutProductInput({
+  const LicenseUncheckedUpdateWithoutCustomerInput({
     this.licenseKey,
-    this.customerId,
     this.userId,
+    this.productId,
+    this.createdAt,
     this.payments,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
 
-  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
-
   final _i1.PrismaUnion<
       String,
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
 
   final _i2.PaymentUncheckedUpdateManyWithoutLicenseNestedInput? payments;
 
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
-        'customer_id': customerId,
         'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt,
         'payments': payments,
       };
 }
 
-class LicenseUpsertWithWhereUniqueWithoutProductInput
+class LicenseUpsertWithWhereUniqueWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpsertWithWhereUniqueWithoutProductInput({
+  const LicenseUpsertWithWhereUniqueWithoutCustomerInput({
     required this.where,
     required this.update,
     required this.create,
@@ -5542,11 +6944,11 @@ class LicenseUpsertWithWhereUniqueWithoutProductInput
 
   final _i2.LicenseWhereUniqueInput where;
 
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutProductInput,
-      _i2.LicenseUncheckedUpdateWithoutProductInput> update;
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutCustomerInput,
+      _i2.LicenseUncheckedUpdateWithoutCustomerInput> update;
 
-  final _i1.PrismaUnion<_i2.LicenseCreateWithoutProductInput,
-      _i2.LicenseUncheckedCreateWithoutProductInput> create;
+  final _i1.PrismaUnion<_i2.LicenseCreateWithoutCustomerInput,
+      _i2.LicenseUncheckedCreateWithoutCustomerInput> create;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -5556,17 +6958,17 @@ class LicenseUpsertWithWhereUniqueWithoutProductInput
       };
 }
 
-class LicenseUpdateWithWhereUniqueWithoutProductInput
+class LicenseUpdateWithWhereUniqueWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateWithWhereUniqueWithoutProductInput({
+  const LicenseUpdateWithWhereUniqueWithoutCustomerInput({
     required this.where,
     required this.data,
   });
 
   final _i2.LicenseWhereUniqueInput where;
 
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutProductInput,
-      _i2.LicenseUncheckedUpdateWithoutProductInput> data;
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutCustomerInput,
+      _i2.LicenseUncheckedUpdateWithoutCustomerInput> data;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -5585,6 +6987,7 @@ class LicenseScalarWhereInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
@@ -5604,6 +7007,8 @@ class LicenseScalarWhereInput
 
   final _i1.PrismaUnion<_i2.IntFilter, int>? productId;
 
+  final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'AND': AND,
@@ -5613,6 +7018,7 @@ class LicenseScalarWhereInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -5621,6 +7027,7 @@ class LicenseUpdateManyMutationInput
   const LicenseUpdateManyMutationInput({
     this.licenseKey,
     this.userId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
@@ -5631,42 +7038,51 @@ class LicenseUpdateManyMutationInput
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
+        'created_at': createdAt,
       };
 }
 
-class LicenseUncheckedUpdateManyWithoutProductInput
+class LicenseUncheckedUpdateManyWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedUpdateManyWithoutProductInput({
+  const LicenseUncheckedUpdateManyWithoutCustomerInput({
     this.licenseKey,
-    this.customerId,
     this.userId,
+    this.productId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       licenseKey;
-
-  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
 
   final _i1.PrismaUnion<
       String,
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
 
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
-        'customer_id': customerId,
         'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
-class LicenseUpdateManyWithWhereWithoutProductInput
+class LicenseUpdateManyWithWhereWithoutCustomerInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateManyWithWhereWithoutProductInput({
+  const LicenseUpdateManyWithWhereWithoutCustomerInput({
     required this.where,
     required this.data,
   });
@@ -5674,7 +7090,7 @@ class LicenseUpdateManyWithWhereWithoutProductInput
   final _i2.LicenseScalarWhereInput where;
 
   final _i1.PrismaUnion<_i2.LicenseUpdateManyMutationInput,
-      _i2.LicenseUncheckedUpdateManyWithoutProductInput> data;
+      _i2.LicenseUncheckedUpdateManyWithoutCustomerInput> data;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -5683,9 +7099,9 @@ class LicenseUpdateManyWithWhereWithoutProductInput
       };
 }
 
-class LicenseUpdateManyWithoutProductNestedInput
+class LicenseUpdateManyWithoutCustomerNestedInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateManyWithoutProductNestedInput({
+  const LicenseUpdateManyWithoutCustomerNestedInput({
     this.create,
     this.connectOrCreate,
     this.upsert,
@@ -5700,20 +7116,21 @@ class LicenseUpdateManyWithoutProductNestedInput
   });
 
   final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutProductInput,
+          _i2.LicenseCreateWithoutCustomerInput,
           _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutProductInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutProductInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutProductInput>>>>?
+              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
       create;
 
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutProductInput,
-      Iterable<_i2.LicenseCreateOrConnectWithoutProductInput>>? connectOrCreate;
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
 
-  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutProductInput,
-      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutProductInput>>? upsert;
+  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
 
-  final _i2.LicenseCreateManyProductInputEnvelope? createMany;
+  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
 
   final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
       Iterable<_i2.LicenseWhereUniqueInput>>? set;
@@ -5727,14 +7144,326 @@ class LicenseUpdateManyWithoutProductNestedInput
   final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
       Iterable<_i2.LicenseWhereUniqueInput>>? connect;
 
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutProductInput,
-      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutProductInput>>? update;
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput>>? update;
 
-  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutProductInput,
-      Iterable<_i2.LicenseUpdateManyWithWhereWithoutProductInput>>? updateMany;
+  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput,
+      Iterable<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput>>? updateMany;
 
   final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
       Iterable<_i2.LicenseScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
+class CustomerUpdateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateWithoutClientKeysInput({
+    this.name,
+    this.email,
+    this.licenses,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+
+  final _i2.LicenseUpdateManyWithoutCustomerNestedInput? licenses;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+      };
+}
+
+class LicenseUncheckedUpdateManyWithoutCustomerNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUncheckedUpdateManyWithoutCustomerNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.LicenseCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
+
+  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput>>? update;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput,
+      Iterable<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput>>? updateMany;
+
+  final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
+      Iterable<_i2.LicenseScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
+class CustomerUncheckedUpdateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUncheckedUpdateWithoutClientKeysInput({
+    this.id,
+    this.name,
+    this.email,
+    this.licenses,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+
+  final _i2.LicenseUncheckedUpdateManyWithoutCustomerNestedInput? licenses;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'licenses': licenses,
+      };
+}
+
+class CustomerUpsertWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpsertWithoutClientKeysInput({
+    required this.update,
+    required this.create,
+    this.where,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutClientKeysInput,
+      _i2.CustomerUncheckedUpdateWithoutClientKeysInput> update;
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutClientKeysInput,
+      _i2.CustomerUncheckedCreateWithoutClientKeysInput> create;
+
+  final _i2.CustomerWhereInput? where;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'update': update,
+        'create': create,
+        'where': where,
+      };
+}
+
+class CustomerUpdateToOneWithWhereWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateToOneWithWhereWithoutClientKeysInput({
+    this.where,
+    required this.data,
+  });
+
+  final _i2.CustomerWhereInput? where;
+
+  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutClientKeysInput,
+      _i2.CustomerUncheckedUpdateWithoutClientKeysInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class CustomerUpdateOneRequiredWithoutClientKeysNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateOneRequiredWithoutClientKeysNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutClientKeysInput,
+      _i2.CustomerUncheckedCreateWithoutClientKeysInput>? create;
+
+  final _i2.CustomerCreateOrConnectWithoutClientKeysInput? connectOrCreate;
+
+  final _i2.CustomerUpsertWithoutClientKeysInput? upsert;
+
+  final _i2.CustomerWhereUniqueInput? connect;
+
+  final _i1.PrismaUnion<
+      _i2.CustomerUpdateToOneWithWhereWithoutClientKeysInput,
+      _i1.PrismaUnion<_i2.CustomerUpdateWithoutClientKeysInput,
+          _i2.CustomerUncheckedUpdateWithoutClientKeysInput>>? update;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'connect': connect,
+        'update': update,
+      };
+}
+
+class ClientKeyUpdateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateWithoutProductInput({
+    this.key,
+    this.revoked,
+    this.customer,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  final _i2.CustomerUpdateOneRequiredWithoutClientKeysNestedInput? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'customer': customer,
+      };
+}
+
+class ClientKeyUpsertWithWhereUniqueWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpsertWithWhereUniqueWithoutProductInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithoutProductInput,
+      _i2.ClientKeyUncheckedUpdateWithoutProductInput> update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateWithoutProductInput,
+      _i2.ClientKeyUncheckedCreateWithoutProductInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'update': update,
+        'create': create,
+      };
+}
+
+class ClientKeyUpdateManyWithoutProductNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateManyWithoutProductNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutProductInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutProductInput>>?
+      connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpsertWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.ClientKeyUpsertWithWhereUniqueWithoutProductInput>>? upsert;
+
+  final _i2.ClientKeyCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.ClientKeyUpdateWithWhereUniqueWithoutProductInput>>? update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyWithWhereWithoutProductInput,
+          Iterable<_i2.ClientKeyUpdateManyWithWhereWithoutProductInput>>?
+      updateMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? deleteMany;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -5758,6 +7487,7 @@ class ProductUpdateWithoutFeaturesInput
     this.name,
     this.description,
     this.license,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
@@ -5769,11 +7499,118 @@ class ProductUpdateWithoutFeaturesInput
 
   final _i2.LicenseUpdateManyWithoutProductNestedInput? license;
 
+  final _i2.ClientKeyUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'License': license,
+        'client_keys': clientKeys,
+      };
+}
+
+class LicenseUncheckedUpdateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUncheckedUpdateWithoutProductInput({
+    this.licenseKey,
+    this.customerId,
+    this.userId,
+    this.createdAt,
+    this.payments,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      licenseKey;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
+
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
+  final _i2.PaymentUncheckedUpdateManyWithoutLicenseNestedInput? payments;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'customer_id': customerId,
+        'user_id': userId,
+        'created_at': createdAt,
+        'payments': payments,
+      };
+}
+
+class LicenseUpdateWithWhereUniqueWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUpdateWithWhereUniqueWithoutProductInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.LicenseWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutProductInput,
+      _i2.LicenseUncheckedUpdateWithoutProductInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class LicenseUncheckedUpdateManyWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUncheckedUpdateManyWithoutProductInput({
+    this.licenseKey,
+    this.customerId,
+    this.userId,
+    this.createdAt,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      licenseKey;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
+
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'customer_id': customerId,
+        'user_id': userId,
+        'created_at': createdAt,
+      };
+}
+
+class LicenseUpdateManyWithWhereWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUpdateManyWithWhereWithoutProductInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.LicenseScalarWhereInput where;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateManyMutationInput,
+      _i2.LicenseUncheckedUpdateManyWithoutProductInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
       };
 }
 
@@ -5853,6 +7690,7 @@ class ProductUncheckedUpdateWithoutFeaturesInput
     this.name,
     this.description,
     this.license,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
@@ -5866,12 +7704,15 @@ class ProductUncheckedUpdateWithoutFeaturesInput
 
   final _i2.LicenseUncheckedUpdateManyWithoutProductNestedInput? license;
 
+  final _i2.ClientKeyUncheckedUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'description': description,
         'License': license,
+        'client_keys': clientKeys,
       };
 }
 
@@ -6212,10 +8053,681 @@ class PaymentUpdateManyWithoutLicenseNestedInput
       };
 }
 
+class LicenseUpdateWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUpdateWithoutProductInput({
+    this.licenseKey,
+    this.userId,
+    this.createdAt,
+    this.customer,
+    this.payments,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
+      licenseKey;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? userId;
+
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
+  final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
+
+  final _i2.PaymentUpdateManyWithoutLicenseNestedInput? payments;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'user_id': userId,
+        'created_at': createdAt,
+        'customer': customer,
+        'payments': payments,
+      };
+}
+
+class LicenseUpsertWithWhereUniqueWithoutProductInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUpsertWithWhereUniqueWithoutProductInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  final _i2.LicenseWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutProductInput,
+      _i2.LicenseUncheckedUpdateWithoutProductInput> update;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateWithoutProductInput,
+      _i2.LicenseUncheckedCreateWithoutProductInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'update': update,
+        'create': create,
+      };
+}
+
+class LicenseUpdateManyWithoutProductNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const LicenseUpdateManyWithoutProductNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.LicenseCreateWithoutProductInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.LicenseCreateWithoutProductInput>,
+              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutProductInput,
+                  Iterable<_i2.LicenseUncheckedCreateWithoutProductInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutProductInput,
+      Iterable<_i2.LicenseCreateOrConnectWithoutProductInput>>? connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutProductInput>>? upsert;
+
+  final _i2.LicenseCreateManyProductInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
+      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutProductInput,
+      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutProductInput>>? update;
+
+  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutProductInput,
+      Iterable<_i2.LicenseUpdateManyWithWhereWithoutProductInput>>? updateMany;
+
+  final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
+      Iterable<_i2.LicenseScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
+class ProductUpdateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUpdateWithoutClientKeysInput({
+    this.name,
+    this.description,
+    this.license,
+    this.features,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? description;
+
+  final _i2.LicenseUpdateManyWithoutProductNestedInput? license;
+
+  final _i2.FeatureUpdateManyWithoutProductNestedInput? features;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'description': description,
+        'License': license,
+        'features': features,
+      };
+}
+
+class ProductUncheckedUpdateWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUncheckedUpdateWithoutClientKeysInput({
+    this.id,
+    this.name,
+    this.description,
+    this.license,
+    this.features,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<
+      String,
+      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
+          _i1.PrismaNull>>? description;
+
+  final _i2.LicenseUncheckedUpdateManyWithoutProductNestedInput? license;
+
+  final _i2.FeatureUncheckedUpdateManyWithoutProductNestedInput? features;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'License': license,
+        'features': features,
+      };
+}
+
+class ProductUpsertWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUpsertWithoutClientKeysInput({
+    required this.update,
+    required this.create,
+    this.where,
+  });
+
+  final _i1.PrismaUnion<_i2.ProductUpdateWithoutClientKeysInput,
+      _i2.ProductUncheckedUpdateWithoutClientKeysInput> update;
+
+  final _i1.PrismaUnion<_i2.ProductCreateWithoutClientKeysInput,
+      _i2.ProductUncheckedCreateWithoutClientKeysInput> create;
+
+  final _i2.ProductWhereInput? where;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'update': update,
+        'create': create,
+        'where': where,
+      };
+}
+
+class ProductUpdateToOneWithWhereWithoutClientKeysInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUpdateToOneWithWhereWithoutClientKeysInput({
+    this.where,
+    required this.data,
+  });
+
+  final _i2.ProductWhereInput? where;
+
+  final _i1.PrismaUnion<_i2.ProductUpdateWithoutClientKeysInput,
+      _i2.ProductUncheckedUpdateWithoutClientKeysInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class ProductUpdateOneRequiredWithoutClientKeysNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ProductUpdateOneRequiredWithoutClientKeysNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  final _i1.PrismaUnion<_i2.ProductCreateWithoutClientKeysInput,
+      _i2.ProductUncheckedCreateWithoutClientKeysInput>? create;
+
+  final _i2.ProductCreateOrConnectWithoutClientKeysInput? connectOrCreate;
+
+  final _i2.ProductUpsertWithoutClientKeysInput? upsert;
+
+  final _i2.ProductWhereUniqueInput? connect;
+
+  final _i1.PrismaUnion<
+      _i2.ProductUpdateToOneWithWhereWithoutClientKeysInput,
+      _i1.PrismaUnion<_i2.ProductUpdateWithoutClientKeysInput,
+          _i2.ProductUncheckedUpdateWithoutClientKeysInput>>? update;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'connect': connect,
+        'update': update,
+      };
+}
+
+class ClientKeyUpdateWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateWithoutCustomerInput({
+    this.key,
+    this.revoked,
+    this.product,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  final _i2.ProductUpdateOneRequiredWithoutClientKeysNestedInput? product;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'product': product,
+      };
+}
+
+class ClientKeyUncheckedUpdateWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateWithoutCustomerInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUpsertWithWhereUniqueWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpsertWithWhereUniqueWithoutCustomerInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithoutCustomerInput,
+      _i2.ClientKeyUncheckedUpdateWithoutCustomerInput> update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateWithoutCustomerInput,
+      _i2.ClientKeyUncheckedCreateWithoutCustomerInput> create;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'update': update,
+        'create': create,
+      };
+}
+
+class ClientKeyUpdateWithWhereUniqueWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateWithWhereUniqueWithoutCustomerInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.ClientKeyWhereUniqueInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithoutCustomerInput,
+      _i2.ClientKeyUncheckedUpdateWithoutCustomerInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class ClientKeyUncheckedUpdateManyWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateManyWithoutCustomerInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUpdateManyWithWhereWithoutCustomerInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateManyWithWhereWithoutCustomerInput({
+    required this.where,
+    required this.data,
+  });
+
+  final _i2.ClientKeyScalarWhereInput where;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyMutationInput,
+      _i2.ClientKeyUncheckedUpdateManyWithoutCustomerInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class ClientKeyUpdateManyWithoutCustomerNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateManyWithoutCustomerNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpsertWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.ClientKeyUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
+
+  final _i2.ClientKeyCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.ClientKeyUpdateWithWhereUniqueWithoutCustomerInput>>? update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyWithWhereWithoutCustomerInput,
+          Iterable<_i2.ClientKeyUpdateManyWithWhereWithoutCustomerInput>>?
+      updateMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
+class CustomerUpdateWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateWithoutLicensesInput({
+    this.name,
+    this.email,
+    this.clientKeys,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+
+  final _i2.ClientKeyUpdateManyWithoutCustomerNestedInput? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+        'client_keys': clientKeys,
+      };
+}
+
+class ClientKeyUncheckedUpdateManyWithoutCustomerNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateManyWithoutCustomerNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  final _i1.PrismaUnion<
+          _i2.ClientKeyCreateWithoutCustomerInput,
+          _i1.PrismaUnion<
+              Iterable<_i2.ClientKeyCreateWithoutCustomerInput>,
+              _i1.PrismaUnion<_i2.ClientKeyUncheckedCreateWithoutCustomerInput,
+                  Iterable<_i2.ClientKeyUncheckedCreateWithoutCustomerInput>>>>?
+      create;
+
+  final _i1.PrismaUnion<_i2.ClientKeyCreateOrConnectWithoutCustomerInput,
+          Iterable<_i2.ClientKeyCreateOrConnectWithoutCustomerInput>>?
+      connectOrCreate;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpsertWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.ClientKeyUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
+
+  final _i2.ClientKeyCreateManyCustomerInputEnvelope? createMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? set;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? disconnect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? delete;
+
+  final _i1.PrismaUnion<_i2.ClientKeyWhereUniqueInput,
+      Iterable<_i2.ClientKeyWhereUniqueInput>>? connect;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateWithWhereUniqueWithoutCustomerInput,
+      Iterable<_i2.ClientKeyUpdateWithWhereUniqueWithoutCustomerInput>>? update;
+
+  final _i1.PrismaUnion<_i2.ClientKeyUpdateManyWithWhereWithoutCustomerInput,
+          Iterable<_i2.ClientKeyUpdateManyWithWhereWithoutCustomerInput>>?
+      updateMany;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereInput,
+      Iterable<_i2.ClientKeyScalarWhereInput>>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'createMany': createMany,
+        'set': set,
+        'disconnect': disconnect,
+        'delete': delete,
+        'connect': connect,
+        'update': update,
+        'updateMany': updateMany,
+        'deleteMany': deleteMany,
+      };
+}
+
+class CustomerUncheckedUpdateWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUncheckedUpdateWithoutLicensesInput({
+    this.id,
+    this.name,
+    this.email,
+    this.clientKeys,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+
+  final _i2.ClientKeyUncheckedUpdateManyWithoutCustomerNestedInput? clientKeys;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'client_keys': clientKeys,
+      };
+}
+
+class CustomerUpsertWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpsertWithoutLicensesInput({
+    required this.update,
+    required this.create,
+    this.where,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
+      _i2.CustomerUncheckedUpdateWithoutLicensesInput> update;
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
+      _i2.CustomerUncheckedCreateWithoutLicensesInput> create;
+
+  final _i2.CustomerWhereInput? where;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'update': update,
+        'create': create,
+        'where': where,
+      };
+}
+
+class CustomerUpdateToOneWithWhereWithoutLicensesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateToOneWithWhereWithoutLicensesInput({
+    this.where,
+    required this.data,
+  });
+
+  final _i2.CustomerWhereInput? where;
+
+  final _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
+      _i2.CustomerUncheckedUpdateWithoutLicensesInput> data;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'where': where,
+        'data': data,
+      };
+}
+
+class CustomerUpdateOneRequiredWithoutLicensesNestedInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CustomerUpdateOneRequiredWithoutLicensesNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  final _i1.PrismaUnion<_i2.CustomerCreateWithoutLicensesInput,
+      _i2.CustomerUncheckedCreateWithoutLicensesInput>? create;
+
+  final _i2.CustomerCreateOrConnectWithoutLicensesInput? connectOrCreate;
+
+  final _i2.CustomerUpsertWithoutLicensesInput? upsert;
+
+  final _i2.CustomerWhereUniqueInput? connect;
+
+  final _i1.PrismaUnion<
+      _i2.CustomerUpdateToOneWithWhereWithoutLicensesInput,
+      _i1.PrismaUnion<_i2.CustomerUpdateWithoutLicensesInput,
+          _i2.CustomerUncheckedUpdateWithoutLicensesInput>>? update;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'create': create,
+        'connectOrCreate': connectOrCreate,
+        'upsert': upsert,
+        'connect': connect,
+        'update': update,
+      };
+}
+
 class LicenseUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseUpdateInput({
     this.licenseKey,
     this.userId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -6229,6 +8741,9 @@ class LicenseUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
           _i1.PrismaNull>>? userId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   final _i2.CustomerUpdateOneRequiredWithoutLicensesNestedInput? customer;
 
   final _i2.ProductUpdateOneRequiredWithoutLicenseNestedInput? product;
@@ -6239,6 +8754,7 @@ class LicenseUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'user_id': userId,
+        'created_at': createdAt,
         'customer': customer,
         'product': product,
         'payments': payments,
@@ -6252,6 +8768,7 @@ class LicenseUncheckedUpdateInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.payments,
   });
 
@@ -6267,6 +8784,9 @@ class LicenseUncheckedUpdateInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   final _i2.PaymentUncheckedUpdateManyWithoutLicenseNestedInput? payments;
 
   @override
@@ -6275,6 +8795,7 @@ class LicenseUncheckedUpdateInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         'payments': payments,
       };
 }
@@ -6286,6 +8807,7 @@ class LicenseUncheckedUpdateManyInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
@@ -6300,12 +8822,16 @@ class LicenseUncheckedUpdateManyInput
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
 
+  final _i1.PrismaUnion<DateTime, _i2.DateTimeFieldUpdateOperationsInput>?
+      createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -6315,6 +8841,7 @@ class LicenseCountAggregateOutputType {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.$all,
   });
 
@@ -6324,6 +8851,7 @@ class LicenseCountAggregateOutputType {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: json['created_at'],
         $all: json['_all'],
       );
 
@@ -6335,6 +8863,8 @@ class LicenseCountAggregateOutputType {
 
   final int? productId;
 
+  final int? createdAt;
+
   final int? $all;
 
   Map<String, dynamic> toJson() => {
@@ -6342,6 +8872,7 @@ class LicenseCountAggregateOutputType {
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         '_all': $all,
       };
 }
@@ -6396,6 +8927,7 @@ class LicenseMinAggregateOutputType {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   factory LicenseMinAggregateOutputType.fromJson(Map json) =>
@@ -6404,6 +8936,11 @@ class LicenseMinAggregateOutputType {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
       );
 
   final String? licenseKey;
@@ -6414,11 +8951,14 @@ class LicenseMinAggregateOutputType {
 
   final int? productId;
 
+  final DateTime? createdAt;
+
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
       };
 }
 
@@ -6428,6 +8968,7 @@ class LicenseMaxAggregateOutputType {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   factory LicenseMaxAggregateOutputType.fromJson(Map json) =>
@@ -6436,6 +8977,11 @@ class LicenseMaxAggregateOutputType {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
       );
 
   final String? licenseKey;
@@ -6446,11 +8992,14 @@ class LicenseMaxAggregateOutputType {
 
   final int? productId;
 
+  final DateTime? createdAt;
+
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
       };
 }
 
@@ -6460,6 +9009,7 @@ class LicenseGroupByOutputType {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.$count,
     this.$avg,
     this.$sum,
@@ -6473,6 +9023,11 @@ class LicenseGroupByOutputType {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
         $count: json['_count'] is Map
             ? _i2.LicenseCountAggregateOutputType.fromJson(json['_count'])
             : null,
@@ -6498,6 +9053,8 @@ class LicenseGroupByOutputType {
 
   final int? productId;
 
+  final DateTime? createdAt;
+
   final _i2.LicenseCountAggregateOutputType? $count;
 
   final _i2.LicenseAvgAggregateOutputType? $avg;
@@ -6513,6 +9070,7 @@ class LicenseGroupByOutputType {
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
         '_count': $count?.toJson(),
         '_avg': $avg?.toJson(),
         '_sum': $sum?.toJson(),
@@ -6528,6 +9086,7 @@ class LicenseCountOrderByAggregateInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i2.SortOrder? licenseKey;
@@ -6538,12 +9097,15 @@ class LicenseCountOrderByAggregateInput
 
   final _i2.SortOrder? productId;
 
+  final _i2.SortOrder? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -6572,6 +9134,7 @@ class LicenseMaxOrderByAggregateInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i2.SortOrder? licenseKey;
@@ -6582,12 +9145,15 @@ class LicenseMaxOrderByAggregateInput
 
   final _i2.SortOrder? productId;
 
+  final _i2.SortOrder? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -6598,6 +9164,7 @@ class LicenseMinOrderByAggregateInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i2.SortOrder? licenseKey;
@@ -6608,12 +9175,15 @@ class LicenseMinOrderByAggregateInput
 
   final _i2.SortOrder? productId;
 
+  final _i2.SortOrder? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -6642,6 +9212,7 @@ class LicenseOrderByWithAggregationInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.$count,
     this.$avg,
     this.$max,
@@ -6656,6 +9227,8 @@ class LicenseOrderByWithAggregationInput
   final _i1.PrismaUnion<_i2.SortOrder, _i2.SortOrderInput>? userId;
 
   final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? createdAt;
 
   final _i2.LicenseCountOrderByAggregateInput? $count;
 
@@ -6673,6 +9246,7 @@ class LicenseOrderByWithAggregationInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         '_count': $count,
         '_avg': $avg,
         '_max': $max,
@@ -7133,6 +9707,118 @@ class StringNullableWithAggregatesFilter
       };
 }
 
+class NestedDateTimeWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedDateTimeWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      $in;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      notIn;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
+
+  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeWithAggregatesFilter>? not;
+
+  final _i2.NestedIntFilter? $count;
+
+  final _i2.NestedDateTimeFilter? $min;
+
+  final _i2.NestedDateTimeFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
+class DateTimeWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const DateTimeWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      $in;
+
+  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
+      notIn;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
+
+  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
+
+  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeWithAggregatesFilter>? not;
+
+  final _i2.NestedIntFilter? $count;
+
+  final _i2.NestedDateTimeFilter? $min;
+
+  final _i2.NestedDateTimeFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'lt': lt,
+        'lte': lte,
+        'gt': gt,
+        'gte': gte,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
 class LicenseScalarWhereWithAggregatesInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const LicenseScalarWhereWithAggregatesInput({
@@ -7143,6 +9829,7 @@ class LicenseScalarWhereWithAggregatesInput
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final _i1.PrismaUnion<_i2.LicenseScalarWhereWithAggregatesInput,
@@ -7162,6 +9849,8 @@ class LicenseScalarWhereWithAggregatesInput
 
   final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? productId;
 
+  final _i1.PrismaUnion<_i2.DateTimeWithAggregatesFilter, DateTime>? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'AND': AND,
@@ -7171,6 +9860,7 @@ class LicenseScalarWhereWithAggregatesInput
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -7181,6 +9871,7 @@ class LicenseCountAggregateOutputTypeSelect
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.$all,
   });
 
@@ -7192,6 +9883,8 @@ class LicenseCountAggregateOutputTypeSelect
 
   final bool? productId;
 
+  final bool? createdAt;
+
   final bool? $all;
 
   @override
@@ -7200,6 +9893,7 @@ class LicenseCountAggregateOutputTypeSelect
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         '_all': $all,
       };
 }
@@ -7277,6 +9971,7 @@ class LicenseMinAggregateOutputTypeSelect
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final bool? licenseKey;
@@ -7287,12 +9982,15 @@ class LicenseMinAggregateOutputTypeSelect
 
   final bool? productId;
 
+  final bool? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -7313,6 +10011,7 @@ class LicenseMaxAggregateOutputTypeSelect
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
   });
 
   final bool? licenseKey;
@@ -7323,12 +10022,15 @@ class LicenseMaxAggregateOutputTypeSelect
 
   final bool? productId;
 
+  final bool? createdAt;
+
   @override
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
       };
 }
 
@@ -7349,6 +10051,7 @@ class LicenseGroupByOutputTypeSelect
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.$count,
     this.$avg,
     this.$sum,
@@ -7363,6 +10066,8 @@ class LicenseGroupByOutputTypeSelect
   final bool? userId;
 
   final bool? productId;
+
+  final bool? createdAt;
 
   final _i1.PrismaUnion<bool, _i2.LicenseGroupByOutputTypeCountArgs>? $count;
 
@@ -7380,6 +10085,7 @@ class LicenseGroupByOutputTypeSelect
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt,
         '_count': $count,
         '_avg': $avg,
         '_sum': $sum,
@@ -7537,6 +10243,7 @@ class ProductCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final String name;
@@ -7547,12 +10254,15 @@ class ProductCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i2.FeatureCreateNestedManyWithoutProductInput? features;
 
+  final _i2.ClientKeyCreateNestedManyWithoutProductInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -7564,6 +10274,7 @@ class ProductUncheckedCreateInput
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final int? id;
@@ -7576,6 +10287,8 @@ class ProductUncheckedCreateInput
 
   final _i2.FeatureUncheckedCreateNestedManyWithoutProductInput? features;
 
+  final _i2.ClientKeyUncheckedCreateNestedManyWithoutProductInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -7583,6 +10296,7 @@ class ProductUncheckedCreateInput
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -7636,6 +10350,7 @@ class ProductUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
@@ -7649,12 +10364,15 @@ class ProductUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i2.FeatureUpdateManyWithoutProductNestedInput? features;
 
+  final _i2.ClientKeyUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -7666,6 +10384,7 @@ class ProductUncheckedUpdateInput
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
@@ -7681,6 +10400,8 @@ class ProductUncheckedUpdateInput
 
   final _i2.FeatureUncheckedUpdateManyWithoutProductNestedInput? features;
 
+  final _i2.ClientKeyUncheckedUpdateManyWithoutProductNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -7688,6 +10409,7 @@ class ProductUncheckedUpdateInput
         'description': description,
         'License': license,
         'features': features,
+        'client_keys': clientKeys,
       };
 }
 
@@ -8397,158 +11119,12 @@ enum CustomerScalar<T> implements _i1.PrismaEnum, _i1.Reference<T> {
   final String model;
 }
 
-class LicenseCreateWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateWithoutCustomerInput({
-    required this.licenseKey,
-    this.userId,
-    required this.product,
-    this.payments,
-  });
-
-  final String licenseKey;
-
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
-
-  final _i2.ProductCreateNestedOneWithoutLicenseInput product;
-
-  final _i2.PaymentCreateNestedManyWithoutLicenseInput? payments;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product': product,
-        'payments': payments,
-      };
-}
-
-class LicenseUncheckedCreateWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedCreateWithoutCustomerInput({
-    required this.licenseKey,
-    this.userId,
-    required this.productId,
-    this.payments,
-  });
-
-  final String licenseKey;
-
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
-
-  final int productId;
-
-  final _i2.PaymentUncheckedCreateNestedManyWithoutLicenseInput? payments;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product_id': productId,
-        'payments': payments,
-      };
-}
-
-class LicenseCreateOrConnectWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateOrConnectWithoutCustomerInput({
-    required this.where,
-    required this.create,
-  });
-
-  final _i2.LicenseWhereUniqueInput where;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateWithoutCustomerInput,
-      _i2.LicenseUncheckedCreateWithoutCustomerInput> create;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'create': create,
-      };
-}
-
-class LicenseCreateManyCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateManyCustomerInput({
-    required this.licenseKey,
-    this.userId,
-    required this.productId,
-  });
-
-  final String licenseKey;
-
-  final _i1.PrismaUnion<String, _i1.PrismaNull>? userId;
-
-  final int productId;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product_id': productId,
-      };
-}
-
-class LicenseCreateManyCustomerInputEnvelope
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateManyCustomerInputEnvelope({
-    required this.data,
-    this.skipDuplicates,
-  });
-
-  final _i1.PrismaUnion<_i2.LicenseCreateManyCustomerInput,
-      Iterable<_i2.LicenseCreateManyCustomerInput>> data;
-
-  final bool? skipDuplicates;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'data': data,
-        'skipDuplicates': skipDuplicates,
-      };
-}
-
-class LicenseCreateNestedManyWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseCreateNestedManyWithoutCustomerInput({
-    this.create,
-    this.connectOrCreate,
-    this.createMany,
-    this.connect,
-  });
-
-  final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutCustomerInput,
-          _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
-      create;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
-          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
-      connectOrCreate;
-
-  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'createMany': createMany,
-        'connect': connect,
-      };
-}
-
 class CustomerCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const CustomerCreateInput({
     required this.name,
     required this.email,
     this.licenses,
+    this.clientKeys,
   });
 
   final String name;
@@ -8557,46 +11133,14 @@ class CustomerCreateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i2.LicenseCreateNestedManyWithoutCustomerInput? licenses;
 
+  final _i2.ClientKeyCreateNestedManyWithoutCustomerInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'email': email,
         'licenses': licenses,
-      };
-}
-
-class LicenseUncheckedCreateNestedManyWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedCreateNestedManyWithoutCustomerInput({
-    this.create,
-    this.connectOrCreate,
-    this.createMany,
-    this.connect,
-  });
-
-  final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutCustomerInput,
-          _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
-      create;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
-          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
-      connectOrCreate;
-
-  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'createMany': createMany,
-        'connect': connect,
+        'client_keys': clientKeys,
       };
 }
 
@@ -8607,6 +11151,7 @@ class CustomerUncheckedCreateInput
     required this.name,
     required this.email,
     this.licenses,
+    this.clientKeys,
   });
 
   final int? id;
@@ -8617,12 +11162,15 @@ class CustomerUncheckedCreateInput
 
   final _i2.LicenseUncheckedCreateNestedManyWithoutCustomerInput? licenses;
 
+  final _i2.ClientKeyUncheckedCreateNestedManyWithoutCustomerInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'email': email,
         'licenses': licenses,
+        'client_keys': clientKeys,
       };
 }
 
@@ -8670,229 +11218,12 @@ class CreateManyCustomerAndReturnOutputTypeSelect
       };
 }
 
-class LicenseUpdateWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateWithoutCustomerInput({
-    this.licenseKey,
-    this.userId,
-    this.product,
-    this.payments,
-  });
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
-      licenseKey;
-
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? userId;
-
-  final _i2.ProductUpdateOneRequiredWithoutLicenseNestedInput? product;
-
-  final _i2.PaymentUpdateManyWithoutLicenseNestedInput? payments;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product': product,
-        'payments': payments,
-      };
-}
-
-class LicenseUncheckedUpdateWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedUpdateWithoutCustomerInput({
-    this.licenseKey,
-    this.userId,
-    this.productId,
-    this.payments,
-  });
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
-      licenseKey;
-
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? userId;
-
-  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
-
-  final _i2.PaymentUncheckedUpdateManyWithoutLicenseNestedInput? payments;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product_id': productId,
-        'payments': payments,
-      };
-}
-
-class LicenseUpsertWithWhereUniqueWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpsertWithWhereUniqueWithoutCustomerInput({
-    required this.where,
-    required this.update,
-    required this.create,
-  });
-
-  final _i2.LicenseWhereUniqueInput where;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutCustomerInput,
-      _i2.LicenseUncheckedUpdateWithoutCustomerInput> update;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateWithoutCustomerInput,
-      _i2.LicenseUncheckedCreateWithoutCustomerInput> create;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'update': update,
-        'create': create,
-      };
-}
-
-class LicenseUpdateWithWhereUniqueWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateWithWhereUniqueWithoutCustomerInput({
-    required this.where,
-    required this.data,
-  });
-
-  final _i2.LicenseWhereUniqueInput where;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithoutCustomerInput,
-      _i2.LicenseUncheckedUpdateWithoutCustomerInput> data;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'data': data,
-      };
-}
-
-class LicenseUncheckedUpdateManyWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedUpdateManyWithoutCustomerInput({
-    this.licenseKey,
-    this.userId,
-    this.productId,
-  });
-
-  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
-      licenseKey;
-
-  final _i1.PrismaUnion<
-      String,
-      _i1.PrismaUnion<_i2.NullableStringFieldUpdateOperationsInput,
-          _i1.PrismaNull>>? userId;
-
-  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'license_key': licenseKey,
-        'user_id': userId,
-        'product_id': productId,
-      };
-}
-
-class LicenseUpdateManyWithWhereWithoutCustomerInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateManyWithWhereWithoutCustomerInput({
-    required this.where,
-    required this.data,
-  });
-
-  final _i2.LicenseScalarWhereInput where;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateManyMutationInput,
-      _i2.LicenseUncheckedUpdateManyWithoutCustomerInput> data;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'where': where,
-        'data': data,
-      };
-}
-
-class LicenseUpdateManyWithoutCustomerNestedInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUpdateManyWithoutCustomerNestedInput({
-    this.create,
-    this.connectOrCreate,
-    this.upsert,
-    this.createMany,
-    this.set,
-    this.disconnect,
-    this.delete,
-    this.connect,
-    this.update,
-    this.updateMany,
-    this.deleteMany,
-  });
-
-  final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutCustomerInput,
-          _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
-      create;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
-          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
-      connectOrCreate;
-
-  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput,
-      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
-
-  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? set;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? disconnect;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? delete;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput,
-      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput>>? update;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput,
-      Iterable<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput>>? updateMany;
-
-  final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
-      Iterable<_i2.LicenseScalarWhereInput>>? deleteMany;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'upsert': upsert,
-        'createMany': createMany,
-        'set': set,
-        'disconnect': disconnect,
-        'delete': delete,
-        'connect': connect,
-        'update': update,
-        'updateMany': updateMany,
-        'deleteMany': deleteMany,
-      };
-}
-
 class CustomerUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   const CustomerUpdateInput({
     this.name,
     this.email,
     this.licenses,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
@@ -8901,81 +11232,14 @@ class CustomerUpdateInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i2.LicenseUpdateManyWithoutCustomerNestedInput? licenses;
 
+  final _i2.ClientKeyUpdateManyWithoutCustomerNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'name': name,
         'email': email,
         'licenses': licenses,
-      };
-}
-
-class LicenseUncheckedUpdateManyWithoutCustomerNestedInput
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseUncheckedUpdateManyWithoutCustomerNestedInput({
-    this.create,
-    this.connectOrCreate,
-    this.upsert,
-    this.createMany,
-    this.set,
-    this.disconnect,
-    this.delete,
-    this.connect,
-    this.update,
-    this.updateMany,
-    this.deleteMany,
-  });
-
-  final _i1.PrismaUnion<
-          _i2.LicenseCreateWithoutCustomerInput,
-          _i1.PrismaUnion<
-              Iterable<_i2.LicenseCreateWithoutCustomerInput>,
-              _i1.PrismaUnion<_i2.LicenseUncheckedCreateWithoutCustomerInput,
-                  Iterable<_i2.LicenseUncheckedCreateWithoutCustomerInput>>>>?
-      create;
-
-  final _i1.PrismaUnion<_i2.LicenseCreateOrConnectWithoutCustomerInput,
-          Iterable<_i2.LicenseCreateOrConnectWithoutCustomerInput>>?
-      connectOrCreate;
-
-  final _i1.PrismaUnion<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput,
-      Iterable<_i2.LicenseUpsertWithWhereUniqueWithoutCustomerInput>>? upsert;
-
-  final _i2.LicenseCreateManyCustomerInputEnvelope? createMany;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? set;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? disconnect;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? delete;
-
-  final _i1.PrismaUnion<_i2.LicenseWhereUniqueInput,
-      Iterable<_i2.LicenseWhereUniqueInput>>? connect;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput,
-      Iterable<_i2.LicenseUpdateWithWhereUniqueWithoutCustomerInput>>? update;
-
-  final _i1.PrismaUnion<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput,
-      Iterable<_i2.LicenseUpdateManyWithWhereWithoutCustomerInput>>? updateMany;
-
-  final _i1.PrismaUnion<_i2.LicenseScalarWhereInput,
-      Iterable<_i2.LicenseScalarWhereInput>>? deleteMany;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'create': create,
-        'connectOrCreate': connectOrCreate,
-        'upsert': upsert,
-        'createMany': createMany,
-        'set': set,
-        'disconnect': disconnect,
-        'delete': delete,
-        'connect': connect,
-        'update': update,
-        'updateMany': updateMany,
-        'deleteMany': deleteMany,
+        'client_keys': clientKeys,
       };
 }
 
@@ -8986,6 +11250,7 @@ class CustomerUncheckedUpdateInput
     this.name,
     this.email,
     this.licenses,
+    this.clientKeys,
   });
 
   final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
@@ -8996,12 +11261,15 @@ class CustomerUncheckedUpdateInput
 
   final _i2.LicenseUncheckedUpdateManyWithoutCustomerNestedInput? licenses;
 
+  final _i2.ClientKeyUncheckedUpdateManyWithoutCustomerNestedInput? clientKeys;
+
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'email': email,
         'licenses': licenses,
+        'client_keys': clientKeys,
       };
 }
 
@@ -11949,118 +14217,6 @@ class PaymentOrderByWithAggregationInput
       };
 }
 
-class NestedDateTimeWithAggregatesFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const NestedDateTimeWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      $in;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      notIn;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
-
-  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeWithAggregatesFilter>? not;
-
-  final _i2.NestedIntFilter? $count;
-
-  final _i2.NestedDateTimeFilter? $min;
-
-  final _i2.NestedDateTimeFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'not': not,
-        '_count': $count,
-        '_min': $min,
-        '_max': $max,
-      };
-}
-
-class DateTimeWithAggregatesFilter
-    implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const DateTimeWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? equals;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      $in;
-
-  final _i1.PrismaUnion<Iterable<DateTime>, _i1.Reference<Iterable<DateTime>>>?
-      notIn;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? lte;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gt;
-
-  final _i1.PrismaUnion<DateTime, _i1.Reference<DateTime>>? gte;
-
-  final _i1.PrismaUnion<DateTime, _i2.NestedDateTimeWithAggregatesFilter>? not;
-
-  final _i2.NestedIntFilter? $count;
-
-  final _i2.NestedDateTimeFilter? $min;
-
-  final _i2.NestedDateTimeFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'equals': equals,
-        'in': $in,
-        'notIn': notIn,
-        'lt': lt,
-        'lte': lte,
-        'gt': gt,
-        'gte': gte,
-        'not': not,
-        '_count': $count,
-        '_min': $min,
-        '_max': $max,
-      };
-}
-
 class NestedBoolWithAggregatesFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const NestedBoolWithAggregatesFilter({
@@ -12538,6 +14694,1110 @@ class AggregatePaymentSelect
   final _i1.PrismaUnion<bool, _i2.AggregatePaymentMinArgs>? $min;
 
   final _i1.PrismaUnion<bool, _i2.AggregatePaymentMaxArgs>? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        '_count': $count,
+        '_avg': $avg,
+        '_sum': $sum,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
+class ClientKeyCreateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateInput({
+    required this.key,
+    this.revoked,
+    required this.product,
+    required this.customer,
+  });
+
+  final String key;
+
+  final bool? revoked;
+
+  final _i2.ProductCreateNestedOneWithoutClientKeysInput product;
+
+  final _i2.CustomerCreateNestedOneWithoutClientKeysInput customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyUncheckedCreateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedCreateInput({
+    this.id,
+    required this.key,
+    required this.productId,
+    required this.customerId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int productId;
+
+  final int customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCreateManyInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCreateManyInput({
+    this.id,
+    required this.key,
+    required this.productId,
+    required this.customerId,
+    this.revoked,
+  });
+
+  final int? id;
+
+  final String key;
+
+  final int productId;
+
+  final int customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class CreateManyClientKeyAndReturnOutputTypeProductArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CreateManyClientKeyAndReturnOutputTypeProductArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.ProductSelect? select;
+
+  final _i2.ProductInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class CreateManyClientKeyAndReturnOutputTypeCustomerArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CreateManyClientKeyAndReturnOutputTypeCustomerArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.CustomerSelect? select;
+
+  final _i2.CustomerInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class CreateManyClientKeyAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CreateManyClientKeyAndReturnOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  final _i1
+      .PrismaUnion<bool, _i2.CreateManyClientKeyAndReturnOutputTypeProductArgs>?
+      product;
+
+  final _i1.PrismaUnion<bool,
+      _i2.CreateManyClientKeyAndReturnOutputTypeCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class CreateManyClientKeyAndReturnOutputTypeInclude
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const CreateManyClientKeyAndReturnOutputTypeInclude({
+    this.product,
+    this.customer,
+  });
+
+  final _i1
+      .PrismaUnion<bool, _i2.CreateManyClientKeyAndReturnOutputTypeProductArgs>?
+      product;
+
+  final _i1.PrismaUnion<bool,
+      _i2.CreateManyClientKeyAndReturnOutputTypeCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyUpdateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUpdateInput({
+    this.key,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  final _i2.ProductUpdateOneRequiredWithoutClientKeysNestedInput? product;
+
+  final _i2.CustomerUpdateOneRequiredWithoutClientKeysNestedInput? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'key': key,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class ClientKeyUncheckedUpdateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyUncheckedUpdateManyInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyUncheckedUpdateManyInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? id;
+
+  final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? key;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? productId;
+
+  final _i1.PrismaUnion<int, _i2.IntFieldUpdateOperationsInput>? customerId;
+
+  final _i1.PrismaUnion<bool, _i2.BoolFieldUpdateOperationsInput>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCountAggregateOutputType {
+  const ClientKeyCountAggregateOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.$all,
+  });
+
+  factory ClientKeyCountAggregateOutputType.fromJson(Map json) =>
+      ClientKeyCountAggregateOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+        $all: json['_all'],
+      );
+
+  final int? id;
+
+  final int? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final int? revoked;
+
+  final int? $all;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        '_all': $all,
+      };
+}
+
+class ClientKeyAvgAggregateOutputType {
+  const ClientKeyAvgAggregateOutputType({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  factory ClientKeyAvgAggregateOutputType.fromJson(Map json) =>
+      ClientKeyAvgAggregateOutputType(
+        id: json['id'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+      );
+
+  final double? id;
+
+  final double? productId;
+
+  final double? customerId;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeySumAggregateOutputType {
+  const ClientKeySumAggregateOutputType({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  factory ClientKeySumAggregateOutputType.fromJson(Map json) =>
+      ClientKeySumAggregateOutputType(
+        id: json['id'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+      );
+
+  final int? id;
+
+  final int? productId;
+
+  final int? customerId;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeyMinAggregateOutputType {
+  const ClientKeyMinAggregateOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  factory ClientKeyMinAggregateOutputType.fromJson(Map json) =>
+      ClientKeyMinAggregateOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyMaxAggregateOutputType {
+  const ClientKeyMaxAggregateOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  factory ClientKeyMaxAggregateOutputType.fromJson(Map json) =>
+      ClientKeyMaxAggregateOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyGroupByOutputType {
+  const ClientKeyGroupByOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  factory ClientKeyGroupByOutputType.fromJson(Map json) =>
+      ClientKeyGroupByOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+        $count: json['_count'] is Map
+            ? _i2.ClientKeyCountAggregateOutputType.fromJson(json['_count'])
+            : null,
+        $avg: json['_avg'] is Map
+            ? _i2.ClientKeyAvgAggregateOutputType.fromJson(json['_avg'])
+            : null,
+        $sum: json['_sum'] is Map
+            ? _i2.ClientKeySumAggregateOutputType.fromJson(json['_sum'])
+            : null,
+        $min: json['_min'] is Map
+            ? _i2.ClientKeyMinAggregateOutputType.fromJson(json['_min'])
+            : null,
+        $max: json['_max'] is Map
+            ? _i2.ClientKeyMaxAggregateOutputType.fromJson(json['_max'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  final _i2.ClientKeyCountAggregateOutputType? $count;
+
+  final _i2.ClientKeyAvgAggregateOutputType? $avg;
+
+  final _i2.ClientKeySumAggregateOutputType? $sum;
+
+  final _i2.ClientKeyMinAggregateOutputType? $min;
+
+  final _i2.ClientKeyMaxAggregateOutputType? $max;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        '_count': $count?.toJson(),
+        '_avg': $avg?.toJson(),
+        '_sum': $sum?.toJson(),
+        '_min': $min?.toJson(),
+        '_max': $max?.toJson(),
+      };
+}
+
+class ClientKeyCountOrderByAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCountOrderByAggregateInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? key;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  final _i2.SortOrder? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyAvgOrderByAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyAvgOrderByAggregateInput({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeyMaxOrderByAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyMaxOrderByAggregateInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? key;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  final _i2.SortOrder? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyMinOrderByAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyMinOrderByAggregateInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? key;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  final _i2.SortOrder? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeySumOrderByAggregateInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeySumOrderByAggregateInput({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeyOrderByWithAggregationInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyOrderByWithAggregationInput({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.$count,
+    this.$avg,
+    this.$max,
+    this.$min,
+    this.$sum,
+  });
+
+  final _i2.SortOrder? id;
+
+  final _i2.SortOrder? key;
+
+  final _i2.SortOrder? productId;
+
+  final _i2.SortOrder? customerId;
+
+  final _i2.SortOrder? revoked;
+
+  final _i2.ClientKeyCountOrderByAggregateInput? $count;
+
+  final _i2.ClientKeyAvgOrderByAggregateInput? $avg;
+
+  final _i2.ClientKeyMaxOrderByAggregateInput? $max;
+
+  final _i2.ClientKeyMinOrderByAggregateInput? $min;
+
+  final _i2.ClientKeySumOrderByAggregateInput? $sum;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        '_count': $count,
+        '_avg': $avg,
+        '_max': $max,
+        '_min': $min,
+        '_sum': $sum,
+      };
+}
+
+class ClientKeyScalarWhereWithAggregatesInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyScalarWhereWithAggregatesInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereWithAggregatesInput,
+      Iterable<_i2.ClientKeyScalarWhereWithAggregatesInput>>? AND;
+
+  final Iterable<_i2.ClientKeyScalarWhereWithAggregatesInput>? OR;
+
+  final _i1.PrismaUnion<_i2.ClientKeyScalarWhereWithAggregatesInput,
+      Iterable<_i2.ClientKeyScalarWhereWithAggregatesInput>>? NOT;
+
+  final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? id;
+
+  final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? key;
+
+  final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? productId;
+
+  final _i1.PrismaUnion<_i2.IntWithAggregatesFilter, int>? customerId;
+
+  final _i1.PrismaUnion<_i2.BoolWithAggregatesFilter, bool>? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'AND': AND,
+        'OR': OR,
+        'NOT': NOT,
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyCountAggregateOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyCountAggregateOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.$all,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  final bool? $all;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        '_all': $all,
+      };
+}
+
+class ClientKeyGroupByOutputTypeCountArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeCountArgs({this.select});
+
+  final _i2.ClientKeyCountAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class ClientKeyAvgAggregateOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyAvgAggregateOutputTypeSelect({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  final bool? id;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeyGroupByOutputTypeAvgArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeAvgArgs({this.select});
+
+  final _i2.ClientKeyAvgAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class ClientKeySumAggregateOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeySumAggregateOutputTypeSelect({
+    this.id,
+    this.productId,
+    this.customerId,
+  });
+
+  final bool? id;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'product_id': productId,
+        'customer_id': customerId,
+      };
+}
+
+class ClientKeyGroupByOutputTypeSumArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeSumArgs({this.select});
+
+  final _i2.ClientKeySumAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class ClientKeyMinAggregateOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyMinAggregateOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyGroupByOutputTypeMinArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeMinArgs({this.select});
+
+  final _i2.ClientKeyMinAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class ClientKeyMaxAggregateOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyMaxAggregateOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+      };
+}
+
+class ClientKeyGroupByOutputTypeMaxArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeMaxArgs({this.select});
+
+  final _i2.ClientKeyMaxAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class ClientKeyGroupByOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const ClientKeyGroupByOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyGroupByOutputTypeCountArgs>? $count;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyGroupByOutputTypeAvgArgs>? $avg;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyGroupByOutputTypeSumArgs>? $sum;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyGroupByOutputTypeMinArgs>? $min;
+
+  final _i1.PrismaUnion<bool, _i2.ClientKeyGroupByOutputTypeMaxArgs>? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        '_count': $count,
+        '_avg': $avg,
+        '_sum': $sum,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
+class AggregateClientKey {
+  const AggregateClientKey({
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  factory AggregateClientKey.fromJson(Map json) => AggregateClientKey(
+        $count: json['_count'] is Map
+            ? _i2.ClientKeyCountAggregateOutputType.fromJson(json['_count'])
+            : null,
+        $avg: json['_avg'] is Map
+            ? _i2.ClientKeyAvgAggregateOutputType.fromJson(json['_avg'])
+            : null,
+        $sum: json['_sum'] is Map
+            ? _i2.ClientKeySumAggregateOutputType.fromJson(json['_sum'])
+            : null,
+        $min: json['_min'] is Map
+            ? _i2.ClientKeyMinAggregateOutputType.fromJson(json['_min'])
+            : null,
+        $max: json['_max'] is Map
+            ? _i2.ClientKeyMaxAggregateOutputType.fromJson(json['_max'])
+            : null,
+      );
+
+  final _i2.ClientKeyCountAggregateOutputType? $count;
+
+  final _i2.ClientKeyAvgAggregateOutputType? $avg;
+
+  final _i2.ClientKeySumAggregateOutputType? $sum;
+
+  final _i2.ClientKeyMinAggregateOutputType? $min;
+
+  final _i2.ClientKeyMaxAggregateOutputType? $max;
+
+  Map<String, dynamic> toJson() => {
+        '_count': $count?.toJson(),
+        '_avg': $avg?.toJson(),
+        '_sum': $sum?.toJson(),
+        '_min': $min?.toJson(),
+        '_max': $max?.toJson(),
+      };
+}
+
+class AggregateClientKeyCountArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeyCountArgs({this.select});
+
+  final _i2.ClientKeyCountAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class AggregateClientKeyAvgArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeyAvgArgs({this.select});
+
+  final _i2.ClientKeyAvgAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class AggregateClientKeySumArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeySumArgs({this.select});
+
+  final _i2.ClientKeySumAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class AggregateClientKeyMinArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeyMinArgs({this.select});
+
+  final _i2.ClientKeyMinAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class AggregateClientKeyMaxArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeyMaxArgs({this.select});
+
+  final _i2.ClientKeyMaxAggregateOutputTypeSelect? select;
+
+  @override
+  Map<String, dynamic> toJson() => {'select': select};
+}
+
+class AggregateClientKeySelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const AggregateClientKeySelect({
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<bool, _i2.AggregateClientKeyCountArgs>? $count;
+
+  final _i1.PrismaUnion<bool, _i2.AggregateClientKeyAvgArgs>? $avg;
+
+  final _i1.PrismaUnion<bool, _i2.AggregateClientKeySumArgs>? $sum;
+
+  final _i1.PrismaUnion<bool, _i2.AggregateClientKeyMinArgs>? $min;
+
+  final _i1.PrismaUnion<bool, _i2.AggregateClientKeyMaxArgs>? $max;
 
   @override
   Map<String, dynamic> toJson() => {

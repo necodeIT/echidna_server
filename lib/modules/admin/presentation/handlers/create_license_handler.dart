@@ -1,18 +1,21 @@
 import 'package:echidna_server/echidna_server.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
+import 'package:uuid/uuid.dart';
 
 /// Adds a new License to the DB with the given ID.
 Future<Response> createLicenseHandler(Request request, Injector i, ModularArguments args) async {
   final prisma = i.get<PrismaClient>();
 
-  final licenseGenerator = i.get<LicenseKeyGeneratorService>();
-
   final customerId = args.data['customerId'] as int?;
   final productId = args.data['productId'] as int?;
   final userId = args.data['userId'] as String?;
 
-  if (customerId == null || productId == null || userId == null) {
+  if (userId == null) {
+    request.log('Creating customer wide license');
+  }
+
+  if (customerId == null || productId == null) {
     request.log('Bad Request: Customer ID, Product ID and User ID ar not given');
     return Response.badRequest(body: 'Customer ID, Product ID and User ID are required.');
   }
@@ -27,16 +30,23 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
     return Response.badRequest(body: 'Product with ID $productId does not exist.');
   }
 
-  final key = await licenseGenerator.generateLicenseKey(
-    productId,
-    customerId,
-    userId,
-  );
+  final uuid = i.get<Uuid>();
 
-  if (await prisma.license.findUnique(where: LicenseWhereUniqueInput(licenseKey: key)) != null) {
+  if (await prisma.license.findUnique(
+        where: LicenseWhereUniqueInput(
+          userId: PrismaUnion.$2(
+            userId != null ? PrismaUnion.$1(userId) : const PrismaUnion.$2(PrismaNull()),
+          ),
+          customerId: PrismaUnion.$2(customerId),
+          productId: PrismaUnion.$2(productId),
+        ),
+      ) !=
+      null) {
     request.log('Bad Request: License already exists');
     return Response.badRequest(body: 'License already exists.');
   }
+
+  final key = uuid.v4();
 
   final license = License(
     licenseKey: key,
@@ -50,7 +60,7 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
         data: PrismaUnion.$1(
           LicenseCreateInput(
             licenseKey: key,
-            userId: PrismaUnion.$1(userId),
+            userId: userId != null ? PrismaUnion.$1(userId) : const PrismaUnion.$2(PrismaNull()),
             customer: CustomerCreateNestedOneWithoutLicensesInput(
               connect: CustomerWhereUniqueInput(id: customerId),
             ),
@@ -62,11 +72,16 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
       ),
       isolationLevel: TransactionIsolationLevel.serializable,
     );
-    request.log('License Created for user with id $userId');
+
+    if (userId != null) {
+      request.log('License created for user with id $userId');
+    } else {
+      request.log('Customer wide license for customer with id $customerId');
+    }
 
     return license.toResponse();
   } on Exception catch (e, s) {
-    request.log('Failed to add license', e, s);
+    request.log('Failed to create license', e, s);
     return Response.internalServerError();
   }
 }

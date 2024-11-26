@@ -1,49 +1,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:orm/orm.dart' as _i3;
+import 'package:orm/orm.dart' as _i1;
 
-import 'model.dart' as _i1;
-import 'prisma.dart' as _i2;
+import 'model.dart' as _i2;
+import 'prisma.dart' as _i3;
 
-class Customer {
-  const Customer({
-    this.id,
-    this.name,
-    this.email,
-    this.licenses,
-    this.$count,
-  });
-
-  factory Customer.fromJson(Map json) => Customer(
-        id: json['id'],
-        name: json['name'],
-        email: json['email'],
-        licenses: (json['licenses'] as Iterable?)
-            ?.map((json) => _i1.License.fromJson(json)),
-        $count: json['_count'] is Map
-            ? _i2.CustomerCountOutputType.fromJson(json['_count'])
-            : null,
-      );
-
-  final int? id;
-
-  final String? name;
-
-  final String? email;
-
-  final Iterable<_i1.License>? licenses;
-
-  final _i2.CustomerCountOutputType? $count;
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'email': email,
-        'licenses': licenses?.map((e) => e.toJson()),
-        '_count': $count?.toJson(),
-      };
-}
-
-enum FeatureType implements _i3.PrismaEnum {
+enum FeatureType implements _i1.PrismaEnum {
   free._('FREE'),
   paid._('PAID');
 
@@ -84,12 +45,12 @@ class Payment {
         revoked: json['revoked'],
         revocationReasoning: json['revocation_reasoning'],
         license: json['license'] is Map
-            ? _i1.License.fromJson(json['license'])
+            ? _i2.License.fromJson(json['license'])
             : null,
         features: (json['features'] as Iterable?)
-            ?.map((json) => _i1.Feature.fromJson(json)),
+            ?.map((json) => _i2.Feature.fromJson(json)),
         $count: json['_count'] is Map
-            ? _i2.PaymentCountOutputType.fromJson(json['_count'])
+            ? _i3.PaymentCountOutputType.fromJson(json['_count'])
             : null,
       );
 
@@ -107,11 +68,11 @@ class Payment {
 
   final String? revocationReasoning;
 
-  final _i1.License? license;
+  final _i2.License? license;
 
-  final Iterable<_i1.Feature>? features;
+  final Iterable<_i2.Feature>? features;
 
-  final _i2.PaymentCountOutputType? $count;
+  final _i3.PaymentCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -145,17 +106,17 @@ class Feature {
         name: json['name'],
         description: json['description'],
         type: json['type'] != null
-            ? _i1.FeatureType.values.firstWhere((e) => e.name == json['type'])
+            ? _i2.FeatureType.values.firstWhere((e) => e.name == json['type'])
             : null,
         productId: json['product_id'],
         trialPeriod: json['trial_period'],
         product: json['product'] is Map
-            ? _i1.Product.fromJson(json['product'])
+            ? _i2.Product.fromJson(json['product'])
             : null,
         payments: (json['payments'] as Iterable?)
-            ?.map((json) => _i1.Payment.fromJson(json)),
+            ?.map((json) => _i2.Payment.fromJson(json)),
         $count: json['_count'] is Map
-            ? _i2.FeatureCountOutputType.fromJson(json['_count'])
+            ? _i3.FeatureCountOutputType.fromJson(json['_count'])
             : null,
       );
 
@@ -165,17 +126,17 @@ class Feature {
 
   final String? description;
 
-  final _i1.FeatureType? type;
+  final _i2.FeatureType? type;
 
   final int? productId;
 
   final int? trialPeriod;
 
-  final _i1.Product? product;
+  final _i2.Product? product;
 
-  final Iterable<_i1.Payment>? payments;
+  final Iterable<_i2.Payment>? payments;
 
-  final _i2.FeatureCountOutputType? $count;
+  final _i3.FeatureCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -197,6 +158,7 @@ class Product {
     this.description,
     this.license,
     this.features,
+    this.clientKeys,
     this.$count,
   });
 
@@ -205,11 +167,13 @@ class Product {
         name: json['name'],
         description: json['description'],
         license: (json['License'] as Iterable?)
-            ?.map((json) => _i1.License.fromJson(json)),
+            ?.map((json) => _i2.License.fromJson(json)),
         features: (json['features'] as Iterable?)
-            ?.map((json) => _i1.Feature.fromJson(json)),
+            ?.map((json) => _i2.Feature.fromJson(json)),
+        clientKeys: (json['client_keys'] as Iterable?)
+            ?.map((json) => _i2.ClientKey.fromJson(json)),
         $count: json['_count'] is Map
-            ? _i2.ProductCountOutputType.fromJson(json['_count'])
+            ? _i3.ProductCountOutputType.fromJson(json['_count'])
             : null,
       );
 
@@ -219,11 +183,13 @@ class Product {
 
   final String? description;
 
-  final Iterable<_i1.License>? license;
+  final Iterable<_i2.License>? license;
 
-  final Iterable<_i1.Feature>? features;
+  final Iterable<_i2.Feature>? features;
 
-  final _i2.ProductCountOutputType? $count;
+  final Iterable<_i2.ClientKey>? clientKeys;
+
+  final _i3.ProductCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -231,6 +197,102 @@ class Product {
         'description': description,
         'License': license?.map((e) => e.toJson()),
         'features': features?.map((e) => e.toJson()),
+        'client_keys': clientKeys?.map((e) => e.toJson()),
+        '_count': $count?.toJson(),
+      };
+}
+
+class ClientKey {
+  const ClientKey({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  factory ClientKey.fromJson(Map json) => ClientKey(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+        product: json['product'] is Map
+            ? _i2.Product.fromJson(json['product'])
+            : null,
+        customer: json['customer'] is Map
+            ? _i2.Customer.fromJson(json['customer'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  final _i2.Product? product;
+
+  final _i2.Customer? customer;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product?.toJson(),
+        'customer': customer?.toJson(),
+      };
+}
+
+class Customer {
+  const Customer({
+    this.id,
+    this.name,
+    this.email,
+    this.licenses,
+    this.clientKeys,
+    this.$count,
+  });
+
+  factory Customer.fromJson(Map json) => Customer(
+        id: json['id'],
+        name: json['name'],
+        email: json['email'],
+        licenses: (json['licenses'] as Iterable?)
+            ?.map((json) => _i2.License.fromJson(json)),
+        clientKeys: (json['client_keys'] as Iterable?)
+            ?.map((json) => _i2.ClientKey.fromJson(json)),
+        $count: json['_count'] is Map
+            ? _i3.CustomerCountOutputType.fromJson(json['_count'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? name;
+
+  final String? email;
+
+  final Iterable<_i2.License>? licenses;
+
+  final Iterable<_i2.ClientKey>? clientKeys;
+
+  final _i3.CustomerCountOutputType? $count;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'licenses': licenses?.map((e) => e.toJson()),
+        'client_keys': clientKeys?.map((e) => e.toJson()),
         '_count': $count?.toJson(),
       };
 }
@@ -241,6 +303,7 @@ class License {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
     this.payments,
@@ -252,16 +315,21 @@ class License {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
         customer: json['customer'] is Map
-            ? _i1.Customer.fromJson(json['customer'])
+            ? _i2.Customer.fromJson(json['customer'])
             : null,
         product: json['product'] is Map
-            ? _i1.Product.fromJson(json['product'])
+            ? _i2.Product.fromJson(json['product'])
             : null,
         payments: (json['payments'] as Iterable?)
-            ?.map((json) => _i1.Payment.fromJson(json)),
+            ?.map((json) => _i2.Payment.fromJson(json)),
         $count: json['_count'] is Map
-            ? _i2.LicenseCountOutputType.fromJson(json['_count'])
+            ? _i3.LicenseCountOutputType.fromJson(json['_count'])
             : null,
       );
 
@@ -273,19 +341,22 @@ class License {
 
   final int? productId;
 
-  final _i1.Customer? customer;
+  final DateTime? createdAt;
 
-  final _i1.Product? product;
+  final _i2.Customer? customer;
 
-  final Iterable<_i1.Payment>? payments;
+  final _i2.Product? product;
 
-  final _i2.LicenseCountOutputType? $count;
+  final Iterable<_i2.Payment>? payments;
+
+  final _i3.LicenseCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
         'customer': customer?.toJson(),
         'product': product?.toJson(),
         'payments': payments?.map((e) => e.toJson()),
@@ -299,6 +370,7 @@ class CreateManyLicenseAndReturnOutputType {
     this.customerId,
     this.userId,
     this.productId,
+    this.createdAt,
     this.customer,
     this.product,
   });
@@ -309,11 +381,16 @@ class CreateManyLicenseAndReturnOutputType {
         customerId: json['customer_id'],
         userId: json['user_id'],
         productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
         customer: json['customer'] is Map
-            ? _i1.Customer.fromJson(json['customer'])
+            ? _i2.Customer.fromJson(json['customer'])
             : null,
         product: json['product'] is Map
-            ? _i1.Product.fromJson(json['product'])
+            ? _i2.Product.fromJson(json['product'])
             : null,
       );
 
@@ -325,15 +402,18 @@ class CreateManyLicenseAndReturnOutputType {
 
   final int? productId;
 
-  final _i1.Customer? customer;
+  final DateTime? createdAt;
 
-  final _i1.Product? product;
+  final _i2.Customer? customer;
+
+  final _i2.Product? product;
 
   Map<String, dynamic> toJson() => {
         'license_key': licenseKey,
         'customer_id': customerId,
         'user_id': userId,
         'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
         'customer': customer?.toJson(),
         'product': product?.toJson(),
       };
@@ -410,12 +490,12 @@ class CreateManyFeatureAndReturnOutputType {
         name: json['name'],
         description: json['description'],
         type: json['type'] != null
-            ? _i1.FeatureType.values.firstWhere((e) => e.name == json['type'])
+            ? _i2.FeatureType.values.firstWhere((e) => e.name == json['type'])
             : null,
         productId: json['product_id'],
         trialPeriod: json['trial_period'],
         product: json['product'] is Map
-            ? _i1.Product.fromJson(json['product'])
+            ? _i2.Product.fromJson(json['product'])
             : null,
       );
 
@@ -425,13 +505,13 @@ class CreateManyFeatureAndReturnOutputType {
 
   final String? description;
 
-  final _i1.FeatureType? type;
+  final _i2.FeatureType? type;
 
   final int? productId;
 
   final int? trialPeriod;
 
-  final _i1.Product? product;
+  final _i2.Product? product;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -474,7 +554,7 @@ class CreateManyPaymentAndReturnOutputType {
         revoked: json['revoked'],
         revocationReasoning: json['revocation_reasoning'],
         license: json['license'] is Map
-            ? _i1.License.fromJson(json['license'])
+            ? _i2.License.fromJson(json['license'])
             : null,
       );
 
@@ -492,7 +572,7 @@ class CreateManyPaymentAndReturnOutputType {
 
   final String? revocationReasoning;
 
-  final _i1.License? license;
+  final _i2.License? license;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -503,5 +583,56 @@ class CreateManyPaymentAndReturnOutputType {
         'revoked': revoked,
         'revocation_reasoning': revocationReasoning,
         'license': license?.toJson(),
+      };
+}
+
+class CreateManyClientKeyAndReturnOutputType {
+  const CreateManyClientKeyAndReturnOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  factory CreateManyClientKeyAndReturnOutputType.fromJson(Map json) =>
+      CreateManyClientKeyAndReturnOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+        product: json['product'] is Map
+            ? _i2.Product.fromJson(json['product'])
+            : null,
+        customer: json['customer'] is Map
+            ? _i2.Customer.fromJson(json['customer'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  final _i2.Product? product;
+
+  final _i2.Customer? customer;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product?.toJson(),
+        'customer': customer?.toJson(),
       };
 }

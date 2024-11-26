@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:echidna_dto/echidna_dto.dart' as rest;
+import 'package:echidna_dto/echidna_dto.dart' as dto;
 import 'package:echidna_server/echidna_server.dart';
 import 'package:shelf/shelf.dart';
 
@@ -11,7 +11,7 @@ extension LicenseX on License {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded `rest.License` object.
   Response toResponse() {
-    final restLicense = rest.License.fromJson(toJson());
+    final restLicense = dto.License.fromJson(toJson());
     return Response.ok(jsonEncode(restLicense));
   }
 }
@@ -23,7 +23,7 @@ extension LicenseListX on Iterable<License> {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded list of `rest.License` objects.
   Response toResponse() {
-    final restLicenses = map((license) => rest.License.fromJson(license.toJson())).toList();
+    final restLicenses = map((license) => dto.License.fromJson(license.toJson())).toList();
     return Response.ok(jsonEncode(restLicenses));
   }
 }
@@ -35,7 +35,7 @@ extension CustomerX on Customer {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded `rest.Customer` object.
   Response toResponse() {
-    final restCustomer = rest.Customer.fromJson(toJson());
+    final restCustomer = dto.Customer.fromJson(toJson());
     return Response.ok(jsonEncode(restCustomer));
   }
 }
@@ -47,7 +47,7 @@ extension CustomerListX on Iterable<Customer> {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded list of `rest.Customer` objects.
   Response toResponse() {
-    final restCustomers = map((customer) => rest.Customer.fromJson(customer.toJson())).toList();
+    final restCustomers = map((customer) => dto.Customer.fromJson(customer.toJson())).toList();
     return Response.ok(jsonEncode(restCustomers));
   }
 }
@@ -59,7 +59,7 @@ extension ProductX on Product {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded `rest.Product` object.
   Response toResponse() {
-    final restProduct = rest.Product.fromJson(toJson());
+    final restProduct = dto.Product.fromJson(toJson());
     return Response.ok(jsonEncode(restProduct));
   }
 }
@@ -71,7 +71,7 @@ extension ProductListX on Iterable<Product> {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded list of `rest.Product` objects.
   Response toResponse() {
-    final restProducts = map((product) => rest.Product.fromJson(product.toJson())).toList();
+    final restProducts = map((product) => dto.Product.fromJson(product.toJson())).toList();
     return Response.ok(jsonEncode(restProducts));
   }
 }
@@ -84,11 +84,11 @@ extension PaymentX on Payment {
   /// - `Response.ok` with the JSON-encoded `rest.Payment` object.
   Response toResponse() {
     final json = toJson();
-    final features = this.features?.map((feature) => rest.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
+    final features = this.features?.map((feature) => dto.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
 
     json['features'] = features;
 
-    return Response.ok(jsonEncode(rest.Payment.fromJson(json)));
+    return Response.ok(jsonEncode(dto.Payment.fromJson(json)));
   }
 }
 
@@ -101,11 +101,11 @@ extension PaymentListX on Iterable<Payment> {
   Response toResponse() {
     final restPayments = map((payment) {
       final json = payment.toJson();
-      final features = payment.features?.map((feature) => rest.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
+      final features = payment.features?.map((feature) => dto.Feature.fromJson(feature.toJson()).toJson()).toList() ?? [];
 
       json['features'] = features;
 
-      return rest.Payment.fromJson(json);
+      return dto.Payment.fromJson(json);
     }).toList();
 
     return Response.ok(jsonEncode(restPayments));
@@ -119,7 +119,7 @@ extension FeatureX on Feature {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded `rest.Feature` object.
   Response toResponse() {
-    final restFeature = rest.Feature.fromJson(toJson());
+    final restFeature = dto.Feature.fromJson(toJson());
     return Response.ok(jsonEncode(restFeature));
   }
 }
@@ -131,7 +131,25 @@ extension FeatureListX on Iterable<Feature> {
   /// Returns:
   /// - `Response.ok` with the JSON-encoded list of `rest.Feature` objects.
   Response toResponse() {
-    final restFeatures = map((feature) => rest.Feature.fromJson(feature.toJson())).toList();
+    final restFeatures = map((feature) => dto.Feature.fromJson(feature.toJson())).toList();
     return Response.ok(jsonEncode(restFeatures));
+  }
+}
+
+/// Extension on [ClientKey] to create a [Response] from it.
+extension ClientKeyX on ClientKey {
+  /// Converts the `ClientKey` instance to a `Response` object.
+  Response toResponse() {
+    final restClientKey = dto.ClientKey.fromJson(toJson());
+    return Response.ok(jsonEncode(restClientKey));
+  }
+}
+
+/// Extension on [Iterable<ClientKey>] to create a [Response] from it.
+extension ClientKeyListX on Iterable<ClientKey> {
+  /// Converts the list of `ClientKey` instances to a `Response` object.
+  Response toResponse() {
+    final restClientKeys = map((clientKey) => dto.ClientKey.fromJson(clientKey.toJson())).toList();
+    return Response.ok(jsonEncode(restClientKeys));
   }
 }

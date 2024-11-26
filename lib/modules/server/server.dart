@@ -19,6 +19,7 @@ class ServerModule extends Module {
   List<Module> get imports => [
         CoreModule(),
         AuthModule(),
+        ClientModule(prisma),
       ];
 
   @override
@@ -35,6 +36,14 @@ class ServerModule extends Module {
         module: AdminModule(),
         middlewares: [
           AuthGuard(),
+        ],
+      )
+      ..module(
+        '/verify',
+        module: ClientModule(prisma),
+        middlewares: [
+          SignatureGuard(),
+          SignatureMiddleware(),
         ],
       );
   }

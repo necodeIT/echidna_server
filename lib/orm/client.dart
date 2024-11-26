@@ -2479,6 +2479,506 @@ class PaymentDelegate {
   }
 }
 
+class ClientKeyDelegate {
+  const ClientKeyDelegate._(this._client);
+
+  final PrismaClient _client;
+
+  _i1.ActionClient<_i2.ClientKey?> findUnique({
+    required _i3.ClientKeyWhereUniqueInput where,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.findUnique,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey?>(
+      action: 'findUniqueClientKey',
+      result: result,
+      factory: (e) => e != null ? _i2.ClientKey.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey> findUniqueOrThrow({
+    required _i3.ClientKeyWhereUniqueInput where,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.findUniqueOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey>(
+      action: 'findUniqueClientKeyOrThrow',
+      result: result,
+      factory: (e) => _i2.ClientKey.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey?> findFirst({
+    _i3.ClientKeyWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.ClientKeyOrderByWithRelationInput>,
+            _i3.ClientKeyOrderByWithRelationInput>?
+        orderBy,
+    _i3.ClientKeyWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.ClientKeyScalar, Iterable<_i3.ClientKeyScalar>>?
+        distinct,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.findFirst,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey?>(
+      action: 'findFirstClientKey',
+      result: result,
+      factory: (e) => e != null ? _i2.ClientKey.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey> findFirstOrThrow({
+    _i3.ClientKeyWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.ClientKeyOrderByWithRelationInput>,
+            _i3.ClientKeyOrderByWithRelationInput>?
+        orderBy,
+    _i3.ClientKeyWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.ClientKeyScalar, Iterable<_i3.ClientKeyScalar>>?
+        distinct,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.findFirstOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey>(
+      action: 'findFirstClientKeyOrThrow',
+      result: result,
+      factory: (e) => _i2.ClientKey.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i2.ClientKey>> findMany({
+    _i3.ClientKeyWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.ClientKeyOrderByWithRelationInput>,
+            _i3.ClientKeyOrderByWithRelationInput>?
+        orderBy,
+    _i3.ClientKeyWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.ClientKeyScalar, Iterable<_i3.ClientKeyScalar>>?
+        distinct,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.findMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i2.ClientKey>>(
+      action: 'findManyClientKey',
+      result: result,
+      factory: (values) =>
+          (values as Iterable).map((e) => _i2.ClientKey.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey> create({
+    required _i1.PrismaUnion<_i3.ClientKeyCreateInput,
+            _i3.ClientKeyUncheckedCreateInput>
+        data,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.createOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey>(
+      action: 'createOneClientKey',
+      result: result,
+      factory: (e) => _i2.ClientKey.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> createMany({
+    required _i1.PrismaUnion<_i3.ClientKeyCreateManyInput,
+            Iterable<_i3.ClientKeyCreateManyInput>>
+        data,
+    bool? skipDuplicates,
+  }) {
+    final args = {
+      'data': data,
+      'skipDuplicates': skipDuplicates,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.createMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'createManyClientKey',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i2.CreateManyClientKeyAndReturnOutputType>>
+      createManyAndReturn({
+    required _i1.PrismaUnion<_i3.ClientKeyCreateManyInput,
+            Iterable<_i3.ClientKeyCreateManyInput>>
+        data,
+    bool? skipDuplicates,
+    _i3.CreateManyClientKeyAndReturnOutputTypeSelect? select,
+    _i3.CreateManyClientKeyAndReturnOutputTypeInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'skipDuplicates': skipDuplicates,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.createManyAndReturn,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<
+        Iterable<_i2.CreateManyClientKeyAndReturnOutputType>>(
+      action: 'createManyClientKeyAndReturn',
+      result: result,
+      factory: (values) => (values as Iterable)
+          .map((e) => _i2.CreateManyClientKeyAndReturnOutputType.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey?> update({
+    required _i1.PrismaUnion<_i3.ClientKeyUpdateInput,
+            _i3.ClientKeyUncheckedUpdateInput>
+        data,
+    required _i3.ClientKeyWhereUniqueInput where,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.updateOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey?>(
+      action: 'updateOneClientKey',
+      result: result,
+      factory: (e) => e != null ? _i2.ClientKey.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> updateMany({
+    required _i1.PrismaUnion<_i3.ClientKeyUpdateManyMutationInput,
+            _i3.ClientKeyUncheckedUpdateManyInput>
+        data,
+    _i3.ClientKeyWhereInput? where,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.updateMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'updateManyClientKey',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey> upsert({
+    required _i3.ClientKeyWhereUniqueInput where,
+    required _i1.PrismaUnion<_i3.ClientKeyCreateInput,
+            _i3.ClientKeyUncheckedCreateInput>
+        create,
+    required _i1.PrismaUnion<_i3.ClientKeyUpdateInput,
+            _i3.ClientKeyUncheckedUpdateInput>
+        update,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'create': create,
+      'update': update,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.upsertOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey>(
+      action: 'upsertOneClientKey',
+      result: result,
+      factory: (e) => _i2.ClientKey.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.ClientKey?> delete({
+    required _i3.ClientKeyWhereUniqueInput where,
+    _i3.ClientKeySelect? select,
+    _i3.ClientKeyInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.deleteOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.ClientKey?>(
+      action: 'deleteOneClientKey',
+      result: result,
+      factory: (e) => e != null ? _i2.ClientKey.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
+      {_i3.ClientKeyWhereInput? where}) {
+    final args = {'where': where};
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.deleteMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'deleteManyClientKey',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i3.ClientKeyGroupByOutputType>> groupBy({
+    _i3.ClientKeyWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.ClientKeyOrderByWithAggregationInput>,
+            _i3.ClientKeyOrderByWithAggregationInput>?
+        orderBy,
+    required _i1.PrismaUnion<Iterable<_i3.ClientKeyScalar>, _i3.ClientKeyScalar>
+        by,
+    _i3.ClientKeyScalarWhereWithAggregatesInput? having,
+    int? take,
+    int? skip,
+    _i3.ClientKeyGroupByOutputTypeSelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'by': _i1.JsonQuery.groupBySerializer(by),
+      'having': having,
+      'take': take,
+      'skip': skip,
+      'select': select ?? _i1.JsonQuery.groupBySelectSerializer(by),
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.groupBy,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i3.ClientKeyGroupByOutputType>>(
+      action: 'groupByClientKey',
+      result: result,
+      factory: (values) => (values as Iterable)
+          .map((e) => _i3.ClientKeyGroupByOutputType.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i3.AggregateClientKey> aggregate({
+    _i3.ClientKeyWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.ClientKeyOrderByWithRelationInput>,
+            _i3.ClientKeyOrderByWithRelationInput>?
+        orderBy,
+    _i3.ClientKeyWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i3.AggregateClientKeySelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'select': select,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'ClientKey',
+      action: _i1.JsonQueryAction.aggregate,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AggregateClientKey>(
+      action: 'aggregateClientKey',
+      result: result,
+      factory: (e) => _i3.AggregateClientKey.fromJson(e),
+    );
+  }
+}
+
 class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   PrismaClient({
     super.datasourceUrl,
@@ -2612,6 +3112,23 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isGenerated': false,
             'isUpdatedAt': false,
           },
+          {
+            'name': 'created_at',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
         ],
         'primaryKey': null,
         'uniqueFields': [],
@@ -2697,6 +3214,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isGenerated': false,
             'isUpdatedAt': false,
           },
+          {
+            'name': 'client_keys',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'ClientKey',
+            'relationName': 'ClientKeyToProduct',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
         ],
         'primaryKey': null,
         'uniqueFields': [],
@@ -2761,6 +3294,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'hasDefaultValue': false,
             'type': 'License',
             'relationName': 'CustomerToLicense',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'client_keys',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'ClientKey',
+            'relationName': 'ClientKeyToCustomer',
             'relationFromFields': [],
             'relationToFields': [],
             'isGenerated': false,
@@ -3040,6 +3589,120 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'uniqueIndexes': [],
         'isGenerated': false,
       },
+      {
+        'name': 'ClientKey',
+        'dbName': null,
+        'fields': [
+          {
+            'name': 'id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': true,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'Int',
+            'default': {
+              'name': 'autoincrement',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'key',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': true,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'product',
+            'kind': 'object',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Product',
+            'relationName': 'ClientKeyToProduct',
+            'relationFromFields': ['product_id'],
+            'relationToFields': ['id'],
+            'relationOnDelete': 'Cascade',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'product_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'Int',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'customer',
+            'kind': 'object',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Customer',
+            'relationName': 'ClientKeyToCustomer',
+            'relationFromFields': ['customer_id'],
+            'relationToFields': ['id'],
+            'relationOnDelete': 'Cascade',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'customer_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'Int',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'revoked',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'Boolean',
+            'default': false,
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+        ],
+        'primaryKey': null,
+        'uniqueFields': [],
+        'uniqueIndexes': [],
+        'isGenerated': false,
+      },
     ],
     'types': [],
     'indexes': [
@@ -3083,6 +3746,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
           {'name': 'id'}
         ],
       },
+      {
+        'model': 'ClientKey',
+        'type': 'id',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'id'}
+        ],
+      },
+      {
+        'model': 'ClientKey',
+        'type': 'unique',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'key'}
+        ],
+      },
     ],
   });
 
@@ -3113,7 +3792,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            'generator client {\n  provider = "dart run orm"\n  output   = "lib/orm"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel License {\n  license_key String    @id\n  customer    Customer  @relation(fields: [customer_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  customer_id Int\n  user_id     String?\n  product     Product   @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id  Int\n  payments    Payment[]\n}\n\nmodel Product {\n  id          Int       @id @default(autoincrement())\n  name        String\n  description String?\n  License     License[]\n  features    Feature[]\n}\n\nmodel Customer {\n  id       Int       @id @default(autoincrement())\n  name     String\n  email    String\n  licenses License[]\n}\n\nmodel Feature {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String\n  type         FeatureType\n  product      Product     @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id   Int\n  trial_period Int?\n  payments     Payment[]\n}\n\nenum FeatureType {\n  FREE\n  PAID\n}\n\nmodel Payment {\n  id                   Int       @id @default(autoincrement())\n  license              License   @relation(fields: [license_key], references: [license_key], onUpdate: Cascade, onDelete: Cascade)\n  license_key          String\n  activation_date      DateTime  @default(now())\n  expiration_date      DateTime\n  payment_reference    String?\n  features             Feature[]\n  revoked              Boolean   @default(false)\n  revocation_reasoning String?\n}\n',
+            'generator client {\n  provider = "dart run orm"\n  output   = "lib/orm"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel License {\n  license_key String    @id\n  customer    Customer  @relation(fields: [customer_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  customer_id Int\n  user_id     String?\n  product     Product   @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id  Int\n  payments    Payment[]\n  created_at  DateTime  @default(now())\n}\n\nmodel Product {\n  id          Int         @id @default(autoincrement())\n  name        String\n  description String?\n  License     License[]\n  features    Feature[]\n  client_keys ClientKey[]\n}\n\nmodel Customer {\n  id          Int         @id @default(autoincrement())\n  name        String\n  email       String\n  licenses    License[]\n  client_keys ClientKey[]\n}\n\nmodel Feature {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String\n  type         FeatureType\n  product      Product     @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id   Int\n  trial_period Int?\n  payments     Payment[]\n}\n\nenum FeatureType {\n  FREE\n  PAID\n}\n\nmodel Payment {\n  id                   Int       @id @default(autoincrement())\n  license              License   @relation(fields: [license_key], references: [license_key], onUpdate: Cascade, onDelete: Cascade)\n  license_key          String\n  activation_date      DateTime  @default(now())\n  expiration_date      DateTime\n  payment_reference    String?\n  features             Feature[]\n  revoked              Boolean   @default(false)\n  revocation_reasoning String?\n}\n\nmodel ClientKey {\n  id          Int      @id @default(autoincrement())\n  key         String   @unique\n  product     Product  @relation(fields: [product_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  product_id  Int\n  customer    Customer @relation(fields: [customer_id], references: [id], onUpdate: Cascade, onDelete: Cascade)\n  customer_id Int\n  revoked     Boolean  @default(false)\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,
@@ -3135,4 +3814,6 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   FeatureDelegate get feature => FeatureDelegate._(this);
 
   PaymentDelegate get payment => PaymentDelegate._(this);
+
+  ClientKeyDelegate get clientKey => ClientKeyDelegate._(this);
 }

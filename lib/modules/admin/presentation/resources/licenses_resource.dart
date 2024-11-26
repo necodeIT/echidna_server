@@ -10,6 +10,7 @@ class LicensesResource extends Resource {
       ..put('/', createLicenseHandler)
       ..post('/revoke/:id', revokeLicenseHandler)
       ..patch('/:id', updateLicenseHandler)
-      ..get('/history/:id', getLicensePaymentsHandler);
+      ..get('/history/:id', getLicensePaymentsHandler)
+      ..get('/status/:id', getLicenseStatusHandler);
   }
 }

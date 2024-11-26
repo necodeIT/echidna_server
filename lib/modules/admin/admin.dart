@@ -1,7 +1,7 @@
 import 'package:echidna_server/echidna_server.dart';
-import 'package:echidna_server/modules/admin/infra/services/hash_license_key_generator_service.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf_modular/shelf_modular.dart';
+import 'package:uuid/uuid.dart';
 
 export 'domain/domain.dart';
 export 'presentation/presentation.dart';
@@ -16,7 +16,9 @@ class AdminModule extends Module {
 
   @override
   void binds(Injector i) {
-    i.add<LicenseKeyGeneratorService>(HashLicenseKeyGeneratorService.new);
+    // [Uuid.new] takes an optional argument but we don't need to pass it.
+    // ignore: unnecessary_lambdas
+    i.addLazySingleton<Uuid>(() => const Uuid());
   }
 
   @override
@@ -29,6 +31,7 @@ class AdminModule extends Module {
       ..resource(LicensesResource(), name: '/licenses')
       ..resource(ProductsResource(), name: '/products')
       ..resource(FeaturesResource(), name: '/features')
-      ..resource(PaymentsResource(), name: '/payments');
+      ..resource(PaymentsResource(), name: '/payments')
+      ..resource(ClientKeyResource(), name: '/client-keys');
   }
 }
