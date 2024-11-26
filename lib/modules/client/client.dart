@@ -1,10 +1,7 @@
 library echidna_server.modules.client;
 
 import 'package:echidna_server/echidna_server.dart';
-import 'package:echidna_server/modules/client/domain/domain.dart';
-import 'package:echidna_server/modules/client/infra/datasources/std_license_status_datasource.dart';
 import 'package:echidna_server/modules/client/infra/infra.dart';
-import 'package:echidna_server/modules/client/presentation/handlers/verify_license_handler.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 

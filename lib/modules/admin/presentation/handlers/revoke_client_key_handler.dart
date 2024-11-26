@@ -1,7 +1,7 @@
 import 'package:echidna_server/echidna_server.dart';
 import 'package:logging/logging.dart';
-import 'package:shelf_modular/shelf_modular.dart';
 import 'package:shelf/shelf.dart';
+import 'package:shelf_modular/shelf_modular.dart';
 
 /// Revokes a client key with given key.
 Future<Response> revokeClientKeyHandler(Request request, Injector i, ModularArguments args) async {
