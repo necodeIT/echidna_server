@@ -6,8 +6,8 @@ import 'package:uuid/uuid.dart';
 
 /// Creates a new client key for a product.
 Future<Response> createClientKeyHandler(Request request, Injector i, ModularArguments args) async {
-  final productId = int.tryParse(args.params['product_id'] as String? ?? '');
-  final customerId = int.tryParse(args.params['customer_id'] as String? ?? '');
+  final productId = args.data['product_id'] as int?;
+  final customerId = args.data['customer_id'] as int?;
 
   final prisma = i.get<PrismaClient>();
 

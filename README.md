@@ -1,6 +1,6 @@
 # Echidna Server
 
-A fully functional software licensing server written in Dart.
+A fully functional software licensing server written in Dart. You can find a list of client skds [here](https://github.com/necodeIT/echidna_webui?tab=readme-ov-file#client-sdk).
 
 # Development
 
