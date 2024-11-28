@@ -10,7 +10,13 @@ class AuthGuard extends RouteGuard {
   FutureOr<bool> canActivate(Request request, Route route) async {
     final auth = Modular.get<AuthService>();
 
-    final token = request.headers['Authorization']?.split('Bearer ').last;
+    String? token;
+
+    if (route.middlewares.any((element) => element is WebsocketMarkerMiddleware)) {
+      token = request.url.queryParameters['token'];
+    } else {
+      token = request.headers['Authorization']?.split('Bearer ').last;
+    }
 
     if (token == null) {
       return false;
@@ -21,5 +27,13 @@ class AuthGuard extends RouteGuard {
     } catch (e) {
       return false;
     }
+  }
+}
+
+/// A [ModularMiddleware] that marks a route as a websocket route.
+class WebsocketMarkerMiddleware extends ModularMiddleware {
+  @override
+  Handler call(Handler handler, [ModularRoute? route]) {
+    return handler;
   }
 }

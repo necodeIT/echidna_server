@@ -17,10 +17,6 @@ void main(List<String> args) async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen(debugLogHandler);
 
-  if (kDebugMode) {
-    Logger.root.warning('Running in debug mode');
-  }
-
   try {
     await prisma.$connect();
 
@@ -31,6 +27,10 @@ void main(List<String> args) async {
         contentTypeJson,
       ],
     );
+
+    if (kDebugMode) {
+      Logger.root.warning('Running in debug mode');
+    }
 
     setPrintResolver((msg) {
       final logger = Logger('Modular');

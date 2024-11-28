@@ -32,6 +32,13 @@ class AdminModule extends Module {
       ..resource(ProductsResource(), name: '/products')
       ..resource(FeaturesResource(), name: '/features')
       ..resource(PaymentsResource(), name: '/payments')
-      ..resource(ClientKeyResource(), name: '/client-keys');
+      ..resource(ClientKeyResource(), name: '/client-keys')
+      ..websocket(
+        '/logs',
+        websocket: LogsResource(),
+        middlewares: [
+          WebsocketMarkerMiddleware(),
+        ],
+      );
   }
 }
