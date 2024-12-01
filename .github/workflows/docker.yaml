@@ -25,7 +25,6 @@ jobs:
           uses: docker/build-push-action@v6.10.0
           with:
             provenance: false
-            context: server/build
             platforms: linux/amd64
             push: true
             pull: true
