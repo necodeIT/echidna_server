@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'package:echidna_server/echidna_server.dart';
-import 'package:shelf_modular/shelf_modular.dart';
 import 'dart:mirrors';
+
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:echidna_server/echidna_server.dart';
+import 'package:shelf_modular/shelf_modular.dart';
 
 // ! Work in progress
 
@@ -79,7 +80,7 @@ void parseAndAnalyzeFile(String filePath) {
     final fileContent = File(filePath).readAsStringSync();
     final parseResult = parseString(content: fileContent);
 
-    final CompilationUnit unit = parseResult.unit;
+    final unit = parseResult.unit;
     final visitor = _ASTPrinter();
     unit.visitChildren(visitor);
   } catch (e) {
@@ -90,7 +91,7 @@ void parseAndAnalyzeFile(String filePath) {
 class _ASTPrinter extends GeneralizingAstVisitor<void> {
   @override
   void visitNode(AstNode node) {
-    print('${node.runtimeType}: ${node.toString()}');
+    print('${node.runtimeType}: $node');
     super.visitNode(node);
   }
 }

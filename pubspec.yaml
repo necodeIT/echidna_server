@@ -8,6 +8,7 @@ environment:
   sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
+  analyzer: any
   bloc: ^8.1.4
   collection: ^1.18.0
   crypto: ^3.0.6
@@ -28,9 +29,8 @@ dependencies:
   shelf_cors_headers: ^0.1.5
   shelf_docker_shutdown: ^1.1.0
   shelf_modular: ^2.1.0
-
   uuid: any
-  analyzer: any
+
 dependency_overrides:
   modular_core:
     git:
@@ -42,7 +42,6 @@ dependency_overrides:
       path: shelf_modular
   # echidna_dto:
   #   path: ../echidna_dto
-
 dev_dependencies:
   architecture_linter: ^0.2.2
   build_runner: ^2.4.11

@@ -146,6 +146,6 @@ Future<void> main() async {
   tearDown(purgeDatabase);
   tearDownAll(close);
 
-  // TODO: Add tests
+  // TODO(mcquenji): Add tests
   group('Client Module', () {});
 }
