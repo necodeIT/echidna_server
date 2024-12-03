@@ -11,7 +11,7 @@ class LogsResource extends WebSocketResource {
 
   /// Logs endpoint that broadcasts logs to connected clients.
   LogsResource() {
-    Logger.root.onRecord.listen(listener);
+    Logger.root.onRecord.listen(_listener);
 
     Timer.periodic(
       const Duration(hours: 1),
@@ -32,7 +32,7 @@ class LogsResource extends WebSocketResource {
   @override
   void onMessage(dynamic data, WebSocket socket) {}
 
-  void listener(LogRecord record) {
+  void _listener(LogRecord record) {
     _logs.add(ServerLog.fromLogRecord(record));
 
     broadcast(jsonEncode(_logs));

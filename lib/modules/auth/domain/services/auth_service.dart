@@ -1,4 +1,3 @@
-import 'package:echidna_server/modules/auth/auth.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
 
 /// Service for authentication.

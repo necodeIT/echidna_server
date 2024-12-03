@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:echidna_server/echidna_server.dart';
-import 'package:shelf/src/request.dart';
+import 'package:shelf/shelf.dart';
 
 /// Signs and verifies signatures using the HMAC algorithm.
 class HmacSignatureService extends SignatureService {

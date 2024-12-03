@@ -7,7 +7,7 @@ Future<Response> getClientKeysHandler(Request request, Injector i, ModularArgume
   final prisma = i.get<PrismaClient>();
 
   final clientKeys = await prisma.clientKey.findMany(
-    where: ClientKeyWhereInput(
+    where: const ClientKeyWhereInput(
       revoked: PrismaUnion.$2(false),
     ),
   );
