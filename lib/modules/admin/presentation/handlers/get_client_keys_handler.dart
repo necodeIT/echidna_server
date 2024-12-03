@@ -6,7 +6,11 @@ import 'package:shelf_modular/shelf_modular.dart';
 Future<Response> getClientKeysHandler(Request request, Injector i, ModularArguments args) async {
   final prisma = i.get<PrismaClient>();
 
-  final clientKeys = await prisma.clientKey.findMany();
+  final clientKeys = await prisma.clientKey.findMany(
+    where: ClientKeyWhereInput(
+      revoked: PrismaUnion.$2(false),
+    ),
+  );
 
   request.log('Found ${clientKeys.length} client keys');
 

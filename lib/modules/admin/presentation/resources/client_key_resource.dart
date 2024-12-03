@@ -10,6 +10,7 @@ class ClientKeyResource extends Resource {
         '/',
         getClientKeysHandler,
       )
+      ..delete('/:key', revokeClientKeyHandler)
       ..post('/', createClientKeyHandler);
   }
 }

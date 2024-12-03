@@ -10,7 +10,4 @@ abstract class AuthService extends Service {
 
   /// Verifies the given [token].
   Future<bool> verifyToken(String token);
-
-  /// Returns user details for the given [token].
-  Future<User> getUserDetails(String token);
 }

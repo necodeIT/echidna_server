@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:echidna_dto/echidna_dto.dart';
 import 'package:echidna_server/modules/auth/auth.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
@@ -14,39 +16,24 @@ class OidcAuthService extends AuthService {
   OidcAuthService(this._networkService, this._identityProvider);
 
   @override
-  Future<User> getUserDetails(String token) async {
-    try {
-      final response = await _networkService.get(
-        _identityProvider.userInfoUrl,
-        headers: {
-          'Authorization': 'Bearer $token',
-        },
-      );
-
-      response.raiseForStatusCode();
-
-      return User.fromJson(response.body);
-    } catch (e, stackTrace) {
-      log('Error getting user details', e, stackTrace);
-      throw Exception('Error getting user details: $e');
-    }
-  }
-
-  @override
   Future<bool> verifyToken(String token) async {
     try {
+      final basic = '${_identityProvider.clientId}:${_identityProvider.clientSecret}';
+
       final response = await _networkService.post(
-        _identityProvider.tokenUrl,
+        _identityProvider.introspectUri,
         {
           'token': token,
-          'client_id': _identityProvider.clientId,
-          'client_secret': _identityProvider.clientSecret,
+        },
+        headers: {
+          'Authorization': 'Basic ${base64Encode(utf8.encode(basic))}',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       );
 
       response.raiseForStatusCode();
 
-      return response.body['active'] == true;
+      return response.body['client_id'] == _identityProvider.clientId;
     } catch (e, stackTrace) {
       log('Error verifying token', e, stackTrace);
       throw Exception('Error verifying token: $e');
