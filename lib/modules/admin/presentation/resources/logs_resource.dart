@@ -24,10 +24,14 @@ class LogsResource extends WebSocketResource {
   @override
   void connect(WebSocket socket) {
     socket.sink.add(jsonEncode(_logs));
+
+    Logger('LogsResource').info('Client connected');
   }
 
   @override
-  void disconnect(WebSocket socket) {}
+  void disconnect(WebSocket socket) {
+    Logger('LogsResource').info('Client disconnected');
+  }
 
   @override
   void onMessage(dynamic data, WebSocket socket) {}
