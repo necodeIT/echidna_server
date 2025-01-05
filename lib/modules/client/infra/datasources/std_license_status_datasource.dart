@@ -99,7 +99,7 @@ class StdLicenseStatusDatasource extends LicenseStatusDatasource {
 
         log('Customer-wide feature claims: ${customerStatus.featureClaims.map((f) => f.feature.name).join(', ')}');
 
-        active = customerStatus.active;
+        // active = customerStatus.active;
       }
     } catch (e, s) {
       log('Unable to find customer wide license', e, s);
