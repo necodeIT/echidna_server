@@ -15,7 +15,9 @@ import 'package:shelf_modular/shelf_modular.dart';
 final prisma = PrismaClient();
 void main(List<String> args) async {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen(debugLogHandler);
+  // always print logs
+  // ignore: avoid_print
+  Logger.root.onRecord.listen((r) => print(r.formatColored()));
 
   try {
     await prisma.$connect();
