@@ -1,6 +1,6 @@
 name: echidna_server
 description: "A software licensing server written in dart"
-version: 0.0.1
+version: 1.1.0
 repository: https://github.com/necodeIT/echidna_server
 publish_to: none
 
