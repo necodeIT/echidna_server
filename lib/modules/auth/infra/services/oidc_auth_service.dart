@@ -42,6 +42,7 @@ class OidcAuthService extends AuthService {
 
   @override
   void dispose() {
+    super.dispose();
     _networkService.dispose();
   }
 }

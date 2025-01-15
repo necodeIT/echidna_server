@@ -1,6 +1,6 @@
 import 'package:echidna_server/echidna_server.dart';
 import 'package:logging/logging.dart';
-import 'package:mcquenji_core/mcquenji_core.dart';
+import 'package:mcquenji_core/src/infra/services/debug_log_handler_service.dart';
 import 'package:test/test.dart';
 
 import 'defaults.dart';
@@ -15,7 +15,7 @@ final now = DateTime.now().toUtc().copyWith(
 
 Future<void> main() async {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen(debugLogHandler);
+  Logger.root.onRecord.listen(DebugLogHandlerService());
 
   setUpAll(start);
 

@@ -30,31 +30,33 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
     return Response.badRequest(body: 'Product with ID $productId does not exist.');
   }
 
-  final uuid = i.get<Uuid>();
-
-  if (await prisma.license.findUnique(
-        where: LicenseWhereUniqueInput(
-          userId: PrismaUnion.$2(
-            userId != null ? PrismaUnion.$1(userId) : const PrismaUnion.$2(PrismaNull()),
-          ),
-          customerId: PrismaUnion.$2(customerId),
-          productId: PrismaUnion.$2(productId),
-        ),
-      ) !=
-      null) {
-    request.log('Bad Request: License already exists');
-    return Response.badRequest(body: 'License already exists.');
-  }
-
-  final key = uuid.v4();
-
-  final license = License(
-    licenseKey: key,
-    customerId: customerId,
-    productId: productId,
-  );
-
   try {
+    final uuid = i.get<Uuid>();
+
+    final existingLicense = await prisma.license.findFirst(
+      where: LicenseWhereInput(
+        userId: PrismaUnion.$2(
+          userId != null ? PrismaUnion.$1(userId) : const PrismaUnion.$2(PrismaNull()),
+        ),
+        customerId: PrismaUnion.$2(customerId),
+        productId: PrismaUnion.$2(productId),
+      ),
+    );
+
+    if (existingLicense != null) {
+      request.log('Bad Request: License already exists as ${existingLicense.licenseKey}');
+      return Response.badRequest(body: 'License already exists.');
+    }
+
+    final key = uuid.v4();
+
+    final license = License(
+      licenseKey: key,
+      customerId: customerId,
+      productId: productId,
+      userId: userId,
+    );
+
     await prisma.$transaction(
       (prisma) => prisma.license.create(
         data: PrismaUnion.$1(
@@ -80,7 +82,7 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
     }
 
     return license.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to create license', e, s);
     return Response.internalServerError();
   }

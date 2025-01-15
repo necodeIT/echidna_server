@@ -704,9 +704,9 @@ class IntNullableFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class LicenseRelationFilter
+class LicenseScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseRelationFilter({
+  const LicenseScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -762,7 +762,7 @@ class PaymentWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   final _i1.PrismaUnion<_i2.StringNullableFilter,
       _i1.PrismaUnion<String, _i1.PrismaNull>>? revocationReasoning;
 
-  final _i1.PrismaUnion<_i2.LicenseRelationFilter, _i2.LicenseWhereInput>?
+  final _i1.PrismaUnion<_i2.LicenseScalarRelationFilter, _i2.LicenseWhereInput>?
       license;
 
   final _i2.FeatureListRelationFilter? features;
@@ -843,7 +843,7 @@ class FeatureWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       .PrismaUnion<_i2.IntNullableFilter, _i1.PrismaUnion<int, _i1.PrismaNull>>?
       trialPeriod;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -934,9 +934,9 @@ class ProductWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class ProductRelationFilter
+class ProductScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const ProductRelationFilter({
+  const ProductScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -986,10 +986,11 @@ class ClientKeyWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
   @override
@@ -1074,9 +1075,9 @@ class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class CustomerRelationFilter
+class CustomerScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerRelationFilter({
+  const CustomerScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -1126,10 +1127,11 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1185,10 +1187,11 @@ class LicenseWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1612,7 +1615,7 @@ class FeatureWhereUniqueInput
       .PrismaUnion<_i2.IntNullableFilter, _i1.PrismaUnion<int, _i1.PrismaNull>>?
       trialPeriod;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1872,7 +1875,7 @@ class PaymentWhereUniqueInput
   final _i1.PrismaUnion<_i2.StringNullableFilter,
       _i1.PrismaUnion<String, _i1.PrismaNull>>? revocationReasoning;
 
-  final _i1.PrismaUnion<_i2.LicenseRelationFilter, _i2.LicenseWhereInput>?
+  final _i1.PrismaUnion<_i2.LicenseScalarRelationFilter, _i2.LicenseWhereInput>?
       license;
 
   final _i2.FeatureListRelationFilter? features;
@@ -2167,10 +2170,11 @@ class ClientKeyWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
   @override
@@ -8835,6 +8839,106 @@ class LicenseUncheckedUpdateManyInput
       };
 }
 
+class UpdateManyLicenseAndReturnOutputTypeCustomerArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyLicenseAndReturnOutputTypeCustomerArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.CustomerSelect? select;
+
+  final _i2.CustomerInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyLicenseAndReturnOutputTypeProductArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyLicenseAndReturnOutputTypeProductArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.ProductSelect? select;
+
+  final _i2.ProductInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyLicenseAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyLicenseAndReturnOutputTypeSelect({
+    this.licenseKey,
+    this.customerId,
+    this.userId,
+    this.productId,
+    this.createdAt,
+    this.customer,
+    this.product,
+  });
+
+  final bool? licenseKey;
+
+  final bool? customerId;
+
+  final bool? userId;
+
+  final bool? productId;
+
+  final bool? createdAt;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyLicenseAndReturnOutputTypeCustomerArgs>?
+      customer;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyLicenseAndReturnOutputTypeProductArgs>?
+      product;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'customer_id': customerId,
+        'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt,
+        'customer': customer,
+        'product': product,
+      };
+}
+
+class UpdateManyLicenseAndReturnOutputTypeInclude
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyLicenseAndReturnOutputTypeInclude({
+    this.customer,
+    this.product,
+  });
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyLicenseAndReturnOutputTypeCustomerArgs>?
+      customer;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyLicenseAndReturnOutputTypeProductArgs>?
+      product;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'customer': customer,
+        'product': product,
+      };
+}
+
 class LicenseCountAggregateOutputType {
   const LicenseCountAggregateOutputType({
     this.licenseKey,
@@ -10459,6 +10563,28 @@ class ProductUncheckedUpdateManyInput
       };
 }
 
+class UpdateManyProductAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyProductAndReturnOutputTypeSelect({
+    this.id,
+    this.name,
+    this.description,
+  });
+
+  final bool? id;
+
+  final bool? name;
+
+  final bool? description;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+      };
+}
+
 class ProductCountAggregateOutputType {
   const ProductCountAggregateOutputType({
     this.id,
@@ -11304,6 +11430,28 @@ class CustomerUncheckedUpdateManyInput
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? name;
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? email;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+      };
+}
+
+class UpdateManyCustomerAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyCustomerAndReturnOutputTypeSelect({
+    this.id,
+    this.name,
+    this.email,
+  });
+
+  final bool? id;
+
+  final bool? name;
+
+  final bool? email;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -12248,6 +12396,76 @@ class FeatureUncheckedUpdateManyInput
         'product_id': productId,
         'trial_period': trialPeriod,
       };
+}
+
+class UpdateManyFeatureAndReturnOutputTypeProductArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyFeatureAndReturnOutputTypeProductArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.ProductSelect? select;
+
+  final _i2.ProductInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyFeatureAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyFeatureAndReturnOutputTypeSelect({
+    this.id,
+    this.name,
+    this.description,
+    this.type,
+    this.productId,
+    this.trialPeriod,
+    this.product,
+  });
+
+  final bool? id;
+
+  final bool? name;
+
+  final bool? description;
+
+  final bool? type;
+
+  final bool? productId;
+
+  final bool? trialPeriod;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyFeatureAndReturnOutputTypeProductArgs>?
+      product;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'type': type,
+        'product_id': productId,
+        'trial_period': trialPeriod,
+        'product': product,
+      };
+}
+
+class UpdateManyFeatureAndReturnOutputTypeInclude
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyFeatureAndReturnOutputTypeInclude({this.product});
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyFeatureAndReturnOutputTypeProductArgs>?
+      product;
+
+  @override
+  Map<String, dynamic> toJson() => {'product': product};
 }
 
 class FeatureCountAggregateOutputType {
@@ -13751,6 +13969,80 @@ class PaymentUncheckedUpdateManyInput
       };
 }
 
+class UpdateManyPaymentAndReturnOutputTypeLicenseArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyPaymentAndReturnOutputTypeLicenseArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.LicenseSelect? select;
+
+  final _i2.LicenseInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyPaymentAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyPaymentAndReturnOutputTypeSelect({
+    this.id,
+    this.licenseKey,
+    this.activationDate,
+    this.expirationDate,
+    this.paymentReference,
+    this.revoked,
+    this.revocationReasoning,
+    this.license,
+  });
+
+  final bool? id;
+
+  final bool? licenseKey;
+
+  final bool? activationDate;
+
+  final bool? expirationDate;
+
+  final bool? paymentReference;
+
+  final bool? revoked;
+
+  final bool? revocationReasoning;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyPaymentAndReturnOutputTypeLicenseArgs>?
+      license;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'license_key': licenseKey,
+        'activation_date': activationDate,
+        'expiration_date': expirationDate,
+        'payment_reference': paymentReference,
+        'revoked': revoked,
+        'revocation_reasoning': revocationReasoning,
+        'license': license,
+      };
+}
+
+class UpdateManyPaymentAndReturnOutputTypeInclude
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyPaymentAndReturnOutputTypeInclude({this.license});
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyPaymentAndReturnOutputTypeLicenseArgs>?
+      license;
+
+  @override
+  Map<String, dynamic> toJson() => {'license': license};
+}
+
 class PaymentCountAggregateOutputType {
   const PaymentCountAggregateOutputType({
     this.id,
@@ -14972,6 +15264,104 @@ class ClientKeyUncheckedUpdateManyInput
         'product_id': productId,
         'customer_id': customerId,
         'revoked': revoked,
+      };
+}
+
+class UpdateManyClientKeyAndReturnOutputTypeProductArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyClientKeyAndReturnOutputTypeProductArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.ProductSelect? select;
+
+  final _i2.ProductInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyClientKeyAndReturnOutputTypeCustomerArgs
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyClientKeyAndReturnOutputTypeCustomerArgs({
+    this.select,
+    this.include,
+  });
+
+  final _i2.CustomerSelect? select;
+
+  final _i2.CustomerInclude? include;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'select': select,
+        'include': include,
+      };
+}
+
+class UpdateManyClientKeyAndReturnOutputTypeSelect
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyClientKeyAndReturnOutputTypeSelect({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  final bool? id;
+
+  final bool? key;
+
+  final bool? productId;
+
+  final bool? customerId;
+
+  final bool? revoked;
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyClientKeyAndReturnOutputTypeProductArgs>?
+      product;
+
+  final _i1.PrismaUnion<bool,
+      _i2.UpdateManyClientKeyAndReturnOutputTypeCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product,
+        'customer': customer,
+      };
+}
+
+class UpdateManyClientKeyAndReturnOutputTypeInclude
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const UpdateManyClientKeyAndReturnOutputTypeInclude({
+    this.product,
+    this.customer,
+  });
+
+  final _i1
+      .PrismaUnion<bool, _i2.UpdateManyClientKeyAndReturnOutputTypeProductArgs>?
+      product;
+
+  final _i1.PrismaUnion<bool,
+      _i2.UpdateManyClientKeyAndReturnOutputTypeCustomerArgs>? customer;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'product': product,
+        'customer': customer,
       };
 }
 

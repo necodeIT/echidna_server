@@ -45,7 +45,7 @@ Future<Response> deleteProductHandler(Request request, Injector i, ModularArgume
 
     request.log('Deleted product with ID $id.');
     return Response.ok(null);
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     Logger('${request.method} ${request.url}').severe('Failed to delete product.', e, s);
     return Response.internalServerError();
   }

@@ -13,9 +13,6 @@ class HmacSignatureService extends SignatureService {
   HmacSignatureService(this.prisma);
 
   @override
-  void dispose() {}
-
-  @override
   String sign(String body, String secret) {
     final hmac = Hmac(sha256, utf8.encode(secret));
     final signature = hmac.convert(utf8.encode(body)).toString();

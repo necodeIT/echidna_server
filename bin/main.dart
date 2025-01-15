@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:echidna_server/config/server.dart';
+import 'package:echidna_server/config/config.dart';
 import 'package:echidna_server/echidna_server.dart';
 import 'package:logging/logging.dart';
 import 'package:mcquenji_core/mcquenji_core.dart';
+import 'package:sentry/sentry.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_cors_headers/shelf_cors_headers.dart';
@@ -18,6 +20,41 @@ void main(List<String> args) async {
   // always print logs
   // ignore: avoid_print
   Logger.root.onRecord.listen((r) => print(r.formatColored()));
+
+  Logger.root.onRecord.listen((record) {
+    final handler = Modular.tryGet<LogHandlerService>();
+
+    handler?.call(record);
+
+    if (record.error != null) {
+      final logs = (handler?.flush() ?? []).join('\n');
+
+      final bytes = utf8.encode(logs);
+      final byteData = ByteData.view(bytes.buffer, bytes.offsetInBytes, bytes.length);
+
+      Sentry.captureException(
+        record.error,
+        stackTrace: record.stackTrace,
+        hint: Hint.withAttachment(
+          SentryAttachment.fromByteData(
+            byteData,
+            '${DateTime.now().toIso8601String()}.log',
+          ),
+        ),
+        withScope: (scope) async {
+          await scope.setContexts('Logger', {
+            'Name': record.loggerName,
+            'Level': record.level.name,
+            'Message': record.message,
+          });
+        },
+      );
+    }
+  });
+
+  await Sentry.init((options) {
+    options.dsn = env['SENTRY_DSN'];
+  });
 
   try {
     await prisma.$connect();

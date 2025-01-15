@@ -29,7 +29,7 @@ Future<Response> createProductHandler(Request request, Injector i, ModularArgume
     request.log('Product $name added successfully');
 
     return product.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to add product $name', e, s);
     return Response.internalServerError();
   }

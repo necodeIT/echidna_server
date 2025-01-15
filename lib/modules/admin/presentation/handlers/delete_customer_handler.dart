@@ -40,7 +40,7 @@ Future<Response> deleteCustomerHandler(Request request, Injector i, ModularArgum
 
     request.log('Deleted customer with ID $id.');
     return Response.ok(null);
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     Logger('${request.method} ${request.url}').severe('Failed to delete customer.', e, s);
     return Response.internalServerError();
   }

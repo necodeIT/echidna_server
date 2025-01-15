@@ -10,9 +10,6 @@ class StdLicenseStatusDatasource extends LicenseStatusDatasource {
   StdLicenseStatusDatasource(this.prisma);
 
   @override
-  void dispose() {}
-
-  @override
   Future<dto.LicenseStatus> getLicenseStatus(String licenseKey) async {
     final license = await prisma.license.findUnique(
       where: LicenseWhereUniqueInput(

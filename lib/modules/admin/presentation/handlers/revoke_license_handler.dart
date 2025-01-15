@@ -50,7 +50,7 @@ Future<Response> revokeLicenseHandler(Request request, Injector i, ModularArgume
     request.log('Successfully revoked license with ID $id');
 
     return Response.ok(null);
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     Logger('${request.method} ${request.url}').severe('Failed to revoke license', e, s);
     return Response.internalServerError();
   }

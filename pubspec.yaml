@@ -25,6 +25,7 @@ dependencies:
       url: https://github.com/mcquenji/mcquenji_core.git
   modular_test: ^2.0.0
   orm: ^5.2.0
+  sentry: ^8.12.0
   shelf: ^1.4.2
   shelf_cors_headers: ^0.1.5
   shelf_docker_shutdown: ^1.1.0

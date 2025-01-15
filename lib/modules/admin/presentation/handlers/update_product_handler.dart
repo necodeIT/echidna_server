@@ -42,7 +42,7 @@ Future<Response> updateProductHandler(Request request, Injector i, ModularArgume
 
     request.log('updated product with ID $id successfully');
     return product!.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to update product with ID $id', e, s);
     return Response.internalServerError();
   }

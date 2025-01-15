@@ -419,6 +419,61 @@ class CreateManyLicenseAndReturnOutputType {
       };
 }
 
+class UpdateManyLicenseAndReturnOutputType {
+  const UpdateManyLicenseAndReturnOutputType({
+    this.licenseKey,
+    this.customerId,
+    this.userId,
+    this.productId,
+    this.createdAt,
+    this.customer,
+    this.product,
+  });
+
+  factory UpdateManyLicenseAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyLicenseAndReturnOutputType(
+        licenseKey: json['license_key'],
+        customerId: json['customer_id'],
+        userId: json['user_id'],
+        productId: json['product_id'],
+        createdAt: switch (json['created_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created_at']
+        },
+        customer: json['customer'] is Map
+            ? _i2.Customer.fromJson(json['customer'])
+            : null,
+        product: json['product'] is Map
+            ? _i2.Product.fromJson(json['product'])
+            : null,
+      );
+
+  final String? licenseKey;
+
+  final int? customerId;
+
+  final String? userId;
+
+  final int? productId;
+
+  final DateTime? createdAt;
+
+  final _i2.Customer? customer;
+
+  final _i2.Product? product;
+
+  Map<String, dynamic> toJson() => {
+        'license_key': licenseKey,
+        'customer_id': customerId,
+        'user_id': userId,
+        'product_id': productId,
+        'created_at': createdAt?.toIso8601String(),
+        'customer': customer?.toJson(),
+        'product': product?.toJson(),
+      };
+}
+
 class CreateManyProductAndReturnOutputType {
   const CreateManyProductAndReturnOutputType({
     this.id,
@@ -428,6 +483,33 @@ class CreateManyProductAndReturnOutputType {
 
   factory CreateManyProductAndReturnOutputType.fromJson(Map json) =>
       CreateManyProductAndReturnOutputType(
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+      );
+
+  final int? id;
+
+  final String? name;
+
+  final String? description;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+      };
+}
+
+class UpdateManyProductAndReturnOutputType {
+  const UpdateManyProductAndReturnOutputType({
+    this.id,
+    this.name,
+    this.description,
+  });
+
+  factory UpdateManyProductAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyProductAndReturnOutputType(
         id: json['id'],
         name: json['name'],
         description: json['description'],
@@ -473,6 +555,33 @@ class CreateManyCustomerAndReturnOutputType {
       };
 }
 
+class UpdateManyCustomerAndReturnOutputType {
+  const UpdateManyCustomerAndReturnOutputType({
+    this.id,
+    this.name,
+    this.email,
+  });
+
+  factory UpdateManyCustomerAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyCustomerAndReturnOutputType(
+        id: json['id'],
+        name: json['name'],
+        email: json['email'],
+      );
+
+  final int? id;
+
+  final String? name;
+
+  final String? email;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+      };
+}
+
 class CreateManyFeatureAndReturnOutputType {
   const CreateManyFeatureAndReturnOutputType({
     this.id,
@@ -486,6 +595,57 @@ class CreateManyFeatureAndReturnOutputType {
 
   factory CreateManyFeatureAndReturnOutputType.fromJson(Map json) =>
       CreateManyFeatureAndReturnOutputType(
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+        type: json['type'] != null
+            ? _i2.FeatureType.values.firstWhere((e) => e.name == json['type'])
+            : null,
+        productId: json['product_id'],
+        trialPeriod: json['trial_period'],
+        product: json['product'] is Map
+            ? _i2.Product.fromJson(json['product'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? name;
+
+  final String? description;
+
+  final _i2.FeatureType? type;
+
+  final int? productId;
+
+  final int? trialPeriod;
+
+  final _i2.Product? product;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'type': type?.name,
+        'product_id': productId,
+        'trial_period': trialPeriod,
+        'product': product?.toJson(),
+      };
+}
+
+class UpdateManyFeatureAndReturnOutputType {
+  const UpdateManyFeatureAndReturnOutputType({
+    this.id,
+    this.name,
+    this.description,
+    this.type,
+    this.productId,
+    this.trialPeriod,
+    this.product,
+  });
+
+  factory UpdateManyFeatureAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyFeatureAndReturnOutputType(
         id: json['id'],
         name: json['name'],
         description: json['description'],
@@ -586,6 +746,68 @@ class CreateManyPaymentAndReturnOutputType {
       };
 }
 
+class UpdateManyPaymentAndReturnOutputType {
+  const UpdateManyPaymentAndReturnOutputType({
+    this.id,
+    this.licenseKey,
+    this.activationDate,
+    this.expirationDate,
+    this.paymentReference,
+    this.revoked,
+    this.revocationReasoning,
+    this.license,
+  });
+
+  factory UpdateManyPaymentAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyPaymentAndReturnOutputType(
+        id: json['id'],
+        licenseKey: json['license_key'],
+        activationDate: switch (json['activation_date']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['activation_date']
+        },
+        expirationDate: switch (json['expiration_date']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['expiration_date']
+        },
+        paymentReference: json['payment_reference'],
+        revoked: json['revoked'],
+        revocationReasoning: json['revocation_reasoning'],
+        license: json['license'] is Map
+            ? _i2.License.fromJson(json['license'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? licenseKey;
+
+  final DateTime? activationDate;
+
+  final DateTime? expirationDate;
+
+  final String? paymentReference;
+
+  final bool? revoked;
+
+  final String? revocationReasoning;
+
+  final _i2.License? license;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'license_key': licenseKey,
+        'activation_date': activationDate?.toIso8601String(),
+        'expiration_date': expirationDate?.toIso8601String(),
+        'payment_reference': paymentReference,
+        'revoked': revoked,
+        'revocation_reasoning': revocationReasoning,
+        'license': license?.toJson(),
+      };
+}
+
 class CreateManyClientKeyAndReturnOutputType {
   const CreateManyClientKeyAndReturnOutputType({
     this.id,
@@ -599,6 +821,57 @@ class CreateManyClientKeyAndReturnOutputType {
 
   factory CreateManyClientKeyAndReturnOutputType.fromJson(Map json) =>
       CreateManyClientKeyAndReturnOutputType(
+        id: json['id'],
+        key: json['key'],
+        productId: json['product_id'],
+        customerId: json['customer_id'],
+        revoked: json['revoked'],
+        product: json['product'] is Map
+            ? _i2.Product.fromJson(json['product'])
+            : null,
+        customer: json['customer'] is Map
+            ? _i2.Customer.fromJson(json['customer'])
+            : null,
+      );
+
+  final int? id;
+
+  final String? key;
+
+  final int? productId;
+
+  final int? customerId;
+
+  final bool? revoked;
+
+  final _i2.Product? product;
+
+  final _i2.Customer? customer;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'key': key,
+        'product_id': productId,
+        'customer_id': customerId,
+        'revoked': revoked,
+        'product': product?.toJson(),
+        'customer': customer?.toJson(),
+      };
+}
+
+class UpdateManyClientKeyAndReturnOutputType {
+  const UpdateManyClientKeyAndReturnOutputType({
+    this.id,
+    this.key,
+    this.productId,
+    this.customerId,
+    this.revoked,
+    this.product,
+    this.customer,
+  });
+
+  factory UpdateManyClientKeyAndReturnOutputType.fromJson(Map json) =>
+      UpdateManyClientKeyAndReturnOutputType(
         id: json['id'],
         key: json['key'],
         productId: json['product_id'],

@@ -29,7 +29,7 @@ Future<Response> revokeClientKeyHandler(Request request, Injector i, ModularArgu
     request.log('Successfully revoked client key with key $key');
 
     return Response.ok(null);
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     Logger('${request.method} ${request.url}').severe('Failed to revoke client key', e, s);
     return Response.internalServerError();
   }

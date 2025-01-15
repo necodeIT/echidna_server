@@ -42,7 +42,7 @@ Future<Response> updateCustomerHandler(Request request, Injector i, ModularArgum
 
     request.log('Succssfully updated customer with ID $id.');
     return customer!.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to update customer with ID $id.', e, s);
     return Response.internalServerError();
   }

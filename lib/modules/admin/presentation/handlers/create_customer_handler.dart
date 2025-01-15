@@ -29,7 +29,7 @@ Future<Response> createCustomerHandler(Request request, Injector i, ModularArgum
     request.log('Added customer $name to database');
 
     return customer.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to add customer', e, s);
     return Response.internalServerError();
   }

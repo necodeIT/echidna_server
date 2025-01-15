@@ -4,7 +4,4 @@ import 'package:echidna_server/modules/auth/auth.dart';
 class DebugAuthService extends AuthService {
   @override
   Future<bool> verifyToken(String token) async => true;
-
-  @override
-  void dispose() {}
 }

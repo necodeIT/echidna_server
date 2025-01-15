@@ -58,7 +58,7 @@ Future<Response> updateLicenseHandler(Request request, Injector i, ModularArgume
 
     request.log('License key with ID $id updated successfully.');
     return license!.toResponse();
-  } on Exception catch (e, s) {
+  } catch (e, s) {
     request.log('Failed to update license with ID $id.', e, s);
     return Response.internalServerError();
   }
