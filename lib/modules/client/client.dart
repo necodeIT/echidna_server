@@ -32,7 +32,7 @@ class ClientModule extends Module {
 
   @override
   void routes(RouteManager r) {
-    r.get(
+    r.post(
       '/',
       verifyLicenseHandler,
     );
