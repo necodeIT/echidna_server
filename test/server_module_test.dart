@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 Future<void> main() async {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen(debugLogHandler);
+  Logger.root.onRecord.listen((r) => print(r.formatColored()));
 
   setUp(() {});
 

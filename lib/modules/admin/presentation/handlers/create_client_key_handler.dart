@@ -56,7 +56,7 @@ Future<Response> createClientKeyHandler(Request request, Injector i, ModularArgu
   }
 
   try {
-    final uuid = i.get<Uuid>();
+    const uuid = Uuid();
 
     final key = uuid.v4();
 

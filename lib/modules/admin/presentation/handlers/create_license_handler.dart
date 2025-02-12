@@ -30,10 +30,10 @@ Future<Response> createLicenseHandler(Request request, Injector i, ModularArgume
     return Response.badRequest(body: 'Product with ID $productId does not exist.');
   }
 
-  final uuid = i.get<Uuid>();
+  const uuid = Uuid();
 
-  if (await prisma.license.findUnique(
-        where: LicenseWhereUniqueInput(
+  if (await prisma.license.findFirst(
+        where: LicenseWhereInput(
           userId: PrismaUnion.$2(
             userId != null ? PrismaUnion.$1(userId) : const PrismaUnion.$2(PrismaNull()),
           ),

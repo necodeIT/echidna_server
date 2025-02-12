@@ -42,8 +42,10 @@ class ServerModule extends Module {
         '/verify',
         module: ClientModule(prisma),
         middlewares: [
-          SignatureGuard(),
+          // idk why but the order of these middlewares is reversed
+          // and we want the SignatureGuard to be the first one to run
           SignatureMiddleware(),
+          SignatureGuard(),
         ],
       );
   }

@@ -317,10 +317,12 @@ class LicenseDelegate {
             _i3.LicenseUncheckedUpdateManyInput>
         data,
     _i3.LicenseWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -404,9 +406,14 @@ class LicenseDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.LicenseWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.LicenseWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'License',
@@ -810,10 +817,12 @@ class ProductDelegate {
             _i3.ProductUncheckedUpdateManyInput>
         data,
     _i3.ProductWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -897,9 +906,14 @@ class ProductDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.ProductWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.ProductWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'Product',
@@ -1304,10 +1318,12 @@ class CustomerDelegate {
             _i3.CustomerUncheckedUpdateManyInput>
         data,
     _i3.CustomerWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -1391,9 +1407,14 @@ class CustomerDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.CustomerWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.CustomerWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'Customer',
@@ -1800,10 +1821,12 @@ class FeatureDelegate {
             _i3.FeatureUncheckedUpdateManyInput>
         data,
     _i3.FeatureWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -1887,9 +1910,14 @@ class FeatureDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.FeatureWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.FeatureWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'Feature',
@@ -2295,10 +2323,12 @@ class PaymentDelegate {
             _i3.PaymentUncheckedUpdateManyInput>
         data,
     _i3.PaymentWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -2382,9 +2412,14 @@ class PaymentDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.PaymentWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.PaymentWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'Payment',
@@ -2794,10 +2829,12 @@ class ClientKeyDelegate {
             _i3.ClientKeyUncheckedUpdateManyInput>
         data,
     _i3.ClientKeyWhereInput? where,
+    int? limit,
   }) {
     final args = {
       'data': data,
       'where': where,
+      'limit': limit,
     };
     final query = _i1.serializeJsonQuery(
       args: args,
@@ -2881,9 +2918,14 @@ class ClientKeyDelegate {
     );
   }
 
-  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.ClientKeyWhereInput? where}) {
-    final args = {'where': where};
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany({
+    _i3.ClientKeyWhereInput? where,
+    int? limit,
+  }) {
+    final args = {
+      'where': where,
+      'limit': limit,
+    };
     final query = _i1.serializeJsonQuery(
       args: args,
       modelName: 'ClientKey',
@@ -3009,6 +3051,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'License',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'license_key',
@@ -3020,6 +3063,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3033,10 +3077,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Customer',
+            'nativeType': null,
             'relationName': 'CustomerToLicense',
             'relationFromFields': ['customer_id'],
             'relationToFields': ['id'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3050,6 +3096,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3063,6 +3110,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3076,10 +3124,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Product',
+            'nativeType': null,
             'relationName': 'LicenseToProduct',
             'relationFromFields': ['product_id'],
             'relationToFields': ['id'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3093,6 +3143,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3106,6 +3157,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Payment',
+            'nativeType': null,
             'relationName': 'LicenseToPayment',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3122,6 +3174,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'DateTime',
+            'nativeType': null,
             'default': {
               'name': 'now',
               'args': [],
@@ -3138,6 +3191,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'Product',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'id',
@@ -3149,6 +3203,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Int',
+            'nativeType': null,
             'default': {
               'name': 'autoincrement',
               'args': [],
@@ -3166,6 +3221,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3179,6 +3235,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3192,6 +3249,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'License',
+            'nativeType': null,
             'relationName': 'LicenseToProduct',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3208,6 +3266,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Feature',
+            'nativeType': null,
             'relationName': 'FeatureToProduct',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3224,6 +3283,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'ClientKey',
+            'nativeType': null,
             'relationName': 'ClientKeyToProduct',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3239,6 +3299,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'Customer',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'id',
@@ -3250,6 +3311,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Int',
+            'nativeType': null,
             'default': {
               'name': 'autoincrement',
               'args': [],
@@ -3267,6 +3329,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3280,6 +3343,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3293,6 +3357,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'License',
+            'nativeType': null,
             'relationName': 'CustomerToLicense',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3309,6 +3374,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'ClientKey',
+            'nativeType': null,
             'relationName': 'ClientKeyToCustomer',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3324,6 +3390,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'Feature',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'id',
@@ -3335,6 +3402,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Int',
+            'nativeType': null,
             'default': {
               'name': 'autoincrement',
               'args': [],
@@ -3352,6 +3420,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3365,6 +3434,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3378,6 +3448,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'FeatureType',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3391,10 +3462,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Product',
+            'nativeType': null,
             'relationName': 'FeatureToProduct',
             'relationFromFields': ['product_id'],
             'relationToFields': ['id'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3408,6 +3481,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3421,6 +3495,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3434,6 +3509,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Payment',
+            'nativeType': null,
             'relationName': 'FeatureToPayment',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3449,6 +3525,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'Payment',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'id',
@@ -3460,6 +3537,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Int',
+            'nativeType': null,
             'default': {
               'name': 'autoincrement',
               'args': [],
@@ -3477,10 +3555,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'License',
+            'nativeType': null,
             'relationName': 'LicenseToPayment',
             'relationFromFields': ['license_key'],
             'relationToFields': ['license_key'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3494,6 +3574,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3507,6 +3588,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'DateTime',
+            'nativeType': null,
             'default': {
               'name': 'now',
               'args': [],
@@ -3524,6 +3606,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'DateTime',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3537,6 +3620,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3550,6 +3634,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Feature',
+            'nativeType': null,
             'relationName': 'FeatureToPayment',
             'relationFromFields': [],
             'relationToFields': [],
@@ -3566,6 +3651,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Boolean',
+            'nativeType': null,
             'default': false,
             'isGenerated': false,
             'isUpdatedAt': false,
@@ -3580,6 +3666,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3592,6 +3679,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       {
         'name': 'ClientKey',
         'dbName': null,
+        'schema': null,
         'fields': [
           {
             'name': 'id',
@@ -3603,6 +3691,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Int',
+            'nativeType': null,
             'default': {
               'name': 'autoincrement',
               'args': [],
@@ -3620,6 +3709,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'String',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3633,10 +3723,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Product',
+            'nativeType': null,
             'relationName': 'ClientKeyToProduct',
             'relationFromFields': ['product_id'],
             'relationToFields': ['id'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3650,6 +3742,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3663,10 +3756,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Customer',
+            'nativeType': null,
             'relationName': 'ClientKeyToCustomer',
             'relationFromFields': ['customer_id'],
             'relationToFields': ['id'],
             'relationOnDelete': 'Cascade',
+            'relationOnUpdate': 'Cascade',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3680,6 +3775,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': true,
             'hasDefaultValue': false,
             'type': 'Int',
+            'nativeType': null,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -3693,6 +3789,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': true,
             'type': 'Boolean',
+            'nativeType': null,
             'default': false,
             'isGenerated': false,
             'isUpdatedAt': false,

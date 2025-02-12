@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:echidna_server/echidna_server.dart';
 import 'package:echidna_server/modules/client/client.dart';
@@ -8,32 +9,38 @@ import 'package:shelf_modular/shelf_modular.dart';
 /// Verifies that the client key is valid.
 class SignatureGuard extends RouteGuard {
   @override
-  FutureOr<bool> canActivate(Request request, Route route) async {
-    final clientId = int.tryParse(request.headers['client-id'] ?? '');
-
-    if (clientId == null) {
-      return false;
-    }
+  FutureOr<bool> canActivate(Request request, [ModularRoute? route]) async {
+    final body = await request.readAsString();
 
     final signatureService = Modular.get<SignatureService>();
 
     final clientKey = await signatureService.extractClientKey(request);
 
-    if (clientKey == null) {
-      return false;
-    }
+    print(request.headers);
+
+    if (clientKey == null) return false;
+
+    print('Client key: ${clientKey.key}');
 
     final signature = request.headers['x-signature'];
 
-    if (signature == null) {
-      return false;
-    }
+    if (signature == null) return false;
 
-    return signatureService.verifySignature(
-      signature,
-      await request.readAsString(),
-      clientKey.key!,
-    );
+    print('Signature: $signature');
+
+    return signatureService.verifySignature(signature, body, clientKey.key!);
+  }
+
+  @override
+  FutureOr<Response> Function(Request p1) call(Handler handler, [ModularRoute? route]) {
+    return (request) async {
+      if (!await canActivate(request, route! as Route)) {
+        return Response.forbidden(
+          jsonEncode({'error': 'Invalid signature'}),
+        );
+      }
+      return handler(request);
+    };
   }
 }
 
@@ -48,24 +55,21 @@ class SignatureMiddleware extends ModularMiddleware {
 
       final signatureService = Modular.get<SignatureService>();
 
-      final clientId = int.tryParse(request.headers['client-id'] ?? '');
-
-      if (clientId == null) {
-        return response;
-      }
-
       final clientKey = await signatureService.extractClientKey(request);
 
       if (clientKey == null) {
         return response;
       }
 
+      final body = await response.readAsString();
+
       final signature = signatureService.sign(
-        await response.readAsString(),
+        body,
         clientKey.key!,
       );
 
       return response.change(
+        body: body,
         headers: {
           'x-signature': signature,
         },

@@ -15,7 +15,7 @@ final now = DateTime.now().toUtc().copyWith(
 
 Future<void> main() async {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen(debugLogHandler);
+  Logger.root.onRecord.listen((r) => print(r.formatColored()));
 
   setUpAll(start);
 

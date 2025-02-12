@@ -704,9 +704,9 @@ class IntNullableFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class LicenseRelationFilter
+class LicenseScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const LicenseRelationFilter({
+  const LicenseScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -762,7 +762,7 @@ class PaymentWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
   final _i1.PrismaUnion<_i2.StringNullableFilter,
       _i1.PrismaUnion<String, _i1.PrismaNull>>? revocationReasoning;
 
-  final _i1.PrismaUnion<_i2.LicenseRelationFilter, _i2.LicenseWhereInput>?
+  final _i1.PrismaUnion<_i2.LicenseScalarRelationFilter, _i2.LicenseWhereInput>?
       license;
 
   final _i2.FeatureListRelationFilter? features;
@@ -843,7 +843,7 @@ class FeatureWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       .PrismaUnion<_i2.IntNullableFilter, _i1.PrismaUnion<int, _i1.PrismaNull>>?
       trialPeriod;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -934,9 +934,9 @@ class ProductWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class ProductRelationFilter
+class ProductScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const ProductRelationFilter({
+  const ProductScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -986,10 +986,11 @@ class ClientKeyWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
   @override
@@ -1074,9 +1075,9 @@ class CustomerWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
       };
 }
 
-class CustomerRelationFilter
+class CustomerScalarRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const CustomerRelationFilter({
+  const CustomerScalarRelationFilter({
     this.$is,
     this.isNot,
   });
@@ -1126,10 +1127,11 @@ class LicenseWhereInput implements _i1.JsonConvertible<Map<String, dynamic>> {
 
   final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1185,10 +1187,11 @@ class LicenseWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.DateTimeFilter, DateTime>? createdAt;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1612,7 +1615,7 @@ class FeatureWhereUniqueInput
       .PrismaUnion<_i2.IntNullableFilter, _i1.PrismaUnion<int, _i1.PrismaNull>>?
       trialPeriod;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
   final _i2.PaymentListRelationFilter? payments;
@@ -1872,7 +1875,7 @@ class PaymentWhereUniqueInput
   final _i1.PrismaUnion<_i2.StringNullableFilter,
       _i1.PrismaUnion<String, _i1.PrismaNull>>? revocationReasoning;
 
-  final _i1.PrismaUnion<_i2.LicenseRelationFilter, _i2.LicenseWhereInput>?
+  final _i1.PrismaUnion<_i2.LicenseScalarRelationFilter, _i2.LicenseWhereInput>?
       license;
 
   final _i2.FeatureListRelationFilter? features;
@@ -2167,10 +2170,11 @@ class ClientKeyWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.BoolFilter, bool>? revoked;
 
-  final _i1.PrismaUnion<_i2.ProductRelationFilter, _i2.ProductWhereInput>?
+  final _i1.PrismaUnion<_i2.ProductScalarRelationFilter, _i2.ProductWhereInput>?
       product;
 
-  final _i1.PrismaUnion<_i2.CustomerRelationFilter, _i2.CustomerWhereInput>?
+  final _i1
+      .PrismaUnion<_i2.CustomerScalarRelationFilter, _i2.CustomerWhereInput>?
       customer;
 
   @override

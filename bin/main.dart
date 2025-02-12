@@ -63,7 +63,7 @@ void main(List<String> args) async {
     server.serverHeader = 'Echidna License Server';
     server.defaultResponseHeaders.contentType = ContentType.json;
 
-    server.handleError((e, s) {
+    server.handleError((Object e, StackTrace s) {
       Logger.root.severe('Failed to handle request', e, s);
     });
 

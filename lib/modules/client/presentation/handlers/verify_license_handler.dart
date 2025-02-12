@@ -14,19 +14,19 @@ Future<Response> verifyLicenseHandler(Request request, Injector i, ModularArgume
 
   if (clientKey == null) {
     request.log('Could not extract client key. Unauthorized.');
-    return Response.forbidden('Invalid client key');
+    return Response.forbidden('Invalid signature');
   }
 
-  final userId = args.params['user-id'];
+  final userId = args.data['userId'];
 
   if (userId == null) {
     request.log('Bad Request: No user ID given');
     return Response.badRequest();
   }
 
-  var license = await prisma.license.findUnique(
-    where: LicenseWhereUniqueInput(
-      userId: PrismaUnion.$1(userId),
+  var license = await prisma.license.findFirst(
+    where: LicenseWhereInput(
+      userId: PrismaUnion.$2(PrismaUnion.$1(userId)),
       customerId: PrismaUnion.$2(clientKey.customerId!),
       productId: PrismaUnion.$2(clientKey.productId!),
     ),
@@ -41,7 +41,7 @@ Future<Response> verifyLicenseHandler(Request request, Injector i, ModularArgume
         i,
         ModularArguments(
           uri: args.uri,
-          params: {
+          data: {
             'customerId': clientKey.customerId,
             'productId': clientKey.productId,
             'userId': userId,
@@ -49,9 +49,9 @@ Future<Response> verifyLicenseHandler(Request request, Injector i, ModularArgume
         ),
       );
 
-      license = await prisma.license.findUnique(
-        where: LicenseWhereUniqueInput(
-          userId: PrismaUnion.$1(userId),
+      license = await prisma.license.findFirst(
+        where: LicenseWhereInput(
+          userId: PrismaUnion.$2(PrismaUnion.$1(userId)),
           customerId: PrismaUnion.$2(clientKey.customerId!),
           productId: PrismaUnion.$2(clientKey.productId!),
         ),
