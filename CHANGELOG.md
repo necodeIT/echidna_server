@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.1](https://github.com/necodeIT/echidna_server/compare/v1.1.0...v1.1.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* change verify call method to post ([bb17a4b](https://github.com/necodeIT/echidna_server/commit/bb17a4b7881c0ae277d46e540303a3c38e98f9fc))
+* make verify endpoint working ([057ba4a](https://github.com/necodeIT/echidna_server/commit/057ba4af76663da897ace1fb0baf7d96e776d88e))
+
 ## 1.1.0 (2025-01-07)
 
 
