@@ -16,17 +16,11 @@ class SignatureGuard extends RouteGuard {
 
     final clientKey = await signatureService.extractClientKey(request);
 
-    print(request.headers);
-
     if (clientKey == null) return false;
-
-    print('Client key: ${clientKey.key}');
 
     final signature = request.headers['x-signature'];
 
     if (signature == null) return false;
-
-    print('Signature: $signature');
 
     return signatureService.verifySignature(signature, body, clientKey.key!);
   }
