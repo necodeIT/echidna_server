@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.2](https://github.com/necodeIT/echidna_server/compare/v1.1.1...v1.1.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* resolve cors error with sign header ([661298b](https://github.com/necodeIT/echidna_server/commit/661298bee641e1978fe7151302d8f9a73f50d6a6))
+
 ## [1.1.1](https://github.com/necodeIT/echidna_server/compare/v1.1.0...v1.1.1) (2025-02-12)
 
 
