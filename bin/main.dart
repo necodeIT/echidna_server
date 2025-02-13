@@ -28,6 +28,7 @@ void main(List<String> args) async {
         corsHeaders(
           headers: {
             ACCESS_CONTROL_ALLOW_HEADERS: 'Content-Type, Authorization, X-Signature, client-id',
+            ACCESS_CONTROL_EXPOSE_HEADERS: 'Content-Type, Authorization, X-Signature, client-id',
           },
         ),
         contentTypeJson,
