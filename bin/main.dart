@@ -25,7 +25,11 @@ void main(List<String> args) async {
     final modularHandler = Modular(
       module: ServerModule(prisma),
       middlewares: [
-        corsHeaders(),
+        corsHeaders(
+          headers: {
+            ACCESS_CONTROL_ALLOW_HEADERS: 'Content-Type, Authorization, X-Signature, client-id',
+          },
+        ),
         contentTypeJson,
       ],
     );

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:echidna_server/echidna_server.dart';
-import 'package:echidna_server/modules/client/client.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
@@ -10,19 +9,34 @@ import 'package:shelf_modular/shelf_modular.dart';
 class SignatureGuard extends RouteGuard {
   @override
   FutureOr<bool> canActivate(Request request, [ModularRoute? route]) async {
+    request.log('Checking signature');
+
     final body = await request.readAsString();
 
     final signatureService = Modular.get<SignatureService>();
 
     final clientKey = await signatureService.extractClientKey(request);
 
-    if (clientKey == null) return false;
+    if (clientKey == null) {
+      request.log('No client key found');
+
+      return false;
+    }
 
     final signature = request.headers['x-signature'];
 
-    if (signature == null) return false;
+    if (signature == null) {
+      request.log('No signature provided');
+      return false;
+    }
 
-    return signatureService.verifySignature(signature, body, clientKey.key!);
+    request.log('Signature provided: $signature');
+
+    final isValid = signatureService.verifySignature(signature, body, clientKey.key!);
+
+    request.log(isValid ? 'Signature verification succeeded' : 'Signature verification failed');
+
+    return isValid;
   }
 
   @override

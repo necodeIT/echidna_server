@@ -17,6 +17,8 @@ class HmacSignatureService extends SignatureService {
     final hmac = Hmac(sha256, utf8.encode(secret));
     final signature = hmac.convert(utf8.encode(body)).toString();
 
+    log('Generated signature: $signature, secret: $secret, body: $body');
+
     return signature;
   }
 
@@ -24,7 +26,13 @@ class HmacSignatureService extends SignatureService {
   bool verifySignature(String signature, String body, String secret) {
     final serverSignature = sign(body, secret);
 
-    return signature == serverSignature;
+    final valid = signature == serverSignature;
+
+    if (!valid) {
+      log('Invalid signature: Signature is "$signature", expected "$serverSignature"');
+    }
+
+    return valid;
   }
 
   @override
