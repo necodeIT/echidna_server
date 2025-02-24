@@ -30,7 +30,7 @@ class ServerModule extends Module {
   @override
   void routes(RouteManager r) {
     r
-      ..get('/', () => Response.notFound("This is not the API you're looking for."))
+      ..get('/', () => Response(418, body: "I'm a teapot ☕🫖🍵🧋"))
       ..module(
         '/admin',
         module: AdminModule(),
